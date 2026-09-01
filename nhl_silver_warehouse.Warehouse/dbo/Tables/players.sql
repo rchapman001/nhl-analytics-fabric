@@ -1,0 +1,28 @@
+CREATE TABLE [dbo].[players] (
+
+	[player_id] int NOT NULL, 
+	[first_name] varchar(100) NULL, 
+	[last_name] varchar(100) NULL, 
+	[player_slug] varchar(255) NULL, 
+	[is_active] bit NULL, 
+	[position] varchar(50) NULL, 
+	[shoots_catches] varchar(10) NULL, 
+	[height_in_inches] int NULL, 
+	[height_in_centimeters] int NULL, 
+	[weight_in_pounds] int NULL, 
+	[weight_in_kilograms] int NULL, 
+	[birth_date] date NULL, 
+	[birth_city] varchar(100) NULL, 
+	[birth_country] varchar(100) NULL, 
+	[draft_team_id] int NULL, 
+	[draft_year] int NULL, 
+	[draft_round] int NULL, 
+	[draft_pick_in_round] int NULL, 
+	[draft_overall_pick] int NULL, 
+	[in_top_100_all_time] bit NULL, 
+	[in_hhof] bit NULL, 
+	[headshot] varchar(1000) NULL, 
+	[hero_image] varchar(1000) NULL, 
+	[created_at] datetime2(6) NULL, 
+	[updated_at] datetime2(6) NULL
+);

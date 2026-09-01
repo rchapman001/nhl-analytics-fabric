@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "nhl_analytics_pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4ba228be-7208-ba0d-4433-af49343e9b33"
+  }
+}

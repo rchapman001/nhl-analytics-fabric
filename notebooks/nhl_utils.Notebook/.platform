@@ -2,11 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "nhl-schema",
-    "description": ""
+    "displayName": "nhl_utils"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "470bb204-7784-b4a3-4c6f-1854464ea021"
+    "logicalId": "1937558c-16c8-adbb-4123-7a798fef0aca"
   }
 }

@@ -21,11 +21,43 @@
 
 # CELL ********************
 
-import requests
-import json
-import time
+%run ./nhl_utils
 
-from datetime import datetime, timezone
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# ==========================================================
+# NHL ANALYTICS
+# FABRIC BRONZE PIPELINE
+#
+# Shared utilities:
+#   notebooks/shared/nhl_utils
+#
+# This notebook is responsible for:
+#
+#   1. Ingest standings
+#   2. Ingest team rosters
+#   3. Extract player IDs
+#   4. Ingest player landing data
+#   5. Ingest player game logs
+#   6. Ingest current scores
+#
+# Reusable functionality such as:
+#
+#   - NHL API requests
+#   - API rate limiting
+#   - Retry handling
+#   - Run folder creation
+#   - JSONL file writing
+#
+# is contained in nhl_utils.
+# ==========================================================
 
 
 # ==========================================================
@@ -39,27 +71,26 @@ LAKEHOUSE_PATH = (
     "be67e106-5585-4ba8-844b-55d35cc9aeca"
 )
 
-# NHL API endpoints
-STANDINGS_URL = "https://api-web.nhle.com/v1/standings/now"
-SCORES_URL = "https://api-web.nhle.com/v1/score/now"
 
-# Rate limiting configuration
-MIN_INTERVAL = 1.0
-MAX_RETRIES = 5
+# ==========================================================
+# NHL API ENDPOINTS
+# ==========================================================
 
-last_call = 0
+STANDINGS_URL = (
+    "https://api-web.nhle.com/v1/standings/now"
+)
+
+SCORES_URL = (
+    "https://api-web.nhle.com/v1/score/now"
+)
 
 
 # ==========================================================
 # CREATE RUN FOLDER
 # ==========================================================
 
-run_folder = datetime.now(timezone.utc).strftime(
-    "%Y%m%d_%H%M%S"
-)
-
-run_path = (
-    f"{LAKEHOUSE_PATH}/Files/runs/{run_folder}"
+run_folder, run_path = create_run_folder(
+    LAKEHOUSE_PATH
 )
 
 print("=" * 60)
@@ -67,100 +98,6 @@ print("NHL BRONZE PIPELINE")
 print("=" * 60)
 print(f"Run folder: {run_folder}")
 print()
-
-
-# ==========================================================
-# NHL API CLIENT
-# ==========================================================
-
-def safe_get(url):
-    """
-    Makes a rate-limited request to the NHL API.
-
-    Retries requests that return HTTP 429.
-    """
-
-    global last_call
-
-    # Ensure at least MIN_INTERVAL seconds between requests
-    wait = MIN_INTERVAL - (
-        time.time() - last_call
-    )
-
-    if wait > 0:
-        time.sleep(wait)
-
-    for attempt in range(MAX_RETRIES):
-
-        try:
-
-            response = requests.get(
-                url,
-                timeout=30
-            )
-
-            last_call = time.time()
-
-            # Retry if rate limited
-            if response.status_code == 429:
-
-                retry_wait = 2 ** attempt
-
-                print(
-                    f"Rate limited. "
-                    f"Retrying in {retry_wait} seconds..."
-                )
-
-                time.sleep(retry_wait)
-
-                continue
-
-            response.raise_for_status()
-
-            return response.json()
-
-        except requests.exceptions.RequestException as error:
-
-            if attempt == MAX_RETRIES - 1:
-                raise
-
-            retry_wait = 2 ** attempt
-
-            print(
-                f"Request failed: {error}. "
-                f"Retrying in {retry_wait} seconds..."
-            )
-
-            time.sleep(retry_wait)
-
-    raise Exception(
-        f"Failed to retrieve data after "
-        f"{MAX_RETRIES} attempts: {url}"
-    )
-
-
-# ==========================================================
-# WRITE JSONL FILE
-# ==========================================================
-
-def write_jsonl(path, records):
-    """
-    Writes a list of records to a JSONL file
-    in the Bronze Lakehouse.
-    """
-
-    jsonl_data = "\n".join(
-        json.dumps(record)
-        for record in records
-    )
-
-    jsonl_data += "\n"
-
-    notebookutils.fs.put(
-        path,
-        jsonl_data,
-        overwrite=True
-    )
 
 
 # ==========================================================
@@ -190,11 +127,13 @@ write_jsonl(
 )
 
 print(
-    f"Successfully wrote standings to:"
+    "Successfully wrote standings to:"
 )
+
 print(
     standings_path
 )
+
 print()
 
 
@@ -213,6 +152,7 @@ roster_records = []
 
 all_player_ids = set()
 
+
 for index, team in enumerate(
     teams,
     start=1
@@ -228,7 +168,9 @@ for index, team in enumerate(
         f"roster/{team}/current"
     )
 
-    roster_data = safe_get(url)
+    roster_data = safe_get(
+        url
+    )
 
     roster_records.append(
         {
@@ -236,6 +178,10 @@ for index, team in enumerate(
             "roster": roster_data
         }
     )
+
+    # ------------------------------------------------------
+    # Extract player IDs from roster
+    # ------------------------------------------------------
 
     for group in [
         "forwards",
@@ -248,13 +194,16 @@ for index, team in enumerate(
             []
         ):
 
-            player_id = player.get("id")
+            player_id = player.get(
+                "id"
+            )
 
             if player_id is not None:
 
                 all_player_ids.add(
                     player_id
                 )
+
 
 rosters_path = (
     f"{run_path}/rosters.jsonl"
@@ -266,6 +215,7 @@ write_jsonl(
 )
 
 print()
+
 print(
     f"Successfully wrote "
     f"{len(roster_records)} rosters."
@@ -313,6 +263,7 @@ print("Starting player ingestion...")
 
 player_records = []
 
+
 for index, player_id in enumerate(
     player_ids,
     start=1
@@ -328,7 +279,9 @@ for index, player_id in enumerate(
         f"player/{player_id}/landing"
     )
 
-    player_data = safe_get(url)
+    player_data = safe_get(
+        url
+    )
 
     player_records.append(
         {
@@ -336,6 +289,7 @@ for index, player_id in enumerate(
             "data": player_data
         }
     )
+
 
 players_path = (
     f"{run_path}/players.jsonl"
@@ -347,6 +301,7 @@ write_jsonl(
 )
 
 print()
+
 print(
     f"Successfully wrote "
     f"{len(player_records)} players."
@@ -366,6 +321,7 @@ print(
 game_log_records = []
 
 failed_game_logs = []
+
 
 for index, player_id in enumerate(
     player_ids,
@@ -400,6 +356,7 @@ for index, player_id in enumerate(
 
         # Do not fail the entire Bronze pipeline
         # because one player endpoint failed.
+
         print(
             f"FAILED game log for "
             f"player {player_id}: {error}"
@@ -412,6 +369,7 @@ for index, player_id in enumerate(
             }
         )
 
+
 game_logs_path = (
     f"{run_path}/game_logs.jsonl"
 )
@@ -422,10 +380,16 @@ write_jsonl(
 )
 
 print()
+
 print(
     f"Successfully wrote "
     f"{len(game_log_records)} game logs."
 )
+
+
+# ----------------------------------------------------------
+# Write failed game logs if any occurred
+# ----------------------------------------------------------
 
 if failed_game_logs:
 
@@ -487,37 +451,50 @@ print("=" * 60)
 print("NHL BRONZE PIPELINE COMPLETE")
 print("=" * 60)
 
-print(f"Run folder: {run_folder}")
+print(
+    f"Run folder: {run_folder}"
+)
 
 print()
-print("Files created:")
 
 print(
-    f"  standings.jsonl"
+    "Files created:"
 )
+
 print(
-    f"  rosters.jsonl"
+    "  standings.jsonl"
 )
+
 print(
-    f"  player_ids.jsonl"
+    "  rosters.jsonl"
 )
+
 print(
-    f"  players.jsonl"
+    "  player_ids.jsonl"
 )
+
 print(
-    f"  game_logs.jsonl"
+    "  players.jsonl"
 )
+
 print(
-    f"  scores.jsonl"
+    "  game_logs.jsonl"
 )
+
+print(
+    "  scores.jsonl"
+)
+
 
 if failed_game_logs:
 
     print(
-        f"  failed_game_logs.jsonl"
+        "  failed_game_logs.jsonl"
     )
 
+
 print()
+
 print(
     f"Total teams: {len(teams)}"
 )
@@ -543,11 +520,14 @@ print(
 )
 
 print()
+
 print(
     "Bronze Lakehouse path:"
 )
 
-print(run_path)
+print(
+    run_path
+)
 
 # METADATA ********************
 

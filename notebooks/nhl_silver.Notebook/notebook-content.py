@@ -31,6 +31,17 @@
 
 # CELL ********************
 
+%run ./nhl_utils
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # ============================================================
 # NHL ANALYTICS
 # MICROSOFT FABRIC - SILVER PIPELINE
@@ -80,10 +91,31 @@
 #           player_game_stats
 #
 # ============================================================
+#
+# SHARED UTILITIES
+#
+# The following reusable functionality is provided by
+# nhl_utils:
+#
+#   - read_jsonl()
+#   - write_jsonl()
+#   - read_delta_table()
+#   - write_delta_table()
+#   - table_exists()
+#   - validate_table_exists()
+#   - safe_get()
+#   - create_run_folder()
+#
+# ============================================================
 
+
+# ============================================================
+# PYSPARK IMPORTS
+# ============================================================
 
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
+
 from delta.tables import DeltaTable
 
 import os
@@ -94,16 +126,29 @@ from datetime import datetime
 # CONFIGURATION
 # ============================================================
 
+# ------------------------------------------------------------
+# Bronze Lakehouse
+# ------------------------------------------------------------
+
 BRONZE_LAKEHOUSE = "nhl_bronze_lakehouse"
+
+# The specific Bronze run being processed.
 BRONZE_RUN = "20260828_022821"
+
 BRONZE_ABFS_ROOT = (
     "abfss://1fbf55a3-b2fc-4021-8697-98890ec67e3f"
     "@onelake.dfs.fabric.microsoft.com/"
     "be67e106-5585-4ba8-844b-55d35cc9aeca/"
-    "Files/runs/20260828_022821"
+    f"Files/runs/{BRONZE_RUN}"
 )
 
+
+# ------------------------------------------------------------
+# Silver Lakehouse
+# ------------------------------------------------------------
+
 SILVER_LAKEHOUSE = "nhl_silver_lakehouse"
+
 SILVER_ROOT = "/lakehouse/default/Tables"
 
 
@@ -135,6 +180,10 @@ print(f"Silver Lakehouse : {SILVER_LAKEHOUSE}")
 print(f"Bronze Run       : {BRONZE_RUN}")
 
 print()
+print("Bronze Root:")
+print(BRONZE_ABFS_ROOT)
+
+print()
 print("Silver Root:")
 print(SILVER_ROOT)
 
@@ -146,21 +195,28 @@ print("=" * 70)
 # VALIDATE BRONZE CONFIGURATION
 # ============================================================
 
+print()
 print("VALIDATING BRONZE CONFIGURATION")
 print("=" * 70)
 
+
 if not BRONZE_ABFS_ROOT:
+
     raise ValueError(
         "BRONZE_ABFS_ROOT is empty."
     )
 
+
 if not BRONZE_ABFS_ROOT.startswith("abfss://"):
+
     raise ValueError(
         "BRONZE_ABFS_ROOT must be an ABFS path "
         "starting with abfss://"
     )
 
+
 if BRONZE_RUN not in BRONZE_ABFS_ROOT:
+
     raise ValueError(
         f"""
 BRONZE_RUN does not appear in BRONZE_ABFS_ROOT.
@@ -173,8 +229,9 @@ Bronze ABFS Root:
 """
     )
 
+
 print()
-print("Bronze ABFS configuration is valid.")
+print("✓ Bronze ABFS configuration is valid.")
 
 print()
 print("Bronze location:")
@@ -190,62 +247,9 @@ def bronze_path(filename):
     Returns the full ABFS path for a Bronze JSONL file.
     """
 
-    return f"{BRONZE_ABFS_ROOT}/{filename}"
-
-
-# ============================================================
-# READ BRONZE JSONL
-# ============================================================
-
-def read_bronze_jsonl(filename):
-    """
-    Read a Bronze JSONL file directly from OneLake using
-    its ABFS path.
-
-    No staging table is created.
-    No SQL is required.
-    """
-
-    path = bronze_path(filename)
-
-    print()
-    print("-" * 70)
-    print(f"READING BRONZE FILE")
-    print("-" * 70)
-
-    print()
-    print(f"File: {filename}")
-    print(f"Path: {path}")
-
-    try:
-
-        df = (
-            spark.read
-            .json(path)
-        )
-
-    except Exception as e:
-
-        print()
-        print("FAILED TO READ BRONZE FILE")
-        print()
-        print(f"File: {filename}")
-        print(f"Path: {path}")
-        print()
-        print("Error:")
-        print(str(e))
-
-        raise
-
-    count = df.count()
-
-    print()
-    print(
-        f"Loaded {count:,} Bronze records "
-        f"from {filename}"
+    return (
+        f"{BRONZE_ABFS_ROOT}/{filename}"
     )
-
-    return df
 
 
 # ============================================================
@@ -257,6 +261,7 @@ print("=" * 70)
 print("VALIDATING BRONZE FILES")
 print("=" * 70)
 
+
 required_bronze_files = [
     "standings.jsonl",
     "rosters.jsonl",
@@ -265,18 +270,14 @@ required_bronze_files = [
     "scores.jsonl"
 ]
 
-print()
 
 for filename in required_bronze_files:
 
     path = bronze_path(filename)
 
-    print(
-        f"  ✓ {filename}"
-    )
-    print(
-        f"    {path}"
-    )
+    print()
+    print(f"  ✓ {filename}")
+    print(f"    {path}")
 
 
 print()
@@ -299,8 +300,10 @@ print("=" * 70)
 # Standings
 # ------------------------------------------------------------
 
-standings_df = read_bronze_jsonl(
-    "standings.jsonl"
+standings_df = read_jsonl(
+    bronze_path(
+        "standings.jsonl"
+    )
 )
 
 
@@ -308,8 +311,10 @@ standings_df = read_bronze_jsonl(
 # Rosters
 # ------------------------------------------------------------
 
-rosters_df = read_bronze_jsonl(
-    "rosters.jsonl"
+rosters_df = read_jsonl(
+    bronze_path(
+        "rosters.jsonl"
+    )
 )
 
 
@@ -317,8 +322,10 @@ rosters_df = read_bronze_jsonl(
 # Players
 # ------------------------------------------------------------
 
-players_df = read_bronze_jsonl(
-    "players.jsonl"
+players_df = read_jsonl(
+    bronze_path(
+        "players.jsonl"
+    )
 )
 
 
@@ -326,8 +333,10 @@ players_df = read_bronze_jsonl(
 # Game Logs
 # ------------------------------------------------------------
 
-game_logs_df = read_bronze_jsonl(
-    "game_logs.jsonl"
+game_logs_df = read_jsonl(
+    bronze_path(
+        "game_logs.jsonl"
+    )
 )
 
 
@@ -335,8 +344,10 @@ game_logs_df = read_bronze_jsonl(
 # Scores
 # ------------------------------------------------------------
 
-scores_df = read_bronze_jsonl(
-    "scores.jsonl"
+scores_df = read_jsonl(
+    bronze_path(
+        "scores.jsonl"
+    )
 )
 
 
@@ -359,82 +370,36 @@ print("=" * 70)
 print()
 print("STANDINGS")
 print("-" * 70)
+
 standings_df.printSchema()
 
 
 print()
 print("ROSTERS")
 print("-" * 70)
+
 rosters_df.printSchema()
 
 
 print()
 print("PLAYERS")
 print("-" * 70)
+
 players_df.printSchema()
 
 
 print()
 print("GAME LOGS")
 print("-" * 70)
+
 game_logs_df.printSchema()
 
 
 print()
 print("SCORES")
 print("-" * 70)
+
 scores_df.printSchema()
-
-
-# ============================================================
-# SILVER TABLE WRITER
-# ============================================================
-
-def write_silver_table(
-    df,
-    table_name,
-    mode="overwrite"
-):
-    """
-    Write a Spark DataFrame to a Silver Delta table.
-
-    Because the Silver Lakehouse is attached to the notebook,
-    saveAsTable() writes the table to the Lakehouse.
-
-    No staging table is required.
-    No T-SQL is required.
-    """
-
-    print()
-    print("=" * 70)
-    print(f"WRITING SILVER TABLE: {table_name}")
-    print("=" * 70)
-
-    row_count = df.count()
-
-    print()
-    print(
-        f"Rows to write: {row_count:,}"
-    )
-
-    (
-        df.write
-        .format("delta")
-        .mode(mode)
-        .option(
-            "overwriteSchema",
-            "true"
-        )
-        .saveAsTable(
-            table_name
-        )
-    )
-
-    print()
-    print(
-        f"✓ Successfully wrote Silver table: "
-        f"{table_name}"
-    )
 
 
 # ============================================================
@@ -443,11 +408,13 @@ def write_silver_table(
 #
 # IMPORTANT:
 #
-# These transformations are intentionally based on the
-# Bronze DataFrames currently loaded above.
+# These transformations are currently placeholders.
 #
-# The exact NHL JSON structures determine the final column
-# mappings.
+# The next implementation step is to flatten and normalize
+# the NHL JSON structures into the actual Silver schemas.
+#
+# Silver tables should eventually contain clean relational
+# structures rather than the raw Bronze JSON structures.
 #
 # ============================================================
 
@@ -462,7 +429,32 @@ print("PROCESSING TEAMS")
 print("=" * 70)
 
 
+# TODO:
+# Extract team-level attributes from standings JSON.
+#
+# Expected future structure:
+#
+# teams
+#   team_id
+#   team_abbreviation
+#   team_name
+#   city
+#   conference
+#   division
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 teams_df = standings_df
+
+
+print()
+print(
+    f"Teams DataFrame prepared: "
+    f"{teams_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -475,7 +467,34 @@ print("PROCESSING PLAYERS")
 print("=" * 70)
 
 
+# TODO:
+# Extract player-level attributes from player landing JSON.
+#
+# Expected future structure:
+#
+# players
+#   player_id
+#   first_name
+#   last_name
+#   position
+#   shoots
+#   height
+#   weight
+#   birth_date
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 players_silver_df = players_df
+
+
+print()
+print(
+    f"Players DataFrame prepared: "
+    f"{players_silver_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -488,7 +507,31 @@ print("PROCESSING TEAM ROSTERS")
 print("=" * 70)
 
 
+# TODO:
+# Flatten roster JSON into one row per player/team
+# relationship.
+#
+# Expected future structure:
+#
+# team_rosters
+#   team_id
+#   player_id
+#   position
+#   roster_status
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 team_rosters_df = rosters_df
+
+
+print()
+print(
+    f"Team Rosters DataFrame prepared: "
+    f"{team_rosters_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -501,7 +544,35 @@ print("PROCESSING TEAM STANDINGS")
 print("=" * 70)
 
 
+# TODO:
+# Flatten standings JSON into one row per team.
+#
+# Expected future structure:
+#
+# team_standings
+#   team_id
+#   season
+#   games_played
+#   wins
+#   losses
+#   overtime_losses
+#   points
+#   goals_for
+#   goals_against
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 team_standings_df = standings_df
+
+
+print()
+print(
+    f"Team Standings DataFrame prepared: "
+    f"{team_standings_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -514,7 +585,35 @@ print("PROCESSING GAMES")
 print("=" * 70)
 
 
+# TODO:
+# Flatten scores JSON into one row per game.
+#
+# Expected future structure:
+#
+# games
+#   game_id
+#   date
+#   season
+#   game_type
+#   home_team_id
+#   away_team_id
+#   home_score
+#   away_score
+#   game_state
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 games_df = scores_df
+
+
+print()
+print(
+    f"Games DataFrame prepared: "
+    f"{games_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -527,7 +626,37 @@ print("PROCESSING PLAYER GAME STATS")
 print("=" * 70)
 
 
+# TODO:
+# Flatten player game log JSON into one row per player/game.
+#
+# Expected future structure:
+#
+# player_game_stats
+#   player_id
+#   game_id
+#   date
+#   goals
+#   assists
+#   points
+#   shots
+#   hits
+#   blocked_shots
+#   penalty_minutes
+#   time_on_ice
+#   ...
+#
+# Current implementation:
+# Preserve Bronze DataFrame until transformation logic
+# is implemented.
+
 player_game_stats_df = game_logs_df
+
+
+print()
+print(
+    f"Player Game Stats DataFrame prepared: "
+    f"{player_game_stats_df.count():,} rows"
+)
 
 
 # ============================================================
@@ -544,7 +673,7 @@ print("=" * 70)
 # Teams
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     teams_df,
     "teams"
 )
@@ -554,7 +683,7 @@ write_silver_table(
 # Players
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     players_silver_df,
     "players"
 )
@@ -564,7 +693,7 @@ write_silver_table(
 # Team Rosters
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     team_rosters_df,
     "team_rosters"
 )
@@ -574,7 +703,7 @@ write_silver_table(
 # Team Standings
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     team_standings_df,
     "team_standings"
 )
@@ -584,7 +713,7 @@ write_silver_table(
 # Games
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     games_df,
     "games"
 )
@@ -594,7 +723,7 @@ write_silver_table(
 # Player Game Stats
 # ------------------------------------------------------------
 
-write_silver_table(
+write_delta_table(
     player_game_stats_df,
     "player_game_stats"
 )
@@ -619,15 +748,13 @@ for table_name in SILVER_TABLES:
 
     try:
 
-        table_df = spark.table(
+        table_df = read_delta_table(
             table_name
         )
 
-        row_count = table_df.count()
-
         print(
             f"  ✓ {table_name}: "
-            f"{row_count:,} rows"
+            f"{table_df.count():,} rows"
         )
 
     except Exception as e:
@@ -637,6 +764,7 @@ for table_name in SILVER_TABLES:
             f"{table_name}"
         )
 
+        print()
         print(
             str(e)
         )
@@ -653,11 +781,13 @@ print("=" * 70)
 print("NHL ANALYTICS - SILVER PIPELINE COMPLETE")
 print("=" * 70)
 
+
 print()
 print("Bronze Lakehouse:")
 print(
     f"  {BRONZE_LAKEHOUSE}"
 )
+
 
 print()
 print("Bronze Run:")
@@ -665,11 +795,13 @@ print(
     f"  {BRONZE_RUN}"
 )
 
+
 print()
 print("Bronze ABFS:")
 print(
     f"  {BRONZE_ABFS_ROOT}"
 )
+
 
 print()
 print("Silver Lakehouse:")
@@ -677,8 +809,10 @@ print(
     f"  {SILVER_LAKEHOUSE}"
 )
 
+
 print()
 print("Silver tables:")
+
 
 for table_name in SILVER_TABLES:
 
@@ -709,6 +843,10 @@ print()
 print("Implementation:")
 
 print(
+    "  ✓ Shared utilities loaded from nhl_utils"
+)
+
+print(
     "  ✓ Bronze read directly with PySpark"
 )
 
@@ -717,7 +855,7 @@ print(
 )
 
 print(
-    "  ✓ Silver written with PySpark"
+    "  ✓ Silver written with shared Delta utility"
 )
 
 print(

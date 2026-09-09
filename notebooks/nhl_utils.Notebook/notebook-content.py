@@ -13,292 +13,226 @@
 
 # ============================================================
 # NHL ANALYTICS
-# SHARED UTILITY FUNCTIONS
+# SHARED FABRIC UTILITIES
+#
+# Reusable utilities for:
+#   - NHL API access / rate limiting
+#   - Bronze run paths and JSONL
+#   - Spark / Delta tables
+#   - Audit columns
+#   - Common validation
+#
+# Fabric notebook requirement:
+#   This notebook must be referenced/run before the pipeline
+#   notebooks so its functions are available in the session.
 # ============================================================
 
-import requests
+from __future__ import annotations
+
 import json
 import time
-
 from datetime import datetime, timezone
 
+import notebookutils
+import requests
+from pyspark.sql import functions as F
 
 # ============================================================
-# NHL API CONFIGURATION
+# CONFIGURATION
 # ============================================================
 
-MIN_INTERVAL = 1.0
+NHL_API_BASE_URL = "https://api-web.nhle.com/v1"
+MIN_INTERVAL_SECONDS = 1.0
 MAX_RETRIES = 5
 
-last_call = 0
-
+_last_api_call = 0.0
 
 # ============================================================
-# NHL API CLIENT
+# NHL API
 # ============================================================
 
-def safe_get(url):
-    """
-    Makes a rate-limited request to the NHL API.
+def safe_get(url: str):
+    """Rate-limited NHL API GET with retry handling."""
+    global _last_api_call
 
-    Retries requests that return HTTP 429 or other
-    request-related failures.
-    """
-
-    global last_call
-
-    # Ensure at least MIN_INTERVAL seconds
-    # between requests.
-    wait = MIN_INTERVAL - (
-        time.time() - last_call
-    )
-
+    wait = MIN_INTERVAL_SECONDS - (time.time() - _last_api_call)
     if wait > 0:
         time.sleep(wait)
 
     for attempt in range(MAX_RETRIES):
-
         try:
+            response = requests.get(url, timeout=30)
+            _last_api_call = time.time()
 
-            response = requests.get(
-                url,
-                timeout=30
-            )
-
-            last_call = time.time()
-
-            # Retry if rate limited.
             if response.status_code == 429:
-
                 retry_wait = 2 ** attempt
-
-                print(
-                    f"Rate limited. "
-                    f"Retrying in {retry_wait} seconds..."
-                )
-
+                print(f"Rate limited. Retrying in {retry_wait}s...")
                 time.sleep(retry_wait)
-
                 continue
 
             response.raise_for_status()
-
             return response.json()
 
         except requests.exceptions.RequestException as error:
-
             if attempt == MAX_RETRIES - 1:
                 raise
 
             retry_wait = 2 ** attempt
-
             print(
                 f"Request failed: {error}. "
-                f"Retrying in {retry_wait} seconds..."
+                f"Retrying in {retry_wait}s..."
             )
-
             time.sleep(retry_wait)
 
-    raise Exception(
-        f"Failed to retrieve data after "
-        f"{MAX_RETRIES} attempts: {url}"
+    raise RuntimeError(
+        f"Failed to retrieve data after {MAX_RETRIES} attempts: {url}"
     )
 
+def roster_url(team_abbrev: str) -> str:
+    return f"{NHL_API_BASE_URL}/roster/{team_abbrev}/current"
+
+def player_landing_url(player_id: int) -> str:
+    return f"{NHL_API_BASE_URL}/player/{player_id}/landing"
+
+def player_game_log_url(player_id: int) -> str:
+    return f"{NHL_API_BASE_URL}/player/{player_id}/game-log/now"
 
 # ============================================================
-# RUN FOLDER
+# BRONZE RUN / FILE UTILITIES
 # ============================================================
 
-def create_run_folder(lakehouse_path):
-    """
-    Creates a unique UTC run folder path.
+def create_run_folder(lakehouse_path: str):
+    """Return (run_id, run_path) for a unique UTC Bronze run."""
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    run_path = f"{lakehouse_path}/Files/runs/{run_id}"
+    return run_id, run_path
 
-    Returns:
-        tuple[str, str]:
-            run_folder, run_path
-    """
+def bronze_file_path(run_path: str, filename: str) -> str:
+    if not run_path:
+        raise ValueError("run_path cannot be empty.")
+    if not filename:
+        raise ValueError("filename cannot be empty.")
+    return f"{run_path.rstrip('/')}/{filename}"
 
-    run_folder = datetime.now(
-        timezone.utc
-    ).strftime(
-        "%Y%m%d_%H%M%S"
-    )
-
-    run_path = (
-        f"{lakehouse_path}/Files/runs/{run_folder}"
-    )
-
-    return run_folder, run_path
-
-
-# ============================================================
-# JSONL
-# ============================================================
-
-def read_jsonl(path):
-    """
-    Read a JSONL file from a given path using Spark.
-
-    Args:
-        path (str):
-            Full path to the JSONL file.
-
-    Returns:
-        pyspark.sql.DataFrame:
-            DataFrame containing the JSONL records.
-    """
-
-    print()
-    print("=" * 70)
-    print("READING JSONL")
-    print("=" * 70)
-
-    print()
-    print(f"Path: {path}")
-
+def read_jsonl(path: str):
+    """Read a JSONL file into a Spark DataFrame."""
     if not path:
-        raise ValueError(
-            "JSONL path cannot be empty."
-        )
+        raise ValueError("JSONL path cannot be empty.")
 
-    try:
-
-        df = (
-            spark.read
-            .json(path)
-        )
-
-    except Exception as error:
-
-        print()
-        print("FAILED TO READ JSONL")
-        print()
-        print(f"Path: {path}")
-        print()
-        print("Error:")
-        print(str(error))
-
-        raise
-
-    row_count = df.count()
-
-    print()
-    print(
-        f"✓ Successfully loaded "
-        f"{row_count:,} records"
-    )
-
+    print(f"Reading JSONL: {path}")
+    df = spark.read.json(path)
+    print(f"Loaded {df.count():,} records.")
     return df
 
+def write_jsonl(path: str, records: list[dict]):
+    """Write a list of dictionaries as JSONL."""
+    if not path:
+        raise ValueError("JSONL path cannot be empty.")
 
-def write_jsonl(path, records):
-    """
-    Writes a list of dictionaries to a JSONL file
-    in the Lakehouse.
-    """
-
-    jsonl_data = "\n".join(
-        json.dumps(record)
+    payload = "".join(
+        json.dumps(record, separators=(",", ":")) + "\n"
         for record in records
     )
+    notebookutils.fs.put(path, payload, overwrite=True)
+    print(f"Wrote JSONL: {path}")
 
-    jsonl_data += "\n"
+# ============================================================
+# COMMON SQL / VALIDATION UTILITIES
+# ============================================================
 
-    notebookutils.fs.put(
-        path,
-        jsonl_data,
-        overwrite=True
-    )
+def quote_identifier(identifier: str) -> str:
+    """Safely quote a SQL identifier."""
+    if not identifier:
+        raise ValueError("SQL identifier cannot be empty.")
 
+    escaped = identifier.replace("]", "]]")
+    return f"[{escaped}]"
+
+
+def validate_surrogate_key(
+    df,
+    column: str,
+    table_name: str,
+    description: str,
+):
+    """Validate that a Warehouse-generated surrogate key was populated."""
+    if column not in df.columns:
+        raise ValueError(
+            f"{description} is missing surrogate key column "
+            f"'{column}' from {table_name}."
+        )
+
+    null_count = df.filter(
+        F.col(column).isNull()
+    ).limit(1).count()
+
+    if null_count > 0:
+        raise ValueError(
+            f"{description} contains NULL surrogate keys "
+            f"for {table_name}.{column}."
+        )
+
+    return df
 
 # ============================================================
 # SPARK / DELTA UTILITIES
 # ============================================================
 
-def read_delta_table(table_name):
-    """
-    Read a Delta table from the attached Lakehouse.
-    """
+def read_delta_table(table_name: str):
+    """Read a managed Spark/Delta table."""
+    if not table_name:
+        raise ValueError("table_name cannot be empty.")
 
-    print()
     print(f"Reading Delta table: {table_name}")
-
     df = spark.table(table_name)
-
-    print(
-        f"Loaded {df.count():,} rows "
-        f"from {table_name}"
-    )
-
+    print(f"Loaded {df.count():,} rows.")
     return df
-
 
 def write_delta_table(
     df,
-    table_name,
-    mode="overwrite",
-    overwrite_schema=True
+    table_name: str,
+    mode: str = "overwrite",
+    overwrite_schema: bool = True,
+    add_audit: bool = True,
 ):
-    """
-    Write a Spark DataFrame to a Delta table.
-    """
+    """Write a DataFrame to a managed Delta table."""
+    if add_audit:
+        df = add_audit_columns(df)
 
-    print()
-    print("=" * 70)
-    print(f"WRITING DELTA TABLE: {table_name}")
-    print("=" * 70)
+    writer = df.write.format("delta").mode(mode)
+    if overwrite_schema:
+        writer = writer.option("overwriteSchema", "true")
 
     row_count = df.count()
-
-    print()
-    print(f"Rows to write: {row_count:,}")
-
-    writer = (
-        df.write
-        .format("delta")
-        .mode(mode)
-    )
-
-    if overwrite_schema:
-        writer = writer.option(
-            "overwriteSchema",
-            "true"
-        )
-
+    print(f"Writing {row_count:,} rows to {table_name}...")
     writer.saveAsTable(table_name)
+    print(f"✓ Wrote Delta table: {table_name}")
 
-    print()
-    print(
-        f"✓ Successfully wrote Delta table: "
-        f"{table_name}"
+def add_audit_columns(df):
+    """Add standard created_at / updated_at columns."""
+    now = F.current_timestamp()
+    return (
+        df.withColumn("created_at", now)
+          .withColumn("updated_at", now)
     )
 
+def table_exists(table_name: str) -> bool:
+    return spark.catalog.tableExists(table_name)
 
-def table_exists(table_name):
-    """
-    Check whether a Spark table exists.
-    """
-
-    return spark.catalog.tableExists(
-        table_name
-    )
-
-
-def validate_table_exists(table_name):
-    """
-    Raise an error if a required table does not exist.
-    """
-
+def validate_table_exists(table_name: str):
     if not table_exists(table_name):
+        raise ValueError(f"Required table does not exist: {table_name}")
+    print(f"✓ Table exists: {table_name}")
 
+def require_columns(df, required_columns: list[str], label: str = "DataFrame"):
+    """Raise a clear error when required DataFrame columns are missing."""
+    missing = [c for c in required_columns if c not in df.columns]
+    if missing:
         raise ValueError(
-            f"Required table does not exist: "
-            f"{table_name}"
+            f"{label} is missing required columns: {', '.join(missing)}"
         )
+    return df
 
-    print(
-        f"✓ Table exists: {table_name}"
-    )
 
 # METADATA ********************
 

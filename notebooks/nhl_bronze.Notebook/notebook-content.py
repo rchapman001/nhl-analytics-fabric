@@ -57,6 +57,14 @@
 #   - JSONL file writing
 #
 # is contained in nhl_utils.
+#
+# NOTE: Run/reference nhl_utils before this notebook.
+#
+# TESTING:
+#   MAX_TEAMS controls how many team roster requests are made.
+#   MAX_PLAYERS controls how many player-related requests are made.
+#
+#   Set either value to None to remove that limit.
 # ==========================================================
 
 
@@ -65,6 +73,7 @@
 # ==========================================================
 
 # The Bronze Lakehouse attached to this notebook.
+
 LAKEHOUSE_PATH = (
     "abfss://1fbf55a3-b2fc-4021-8697-98890ec67e3f@"
     "onelake.dfs.fabric.microsoft.com/"
@@ -72,16 +81,45 @@ LAKEHOUSE_PATH = (
 )
 
 
+# ----------------------------------------------------------
+# TESTING LIMITS
+# ----------------------------------------------------------
+#
+# These limits are temporary and are intended to keep API
+# requests small while testing the Fabric pipeline.
+#
+# Set to None to process everything.
+#
+# Example:
+#
+#   MAX_TEAMS = 3
+#   MAX_PLAYERS = 10
+#
+# This results in:
+#
+#   1 standings request
+#   3 roster requests
+#   10 player requests
+#   10 game log requests
+#   1 scores request
+#
+# Total: approximately 25 API requests
+# ----------------------------------------------------------
+
+MAX_TEAMS = 3
+MAX_PLAYERS = 10
+
+
 # ==========================================================
 # NHL API ENDPOINTS
 # ==========================================================
 
 STANDINGS_URL = (
-    "https://api-web.nhle.com/v1/standings/now"
+    f"{NHL_API_BASE_URL}/standings/now"
 )
 
 SCORES_URL = (
-    "https://api-web.nhle.com/v1/score/now"
+    f"{NHL_API_BASE_URL}/score/now"
 )
 
 
@@ -96,7 +134,27 @@ run_folder, run_path = create_run_folder(
 print("=" * 60)
 print("NHL BRONZE PIPELINE")
 print("=" * 60)
-print(f"Run folder: {run_folder}")
+
+print(
+    f"Run folder: {run_folder}"
+)
+
+print()
+
+print(
+    "Testing configuration:"
+)
+
+print(
+    f"  MAX_TEAMS: "
+    f"{MAX_TEAMS if MAX_TEAMS is not None else 'UNLIMITED'}"
+)
+
+print(
+    f"  MAX_PLAYERS: "
+    f"{MAX_PLAYERS if MAX_PLAYERS is not None else 'UNLIMITED'}"
+)
+
 print()
 
 
@@ -104,7 +162,9 @@ print()
 # 1. INGEST STANDINGS
 # ==========================================================
 
-print("Starting standings ingestion...")
+print(
+    "Starting standings ingestion..."
+)
 
 standings_data = safe_get(
     STANDINGS_URL
@@ -117,8 +177,9 @@ standings_records = [
     }
 ]
 
-standings_path = (
-    f"{run_path}/standings.jsonl"
+standings_path = bronze_file_path(
+    run_path,
+    "standings.jsonl"
 )
 
 write_jsonl(
@@ -141,12 +202,39 @@ print()
 # 2. INGEST ROSTERS
 # ==========================================================
 
-print("Starting roster ingestion...")
+print(
+    "Starting roster ingestion..."
+)
 
 teams = [
     team["teamAbbrev"]["default"]
     for team in standings_data["standings"]
 ]
+
+
+# ----------------------------------------------------------
+# Apply team testing limit
+# ----------------------------------------------------------
+
+all_teams_count = len(teams)
+
+if MAX_TEAMS is not None:
+
+    teams = teams[:MAX_TEAMS]
+
+
+print(
+    f"Teams available: "
+    f"{all_teams_count}"
+)
+
+print(
+    f"Teams selected for this run: "
+    f"{len(teams)}"
+)
+
+print()
+
 
 roster_records = []
 
@@ -163,9 +251,8 @@ for index, team in enumerate(
         f"{team}"
     )
 
-    url = (
-        f"https://api-web.nhle.com/v1/"
-        f"roster/{team}/current"
+    url = roster_url(
+        team
     )
 
     roster_data = safe_get(
@@ -205,8 +292,9 @@ for index, team in enumerate(
                 )
 
 
-rosters_path = (
-    f"{run_path}/rosters.jsonl"
+rosters_path = bronze_file_path(
+    run_path,
+    "rosters.jsonl"
 )
 
 write_jsonl(
@@ -232,6 +320,31 @@ player_ids = sorted(
     all_player_ids
 )
 
+all_player_count = len(player_ids)
+
+
+# ----------------------------------------------------------
+# Apply player testing limit
+# ----------------------------------------------------------
+
+if MAX_PLAYERS is not None:
+
+    player_ids = player_ids[:MAX_PLAYERS]
+
+
+print(
+    f"Players found in selected rosters: "
+    f"{all_player_count}"
+)
+
+print(
+    f"Players selected for this run: "
+    f"{len(player_ids)}"
+)
+
+print()
+
+
 player_ids_records = [
     {
         "source": "rosters",
@@ -239,8 +352,9 @@ player_ids_records = [
     }
 ]
 
-player_ids_path = (
-    f"{run_path}/player_ids.jsonl"
+player_ids_path = bronze_file_path(
+    run_path,
+    "player_ids.jsonl"
 )
 
 write_jsonl(
@@ -249,7 +363,7 @@ write_jsonl(
 )
 
 print(
-    f"Found {len(player_ids)} unique players."
+    f"Wrote {len(player_ids)} player IDs."
 )
 
 print()
@@ -259,7 +373,9 @@ print()
 # 4. INGEST PLAYERS
 # ==========================================================
 
-print("Starting player ingestion...")
+print(
+    "Starting player ingestion..."
+)
 
 player_records = []
 
@@ -274,9 +390,8 @@ for index, player_id in enumerate(
         f"{player_id}"
     )
 
-    url = (
-        f"https://api-web.nhle.com/v1/"
-        f"player/{player_id}/landing"
+    url = player_landing_url(
+        player_id
     )
 
     player_data = safe_get(
@@ -291,8 +406,9 @@ for index, player_id in enumerate(
     )
 
 
-players_path = (
-    f"{run_path}/players.jsonl"
+players_path = bronze_file_path(
+    run_path,
+    "players.jsonl"
 )
 
 write_jsonl(
@@ -320,8 +436,6 @@ print(
 
 game_log_records = []
 
-failed_game_logs = []
-
 
 for index, player_id in enumerate(
     player_ids,
@@ -334,44 +448,25 @@ for index, player_id in enumerate(
         f"{player_id}"
     )
 
-    url = (
-        f"https://api-web.nhle.com/v1/"
-        f"player/{player_id}/game-log/now"
+    url = player_game_log_url(
+        player_id
     )
 
-    try:
+    game_log_data = safe_get(
+        url
+    )
 
-        game_log_data = safe_get(
-            url
-        )
-
-        game_log_records.append(
-            {
-                "player_id": player_id,
-                "game_logs": game_log_data
-            }
-        )
-
-    except Exception as error:
-
-        # Do not fail the entire Bronze pipeline
-        # because one player endpoint failed.
-
-        print(
-            f"FAILED game log for "
-            f"player {player_id}: {error}"
-        )
-
-        failed_game_logs.append(
-            {
-                "player_id": player_id,
-                "error": str(error)
-            }
-        )
+    game_log_records.append(
+        {
+            "player_id": player_id,
+            "game_logs": game_log_data
+        }
+    )
 
 
-game_logs_path = (
-    f"{run_path}/game_logs.jsonl"
+game_logs_path = bronze_file_path(
+    run_path,
+    "game_logs.jsonl"
 )
 
 write_jsonl(
@@ -386,27 +481,6 @@ print(
     f"{len(game_log_records)} game logs."
 )
 
-
-# ----------------------------------------------------------
-# Write failed game logs if any occurred
-# ----------------------------------------------------------
-
-if failed_game_logs:
-
-    failed_game_logs_path = (
-        f"{run_path}/failed_game_logs.jsonl"
-    )
-
-    write_jsonl(
-        failed_game_logs_path,
-        failed_game_logs
-    )
-
-    print(
-        f"{len(failed_game_logs)} "
-        f"game logs failed."
-    )
-
 print()
 
 
@@ -414,7 +488,9 @@ print()
 # 6. INGEST SCORES
 # ==========================================================
 
-print("Starting scores ingestion...")
+print(
+    "Starting scores ingestion..."
+)
 
 scores_data = safe_get(
     SCORES_URL
@@ -427,8 +503,9 @@ scores_records = [
     }
 ]
 
-scores_path = (
-    f"{run_path}/scores.jsonl"
+scores_path = bronze_file_path(
+    run_path,
+    "scores.jsonl"
 )
 
 write_jsonl(
@@ -448,11 +525,31 @@ print()
 # ==========================================================
 
 print("=" * 60)
-print("NHL BRONZE PIPELINE COMPLETE")
+
+print(
+    "NHL BRONZE PIPELINE COMPLETE"
+)
+
 print("=" * 60)
 
 print(
     f"Run folder: {run_folder}"
+)
+
+print()
+
+print(
+    "Testing configuration:"
+)
+
+print(
+    f"  MAX_TEAMS: "
+    f"{MAX_TEAMS if MAX_TEAMS is not None else 'UNLIMITED'}"
+)
+
+print(
+    f"  MAX_PLAYERS: "
+    f"{MAX_PLAYERS if MAX_PLAYERS is not None else 'UNLIMITED'}"
 )
 
 print()
@@ -485,22 +582,20 @@ print(
     "  scores.jsonl"
 )
 
-
-if failed_game_logs:
-
-    print(
-        "  failed_game_logs.jsonl"
-    )
-
-
 print()
 
 print(
-    f"Total teams: {len(teams)}"
+    f"Total teams processed: "
+    f"{len(teams)}"
 )
 
 print(
-    f"Total unique players: "
+    f"Total players found in selected rosters: "
+    f"{all_player_count}"
+)
+
+print(
+    f"Total players processed: "
     f"{len(player_ids)}"
 )
 
@@ -512,11 +607,6 @@ print(
 print(
     f"Game logs successfully loaded: "
     f"{len(game_log_records)}"
-)
-
-print(
-    f"Failed game logs: "
-    f"{len(failed_game_logs)}"
 )
 
 print()

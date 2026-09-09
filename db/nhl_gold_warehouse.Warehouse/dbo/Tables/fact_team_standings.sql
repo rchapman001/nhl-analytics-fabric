@@ -1,6 +1,7 @@
 CREATE TABLE [dbo].[fact_team_standings] (
 
-	[team_id] int NOT NULL, 
+	[team_standings_id] bigint IDENTITY NOT NULL, 
+	[team_id] bigint NULL, 
 	[date_id] int NOT NULL, 
 	[season_id] int NULL, 
 	[game_type_id] int NULL, 

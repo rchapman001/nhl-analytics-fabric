@@ -6,479 +6,192 @@
 # META   "kernel_info": {
 # META     "name": "synapse_pyspark"
 # META   },
-# META   "dependencies": {}
+# META   "dependencies": {
+# META     "lakehouse": {
+# META       "default_lakehouse": "63da3f3e-aa63-453a-acff-7e3540f60e1a",
+# META       "default_lakehouse_name": "nhl_silver_lakehouse",
+# META       "default_lakehouse_workspace_id": "1fbf55a3-b2fc-4021-8697-98890ec67e3f",
+# META       "known_lakehouses": [
+# META         {
+# META           "id": "63da3f3e-aa63-453a-acff-7e3540f60e1a"
+# META         }
+# META       ]
+# META     },
+# META     "warehouse": {
+# META       "known_warehouses": [
+# META         {
+# META           "id": "67fbcfda-3717-adcf-48d4-ba74a63a0bd5",
+# META           "type": "Datawarehouse"
+# META         }
+# META       ]
+# META     }
+# META   }
+# META }
+
+# CELL ********************
+
+%run ./nhl_utils
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+import os
+
+GOLD_SQL_SERVER = os.getenv(
+    "NHL_GOLD_SQL_SERVER",
+    "mbs75dyusfaeddoubghxtgdkv4-unk36h74wiqubbuxtceq5rt6h4.datawarehouse.fabric.microsoft.com"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
 
 # ============================================================
-# NHL ANALYTICS PLATFORM
-# GOLD LAYER
+# NHL ANALYTICS
+# FABRIC GOLD PIPELINE
 #
-# Reads from:
-#   nhl_silver_warehouse
+# Silver Lakehouse → Gold Warehouse
 #
-# Writes to:
-#   nhl_gold_warehouse
+# Responsibilities:
+#   - Read curated Silver Delta tables
+#   - Build dimensional and fact datasets
+#   - Validate Gold Warehouse schemas
+#   - MERGE data directly into the Gold Warehouse
 #
-# Tables:
-#   dim_date
-#   dim_team
-#   dim_player
-#   dim_game
-#   fact_rosters
-#   fact_team_standings
-#   fact_player_game_stats
+# NOTE: Run/reference nhl_utils before this notebook.
 # ============================================================
 
 
-from datetime import datetime
+# ============================================================
+# IMPORTS
+# ============================================================
 
+from datetime import date
+import struct
+import notebookutils
+import pyodbc
 from pyspark.sql import functions as F
-
-
+from pyspark.sql.types import (
+    StructType,
+    StructField,
+    LongType,
+    IntegerType,
+    DateType
+)
 # ============================================================
 # CONFIGURATION
 # ============================================================
 
-# ------------------------------------------------------------
-# Warehouse Names
-# ------------------------------------------------------------
-
-SILVER_WAREHOUSE = "nhl_silver_warehouse"
-
+SILVER_LAKEHOUSE = "nhl_silver_lakehouse"
 GOLD_WAREHOUSE = "nhl_gold_warehouse"
-
-
-# ------------------------------------------------------------
-# Silver Warehouse SQL Connection
-#
-# Replace with your Silver Warehouse SQL connection string.
-# ------------------------------------------------------------
-
-SILVER_SQL_URL = (
-    "jdbc:sqlserver://YOUR_SILVER_WAREHOUSE_ENDPOINT:1433;"
-    "database=nhl_silver_warehouse;"
-    "encrypt=true;"
-    "trustServerCertificate=false;"
-    "hostNameInCertificate=*.datawarehouse.fabric.microsoft.com;"
-    "loginTimeout=30;"
-)
-
-
-# ------------------------------------------------------------
-# Gold Warehouse SQL Connection
-#
-# Replace with your Gold Warehouse SQL connection string.
-# ------------------------------------------------------------
-
-GOLD_SQL_URL = (
-    "jdbc:sqlserver://YOUR_GOLD_WAREHOUSE_ENDPOINT:1433;"
-    "database=nhl_gold_warehouse;"
-    "encrypt=true;"
-    "trustServerCertificate=false;"
-    "hostNameInCertificate=*.datawarehouse.fabric.microsoft.com;"
-    "loginTimeout=30;"
-)
-
-
+GOLD_SCHEMA = "dbo"
 # ============================================================
-# WAREHOUSE HELPER FUNCTIONS
+# TABLE CONFIGURATION
 # ============================================================
 
-
-def read_warehouse_table(
-    table_name
-):
-    """
-    Reads a table from the
-    NHL Silver Warehouse.
-    """
-
-    return (
-        spark.read
-        .format(
-            "com.microsoft.sqlserver.jdbc.spark"
-        )
-        .option(
-            "url",
-            SILVER_SQL_URL
-        )
-        .option(
-            "dbtable",
-            f"dbo.{table_name}"
-        )
-        .load()
-    )
-
-
-def write_warehouse_table(
-    dataframe,
-    table_name,
-    mode="overwrite"
-):
-    """
-    Writes a DataFrame to the
-    NHL Gold Warehouse.
-    """
-
-    (
-        dataframe.write
-        .format(
-            "com.microsoft.sqlserver.jdbc.spark"
-        )
-        .option(
-            "url",
-            GOLD_SQL_URL
-        )
-        .option(
-            "dbtable",
-            f"dbo.{table_name}"
-        )
-        .mode(
-            mode
-        )
-        .save()
-    )
-
-
-# ============================================================
-# LOAD SILVER WAREHOUSE TABLES
-# ============================================================
-
-print("=" * 60)
-print("LOADING SILVER WAREHOUSE TABLES")
-print("=" * 60)
-
-
-silver_teams = (
-    read_warehouse_table(
-        "teams"
-    )
-)
-
-
-silver_players = (
-    read_warehouse_table(
-        "players"
-    )
-)
-
-
-silver_rosters = (
-    read_warehouse_table(
-        "rosters"
-    )
-)
-
-
-silver_team_standings = (
-    read_warehouse_table(
-        "team_standings"
-    )
-)
-
-
-silver_games = (
-    read_warehouse_table(
-        "games"
-    )
-)
-
-
-silver_player_game_stats = (
-    read_warehouse_table(
-        "player_game_stats"
-    )
-)
-
-
-print("Silver Warehouse tables loaded.")
-print()
-
-
-# ============================================================
-# CURRENT TIMESTAMP
-# ============================================================
-
-load_timestamp = datetime.now()
-
-
-# ============================================================
-# DIM DATE
-# ============================================================
-
-print("Loading dim_date...")
-
-
-# ------------------------------------------------------------
-# Get Dates From Games
-# ------------------------------------------------------------
-
-game_dates = (
-    silver_games
-    .select(
-        F.col(
-            "game_date"
-        )
-        .cast(
-            "date"
-        )
-        .alias(
-            "full_date"
-        )
-    )
-)
-
-
-# ------------------------------------------------------------
-# Get Dates From Rosters
-# ------------------------------------------------------------
-
-roster_dates = (
-    silver_rosters
-    .select(
-        F.col(
-            "effective_from"
-        )
-        .cast(
-            "date"
-        )
-        .alias(
-            "full_date"
-        )
-    )
-)
-
-
-# ------------------------------------------------------------
-# Get Dates From Standings
-# ------------------------------------------------------------
-
-standings_dates = (
-    silver_team_standings
-    .select(
-        F.col(
-            "snapshot_date"
-        )
-        .cast(
-            "date"
-        )
-        .alias(
-            "full_date"
-        )
-    )
-)
-
-
-# ------------------------------------------------------------
-# Combine All Dates
-# ------------------------------------------------------------
-
-all_dates = (
-    game_dates
-    .union(
-        roster_dates
-    )
-    .union(
-        standings_dates
-    )
-    .filter(
-        F.col(
-            "full_date"
-        ).isNotNull()
-    )
-    .distinct()
-)
-
-
-# ------------------------------------------------------------
-# Build Date Dimension
-# ------------------------------------------------------------
-
-dim_date = (
-    all_dates
-
-    .withColumn(
-        "date_id",
-
-        F.date_format(
-            F.col(
-                "full_date"
-            ),
-            "yyyyMMdd"
-        ).cast(
-            "int"
-        )
-    )
-
-    .withColumn(
-        "day",
-
-        F.dayofmonth(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "day_name",
-
-        F.date_format(
-            "full_date",
-            "EEEE"
-        )
-    )
-
-    .withColumn(
-        "day_of_week",
-
-        F.dayofweek(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "week_of_year",
-
-        F.weekofyear(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "month",
-
-        F.month(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "month_name",
-
-        F.date_format(
-            "full_date",
-            "MMMM"
-        )
-    )
-
-    .withColumn(
-        "quarter",
-
-        F.quarter(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "year",
-
-        F.year(
-            "full_date"
-        )
-    )
-
-    .withColumn(
-        "is_weekend",
-
-        F.dayofweek(
-            "full_date"
-        ).isin(
-            [1, 7]
-        )
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
-        "date_id",
-        "full_date",
-        "day",
-        "day_name",
-        "day_of_week",
-        "week_of_year",
-        "month",
-        "month_name",
-        "quarter",
-        "year",
-        "is_weekend",
-        "created_at",
-        "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    dim_date,
+SILVER_TABLES = [
+    "teams",
+    "players",
+    "rosters",
+    "team_standings",
+    "games",
+    "player_game_stats"
+]
+GOLD_TABLES = [
+    "dim_team",
+    "dim_player",
     "dim_date",
-    "overwrite"
-)
-
-
-print(
-    f"dim_date loaded: "
-    f"{dim_date.count()} rows."
-)
-
-print()
-
-
+    "dim_game",
+    "fact_rosters",
+    "fact_team_standings",
+    "fact_player_game_stats"
+]
 # ============================================================
-# DIM TEAM
+# GOLD IDENTITY COLUMNS
+#
+# These columns are generated by Fabric Warehouse.
+#
+# dim_date.date_id is intentionally NOT included because
+# date_id is generated by the pipeline as YYYYMMDD.
 # ============================================================
 
-print("Loading dim_team...")
+IDENTITY_COLUMNS = {
+    "dim_team": "team_id",
+    "dim_player": "player_id",
+    "dim_game": "game_id",
+    "fact_rosters": "roster_id",
+    "fact_team_standings": "team_standings_id",
+    "fact_player_game_stats": "player_stats_id"
+}
+# ============================================================
+# GOLD UPSERT KEYS
+#
+# These are the business/natural keys used by MERGE.
+#
+# Identity surrogate keys are never used as MERGE keys.
+# ============================================================
 
-
-dim_team = (
-    silver_teams
-
-    .dropDuplicates(
-        [
-            "team_id"
-        ]
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
+UPSERT_KEYS = {
+    "dim_team": [
+        "nhl_team_id"
+    ],
+    "dim_player": [
+        "nhl_player_id"
+    ],
+    "dim_date": [
+        "date_id"
+    ],
+    "dim_game": [
+        "nhl_game_id"
+    ],
+    "fact_rosters": [
         "team_id",
+        "player_id",
+        "effective_from"
+    ],
+    "fact_team_standings": [
+        "team_id",
+        "date_id",
+        "season_id",
+        "game_type_id"
+    ],
+    "fact_player_game_stats": [
+        "player_id",
+        "game_id"
+    ]
+}
+# ============================================================
+# MERGE PARAMETER LIMIT
+#
+# Each source row contributes one parameter per source column.
+#
+# 1,800 leaves headroom below the traditional SQL Server
+# parameter limit of 2,100.
+#
+# The actual batch size is automatically reduced for wide
+# tables.
+# ============================================================
+
+MAX_MERGE_PARAMETERS = 1800
+# ============================================================
+# EXPECTED GOLD TABLE SCHEMAS
+# ============================================================
+
+EXPECTED_GOLD_COLUMNS = {
+    "dim_team": [
+        "team_id",
+        "nhl_team_id",
         "place_name",
         "team_name",
         "team_common_name",
@@ -490,63 +203,10 @@ dim_team = (
         "team_logo",
         "created_at",
         "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    dim_team,
-    "dim_team",
-    "overwrite"
-)
-
-
-print(
-    f"dim_team loaded: "
-    f"{dim_team.count()} rows."
-)
-
-print()
-
-
-# ============================================================
-# DIM PLAYER
-# ============================================================
-
-print("Loading dim_player...")
-
-
-dim_player = (
-    silver_players
-
-    .dropDuplicates(
-        [
-            "player_id"
-        ]
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
+    ],
+    "dim_player": [
         "player_id",
+        "nhl_player_id",
         "draft_team_id",
         "first_name",
         "last_name",
@@ -571,313 +231,59 @@ dim_player = (
         "hero_image",
         "created_at",
         "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    dim_player,
-    "dim_player",
-    "overwrite"
-)
-
-
-print(
-    f"dim_player loaded: "
-    f"{dim_player.count()} rows."
-)
-
-print()
-
-
-# ============================================================
-# DIM GAME
-# ============================================================
-
-print("Loading dim_game...")
-
-
-# ------------------------------------------------------------
-# Create Date Lookup
-# ------------------------------------------------------------
-
-date_lookup = (
-    dim_date
-    .select(
+    ],
+    "dim_date": [
         "date_id",
-        "full_date"
-    )
-)
-
-
-# ------------------------------------------------------------
-# Build Game Dimension
-# ------------------------------------------------------------
-
-dim_game = (
-    silver_games
-
-    .join(
-        date_lookup,
-
-        F.to_date(
-            silver_games[
-                "game_date"
-            ]
-        )
-        ==
-        date_lookup[
-            "full_date"
-        ],
-
-        "left"
-    )
-
-    .dropDuplicates(
-        [
-            "game_id"
-        ]
-    )
-
-    .withColumn(
+        "full_date",
+        "day_of_month",
+        "day_name",
+        "day_of_week",
+        "week_of_year",
+        "month_number",
+        "month_name",
+        "quarter",
+        "year",
+        "is_weekend",
         "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
-        silver_games[
-            "game_id"
-        ],
-
-        "date_id",
-
-        silver_games[
-            "season_id"
-        ],
-
-        silver_games[
-            "game_type_id"
-        ],
-
-        silver_games[
-            "game_date"
-        ],
-
-        silver_games[
-            "start_time_utc"
-        ],
-
-        silver_games[
-            "away_team_id"
-        ],
-
-        silver_games[
-            "home_team_id"
-        ],
-
-        silver_games[
-            "away_team_score"
-        ],
-
-        silver_games[
-            "home_team_score"
-        ],
-
-        silver_games[
-            "away_shots_on_goal"
-        ],
-
-        silver_games[
-            "home_shots_on_goal"
-        ],
-
-        silver_games[
-            "venue"
-        ],
-
-        silver_games[
-            "venue_time_zone"
-        ],
-
-        "created_at",
-
         "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    dim_game,
-    "dim_game",
-    "overwrite"
-)
-
-
-print(
-    f"dim_game loaded: "
-    f"{dim_game.count()} rows."
-)
-
-print()
-
-
-# ============================================================
-# FACT ROSTERS
-# ============================================================
-
-print("Loading fact_rosters...")
-
-
-fact_rosters = (
-    silver_rosters
-
-    .join(
-        date_lookup,
-
-        F.to_date(
-            silver_rosters[
-                "effective_from"
-            ]
-        )
-        ==
-        date_lookup[
-            "full_date"
-        ],
-
-        "left"
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
-        silver_rosters[
-            "team_id"
-        ],
-
-        silver_rosters[
-            "player_id"
-        ],
-
+    ],
+    "dim_game": [
+        "game_id",
+        "nhl_game_id",
         "date_id",
-
-        silver_rosters[
-            "sweater_number"
-        ],
-
+        "season_id",
+        "game_type_id",
+        "game_date",
+        "start_time_utc",
+        "away_team_id",
+        "home_team_id",
+        "away_team_score",
+        "home_team_score",
+        "away_shots_on_goal",
+        "home_shots_on_goal",
+        "venue",
+        "venue_time_zone",
         "created_at",
-
         "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    fact_rosters,
-    "fact_rosters",
-    "overwrite"
-)
-
-
-print(
-    f"fact_rosters loaded: "
-    f"{fact_rosters.count()} rows."
-)
-
-print()
-
-
-# ============================================================
-# FACT TEAM STANDINGS
-# ============================================================
-
-print(
-    "Loading fact_team_standings..."
-)
-
-
-fact_team_standings = (
-    silver_team_standings
-
-    .join(
-        date_lookup,
-
-        F.to_date(
-            silver_team_standings[
-                "snapshot_date"
-            ]
-        )
-        ==
-        date_lookup[
-            "full_date"
-        ],
-
-        "left"
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
-        silver_team_standings[
-            "team_id"
-        ],
-
+    ],
+    "fact_rosters": [
+        "roster_id",
+        "team_id",
+        "player_id",
         "date_id",
-
+        "effective_from",
+        "effective_to",
+        "sweater_number",
+        "created_at",
+        "updated_at"
+    ],
+    "fact_team_standings": [
+        "team_standings_id",
+        "team_id",
+        "date_id",
         "season_id",
         "game_type_id",
         "clinch_indicator",
-
         "games_played",
         "wins",
         "losses",
@@ -892,13 +298,11 @@ fact_team_standings = (
         "regulation_plus_ot_win_pctg",
         "shootout_wins",
         "shootout_losses",
-
         "goals_for",
         "goals_against",
         "goal_differential",
         "goals_for_pctg",
         "goal_differential_pctg",
-
         "home_games_played",
         "home_wins",
         "home_losses",
@@ -910,7 +314,6 @@ fact_team_standings = (
         "home_goal_differential",
         "home_regulation_wins",
         "home_regulation_plus_ot_wins",
-
         "road_games_played",
         "road_wins",
         "road_losses",
@@ -922,7 +325,6 @@ fact_team_standings = (
         "road_goal_differential",
         "road_regulation_wins",
         "road_regulation_plus_ot_wins",
-
         "l10_games_played",
         "l10_wins",
         "l10_losses",
@@ -934,234 +336,2040 @@ fact_team_standings = (
         "l10_goal_differential",
         "l10_regulation_wins",
         "l10_regulation_plus_ot_wins",
-
         "league_sequence",
         "league_home_sequence",
         "league_road_sequence",
         "league_l10_sequence",
-
         "conference_sequence",
         "conference_home_sequence",
         "conference_road_sequence",
         "conference_l10_sequence",
-
         "division_sequence",
         "division_home_sequence",
         "division_road_sequence",
         "division_l10_sequence",
-
         "wildcard_sequence",
         "waivers_sequence",
-
         "streak_code",
         "streak_count",
-
         "created_at",
         "updated_at"
-    )
-)
-
-
-write_warehouse_table(
-    fact_team_standings,
-    "fact_team_standings",
-    "overwrite"
-)
-
-
-print(
-    f"fact_team_standings loaded: "
-    f"{fact_team_standings.count()} rows."
-)
-
-print()
-
-
-# ============================================================
-# FACT PLAYER GAME STATS
-# ============================================================
-
-print(
-    "Loading fact_player_game_stats..."
-)
-
-
-# ------------------------------------------------------------
-# Get Game Date Lookup
-# ------------------------------------------------------------
-
-game_date_lookup = (
-    silver_games
-
-    .select(
-        "game_id",
-        F.col(
-            "game_date"
-        )
-        .cast(
-            "date"
-        )
-        .alias(
-            "game_date"
-        )
-    )
-
-    .dropDuplicates(
-        [
-            "game_id"
-        ]
-    )
-)
-
-
-# ------------------------------------------------------------
-# Build Fact Player Game Stats
-# ------------------------------------------------------------
-
-fact_player_game_stats = (
-    silver_player_game_stats
-
-    .join(
-        game_date_lookup,
-
-        "game_id",
-
-        "left"
-    )
-
-    .join(
-        date_lookup,
-
-        F.col(
-            "game_date"
-        )
-        ==
-        date_lookup[
-            "full_date"
-        ],
-
-        "left"
-    )
-
-    .filter(
-        F.col(
-            "date_id"
-        ).isNotNull()
-    )
-
-    .withColumn(
-        "created_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .withColumn(
-        "updated_at",
-
-        F.lit(
-            load_timestamp
-        ).cast(
-            "timestamp"
-        )
-    )
-
-    .select(
+    ],
+    "fact_player_game_stats": [
+        "player_stats_id",
         "player_id",
         "game_id",
         "date_id",
-
         "goals",
         "assists",
         "points",
         "game_winning_goals",
         "overtime_goals",
-
         "power_play_goals",
         "power_play_points",
         "shorthanded_goals",
         "shorthanded_points",
-
         "shots",
         "plus_minus",
         "shifts",
         "pim",
         "time_on_ice",
-
         "created_at",
         "updated_at"
+    ]
+}
+print("=" * 80)
+# ============================================================
+# LOGGING
+# ============================================================
+
+print("NHL ANALYTICS - GOLD PIPELINE")
+print("=" * 80)
+print()
+# ============================================================
+# GOLD TABLE SQL HELPERS
+# ============================================================
+
+def quote_gold_table(table_name):
+    """Return a safely quoted Gold Warehouse table reference."""
+    return (
+        f"{quote_identifier(GOLD_SCHEMA)}."
+        f"{quote_identifier(table_name)}"
+    )
+# ============================================================
+# GOLD ODBC CONNECTION
+# ============================================================
+
+def get_gold_connection():
+    """
+    Open a direct ODBC connection to the Fabric Warehouse
+    using a Microsoft Entra ID access token supplied by
+    the Fabric notebook runtime.
+    """
+    if (
+        not GOLD_SQL_SERVER
+        or GOLD_SQL_SERVER
+        == "YOUR_GOLD_WAREHOUSE_SQL_ENDPOINT"
+    ):
+        raise ValueError(
+            "GOLD_SQL_SERVER is not configured.\n\n"
+            "Set GOLD_SQL_SERVER to the SQL endpoint of "
+            "nhl_gold_warehouse.\n\n"
+            "Find it in:\n"
+            "Fabric → nhl_gold_warehouse → Settings → SQL endpoint"
+        )
+    access_token = notebookutils.credentials.getToken(
+        "https://database.windows.net/"
+    )
+    if not access_token:
+        raise ValueError(
+            "Unable to acquire a Microsoft Entra ID "
+            "access token for the Fabric Warehouse."
+        )
+    token_bytes = access_token.encode(
+        "UTF-16-LE"
+    )
+    token_struct = struct.pack(
+        f"<I{len(token_bytes)}s",
+        len(token_bytes),
+        token_bytes
+    )
+    connection_string = (
+        "DRIVER={ODBC Driver 18 for SQL Server};"
+        f"SERVER={GOLD_SQL_SERVER};"
+        f"DATABASE={GOLD_WAREHOUSE};"
+        "Encrypt=yes;"
+        "TrustServerCertificate=no;"
+        "Connection Timeout=30;"
+    )
+    return pyodbc.connect(
+        connection_string,
+        attrs_before={
+            1256: token_struct
+        }
+    )
+print()
+print("=" * 80)
+# ============================================================
+# TEST GOLD WAREHOUSE CONNECTION
+# ============================================================
+
+print("TESTING GOLD WAREHOUSE CONNECTION")
+print("=" * 80)
+with get_gold_connection() as conn:
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT DB_NAME()"
+    )
+    database_name = cursor.fetchone()[0]
+    print("Connected successfully.")
+    print(f"Database: {database_name}")
+# ============================================================
+# GOLD TABLE HELPERS
+# ============================================================
+
+def gold_table_exists(table_name):
+    """
+    Check whether a table exists in the Gold Warehouse.
+    """
+    with get_gold_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT COUNT(*)
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_SCHEMA = ?
+              AND TABLE_NAME = ?
+            """,
+            GOLD_SCHEMA,
+            table_name
+        )
+        return cursor.fetchone()[0] > 0
+def get_gold_columns(table_name):
+    """
+    Get the ordered column list for a Gold Warehouse table.
+    """
+    with get_gold_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = ?
+              AND TABLE_NAME = ?
+            ORDER BY ORDINAL_POSITION
+            """,
+            GOLD_SCHEMA,
+            table_name
+        )
+        return [
+            row[0]
+            for row in cursor.fetchall()
+        ]
+def validate_gold_table_columns(table_name):
+    """
+    Validate the Gold Warehouse table schema.
+    """
+    expected_columns = EXPECTED_GOLD_COLUMNS[
+        table_name
+    ]
+    actual_columns = get_gold_columns(
+        table_name
+    )
+    if not actual_columns:
+        raise ValueError(
+            f"Required Gold Warehouse table "
+            f"'{GOLD_WAREHOUSE}.{GOLD_SCHEMA}.{table_name}' "
+            f"does not exist."
+        )
+    expected_set = {
+        column.lower()
+        for column in expected_columns
+    }
+    actual_set = {
+        column.lower()
+        for column in actual_columns
+    }
+    missing_columns = sorted(
+        expected_set - actual_set
+    )
+    unexpected_columns = sorted(
+        actual_set - expected_set
+    )
+    if missing_columns:
+        raise ValueError(
+            f"Gold table '{table_name}' "
+            f"is missing columns: "
+            f"{missing_columns}"
+        )
+    if unexpected_columns:
+        print(
+            f"WARNING: Gold table '{table_name}' "
+            f"contains additional columns: "
+            f"{unexpected_columns}"
+        )
+    print("✓ Schema validated.")
+# ============================================================
+# GOLD QUERY HELPERS
+# ============================================================
+
+def gold_scalar(sql, params=None):
+    """
+    Execute a SQL query returning one scalar value.
+    """
+    with get_gold_connection() as conn:
+        cursor = conn.cursor()
+        if params:
+            cursor.execute(
+                sql,
+                params
+            )
+        else:
+            cursor.execute(sql)
+        row = cursor.fetchone()
+        return None if row is None else row[0]
+def gold_table_count(table_name):
+    """
+    Return row count from a Gold Warehouse table.
+    """
+    table_ref = quote_gold_table(
+        table_name
+    )
+    return gold_scalar(
+        f"""
+        SELECT COUNT_BIG(*)
+        FROM {table_ref}
+        """
+    )
+def gold_query_rows(sql, params=None):
+    """
+    Execute a Gold Warehouse SELECT
+    and return Python tuples.
+    """
+    with get_gold_connection() as conn:
+        cursor = conn.cursor()
+        if params:
+            cursor.execute(
+                sql,
+                params
+            )
+        else:
+            cursor.execute(sql)
+        return [
+            tuple(row)
+            for row in cursor.fetchall()
+        ]
+def read_gold_query_df(
+    sql,
+    schema,
+    params=None,
+    label=None
+):
+    """
+    Execute a Gold Warehouse SELECT through ODBC
+    and convert the result into a Spark DataFrame.
+    """
+    if label:
+        print(
+            f"Reading Gold data: {label}"
+        )
+    rows = gold_query_rows(
+        sql,
+        params
+    )
+    return spark.createDataFrame(
+        rows,
+        schema=schema
+    )
+# ============================================================
+# DIRECT GOLD MERGE BATCH
+# ============================================================
+
+def _execute_gold_merge_batch(
+    cursor,
+    table_ref,
+    columns,
+    source_columns_sql,
+    merge_condition,
+    update_sql,
+    insert_columns_sql,
+    insert_values_sql,
+    batch
+):
+    """
+    Execute one parameterized MERGE batch directly against
+    the Fabric Warehouse.
+    No temporary or persistent staging table is used.
+    Source rows are represented directly by:
+        USING (
+            VALUES
+                (...),
+                (...)
+        ) AS source (...)
+    """
+    if not batch:
+        return
+    row_placeholder = (
+        "("
+        + ", ".join(
+            "?"
+            for _ in columns
+        )
+        + ")"
+    )
+    values_sql = ", ".join(
+        row_placeholder
+        for _ in batch
+    )
+    merge_sql = f"""
+    MERGE INTO {table_ref} AS target
+    USING
+    (
+        VALUES
+            {values_sql}
+    ) AS source
+    (
+        {source_columns_sql}
+    )
+    ON
+        {merge_condition}
+    {update_sql}
+    WHEN NOT MATCHED THEN
+        INSERT
+        (
+            {insert_columns_sql}
+        )
+        VALUES
+        (
+            {insert_values_sql}
+        );
+    """
+    parameters = []
+    for row in batch:
+        parameters.extend(row)
+    expected_parameter_count = (
+        len(batch)
+        * len(columns)
+    )
+    actual_parameter_count = len(
+        parameters
+    )
+    if actual_parameter_count != expected_parameter_count:
+        raise ValueError(
+            f"MERGE parameter count mismatch. "
+            f"Expected {expected_parameter_count:,}, "
+            f"got {actual_parameter_count:,}."
+        )
+    if actual_parameter_count > MAX_MERGE_PARAMETERS:
+        raise ValueError(
+            f"MERGE batch contains "
+            f"{actual_parameter_count:,} parameters, "
+            f"which exceeds the configured maximum of "
+            f"{MAX_MERGE_PARAMETERS:,}."
+        )
+    cursor.execute(
+        merge_sql,
+        parameters
+    )
+# ============================================================
+# GOLD UPSERT
+# ============================================================
+
+def upsert_gold_table(
+    df,
+    table_name,
+    batch_size=100
+):
+    """
+    Upsert a Spark DataFrame directly into a Fabric Warehouse.
+    Behavior:
+        Existing rows → UPDATE
+        New rows      → INSERT
+        Missing rows  → NO DELETE
+    Identity columns are generated by Fabric Warehouse.
+    created_at is preserved for existing rows.
+    updated_at is refreshed for existing rows.
+    No temporary or persistent staging tables are used.
+    """
+    print()
+    print("=" * 70)
+    print(
+        f"UPSERT GOLD TABLE: {table_name}"
+    )
+    print("=" * 70)
+    if table_name not in UPSERT_KEYS:
+        raise ValueError(
+            f"No upsert key configured for Gold table: "
+            f"{table_name}"
+        )
+    merge_keys = UPSERT_KEYS[
+        table_name
+    ]
+    identity_column = IDENTITY_COLUMNS.get(
+        table_name
+    )
+    columns = df.columns
+    if not columns:
+        print(
+            f"No columns found for {table_name}. "
+            f"Skipping."
+        )
+        return
+    if (
+        identity_column
+        and identity_column in columns
+    ):
+        raise ValueError(
+            f"{table_name} contains identity column "
+            f"'{identity_column}'. "
+            f"The identity column must not be included "
+            f"in the source DataFrame."
+        )
+    missing_keys = [
+        key
+        for key in merge_keys
+        if key not in columns
+    ]
+    if missing_keys:
+        raise ValueError(
+            f"{table_name} is missing merge key columns: "
+            f"{missing_keys}"
+        )
+    gold_columns = get_gold_columns(
+        table_name
+    )
+    gold_column_set = {
+        column.lower()
+        for column in gold_columns
+    }
+    missing_target_columns = [
+        column
+        for column in columns
+        if column.lower()
+        not in gold_column_set
+    ]
+    if missing_target_columns:
+        raise ValueError(
+            f"Source DataFrame for {table_name} contains "
+            f"columns that do not exist in Gold: "
+            f"{missing_target_columns}"
+        )
+    if df.limit(1).count() == 0:
+        print(
+            f"No source rows for {table_name}."
+        )
+        print(
+            "No changes will be made to Gold."
+        )
+        return
+    null_key_condition = F.col(
+        merge_keys[0]
+    ).isNull()
+    for key in merge_keys[1:]:
+        null_key_condition = (
+            null_key_condition
+            | F.col(key).isNull()
+        )
+    null_merge_keys = (
+        df
+        .filter(null_key_condition)
+        .limit(1)
+        .count()
+    )
+    if null_merge_keys > 0:
+        raise ValueError(
+            f"{table_name} contains NULL values in "
+            f"one or more MERGE key columns: "
+            f"{merge_keys}"
+        )
+    duplicate_key_count = (
+        df
+        .groupBy(*merge_keys)
+        .count()
+        .filter(
+            F.col("count") > 1
+        )
+        .limit(1)
+        .count()
+    )
+    if duplicate_key_count > 0:
+        raise ValueError(
+            f"{table_name} contains duplicate MERGE keys: "
+            f"{merge_keys}"
+        )
+    table_ref = quote_gold_table(
+        table_name
+    )
+    source_columns_sql = ", ".join(
+        quote_identifier(column)
+        for column in columns
+    )
+    merge_conditions = []
+    for key in merge_keys:
+        key_sql = quote_identifier(
+            key
+        )
+        merge_conditions.append(
+            (
+                "("
+                f"target.{key_sql} = source.{key_sql}"
+                " OR "
+                f"(target.{key_sql} IS NULL "
+                f"AND source.{key_sql} IS NULL)"
+                ")"
+            )
+        )
+    merge_condition = " AND ".join(
+        merge_conditions
+    )
+    update_columns = [
+        column
+        for column in columns
+        if (
+            column not in merge_keys
+            and column != identity_column
+            and column != "created_at"
+        )
+    ]
+    if update_columns:
+        update_assignments = ", ".join(
+            (
+                f"target.{quote_identifier(column)} = "
+                f"source.{quote_identifier(column)}"
+            )
+            for column in update_columns
+        )
+        update_sql = f"""
+        WHEN MATCHED THEN
+            UPDATE SET
+                {update_assignments}
+        """
+    else:
+        update_sql = ""
+    insert_columns_sql = ", ".join(
+        quote_identifier(column)
+        for column in columns
+    )
+    insert_values_sql = ", ".join(
+        f"source.{quote_identifier(column)}"
+        for column in columns
+    )
+    column_count = len(
+        columns
+    )
+    max_rows_by_parameters = max(
+        1,
+        MAX_MERGE_PARAMETERS
+        // column_count
+    )
+    effective_batch_size = min(
+        batch_size,
+        max_rows_by_parameters
+    )
+    print(
+        f"Source columns: "
+        f"{column_count:,}"
+    )
+    print(
+        f"Configured batch size: "
+        f"{batch_size:,}"
+    )
+    print(
+        f"Maximum rows by parameter limit: "
+        f"{max_rows_by_parameters:,}"
+    )
+    print(
+        f"Effective MERGE batch size: "
+        f"{effective_batch_size:,}"
+    )
+    print(
+        "Staging: None"
+    )
+    conn = get_gold_connection()
+    cursor = conn.cursor()
+    total_rows = 0
+    batch = []
+    try:
+        print()
+        print(
+            f"Sending source rows directly to "
+            f"{table_name} using MERGE..."
+        )
+        for row in (
+            df
+            .select(*columns)
+            .toLocalIterator()
+        ):
+            batch.append(
+                tuple(
+                    row[column]
+                    for column in columns
+                )
+            )
+            if len(batch) >= effective_batch_size:
+                _execute_gold_merge_batch(
+                    cursor=cursor,
+                    table_ref=table_ref,
+                    columns=columns,
+                    source_columns_sql=source_columns_sql,
+                    merge_condition=merge_condition,
+                    update_sql=update_sql,
+                    insert_columns_sql=insert_columns_sql,
+                    insert_values_sql=insert_values_sql,
+                    batch=batch
+                )
+                conn.commit()
+                total_rows += len(
+                    batch
+                )
+                print(
+                    f"  Upserted "
+                    f"{total_rows:,} rows..."
+                )
+                batch = []
+        if batch:
+            _execute_gold_merge_batch(
+                cursor=cursor,
+                table_ref=table_ref,
+                columns=columns,
+                source_columns_sql=source_columns_sql,
+                merge_condition=merge_condition,
+                update_sql=update_sql,
+                insert_columns_sql=insert_columns_sql,
+                insert_values_sql=insert_values_sql,
+                batch=batch
+            )
+            conn.commit()
+            total_rows += len(
+                batch
+            )
+        print()
+        print(
+            f"✓ Successfully upserted "
+            f"{total_rows:,} source rows into "
+            f"{table_name}."
+        )
+        print("  Existing rows: UPDATE")
+        print("  New rows:      INSERT")
+        print("  Missing rows:  NO DELETE")
+    except Exception:
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        raise
+    finally:
+        try:
+            cursor.close()
+        except Exception:
+            pass
+        try:
+            conn.close()
+        except Exception:
+            pass
+        print(
+            f"Finished Gold upsert: "
+            f"{table_name}"
+        )
+print()
+print("=" * 80)
+# ============================================================
+# VALIDATE SILVER DELTA TABLES
+# ============================================================
+
+print("VALIDATING SILVER DELTA TABLES")
+print("=" * 80)
+for table_name in SILVER_TABLES:
+    print()
+    print(
+        f"Checking Silver table: "
+        f"{SILVER_LAKEHOUSE}.Tables.{table_name}"
+    )
+    if not table_exists(
+        table_name
+    ):
+        raise ValueError(
+            f"Required Silver table "
+            f"'{SILVER_LAKEHOUSE}.Tables.{table_name}' "
+            f"does not exist."
+        )
+    print("✓ Table exists.")
+print()
+print("=" * 80)
+# ============================================================
+# VALIDATE GOLD WAREHOUSE TABLES
+# ============================================================
+
+print("VALIDATING GOLD WAREHOUSE TABLES")
+print("=" * 80)
+for table_name in GOLD_TABLES:
+    print()
+    print(
+        f"Checking Gold table: "
+        f"{GOLD_WAREHOUSE}.{GOLD_SCHEMA}.{table_name}"
+    )
+    if not gold_table_exists(
+        table_name
+    ):
+        raise ValueError(
+            f"Required Gold Warehouse table "
+            f"'{GOLD_WAREHOUSE}.{GOLD_SCHEMA}.{table_name}' "
+            f"does not exist."
+        )
+    validate_gold_table_columns(
+        table_name
+    )
+print()
+print("=" * 80)
+# ============================================================
+# READ SILVER DATA
+# ============================================================
+
+print("READING SILVER DATA")
+print("=" * 80)
+silver_teams = read_delta_table(
+    "teams"
+)
+silver_players = read_delta_table(
+    "players"
+)
+silver_rosters = read_delta_table(
+    "rosters"
+)
+silver_team_standings = read_delta_table(
+    "team_standings"
+)
+silver_games = read_delta_table(
+    "games"
+)
+silver_player_game_stats = read_delta_table(
+    "player_game_stats"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD DIM TEAM
+# ============================================================
+
+print("BUILDING DIM TEAM")
+print("=" * 80)
+dim_team_df = (
+    silver_teams
+    .select(
+        F.col("team_id")
+            .cast("int")
+            .alias("nhl_team_id"),
+        F.col("place_name")
+            .cast("string"),
+        F.col("team_name")
+            .cast("string"),
+        F.col("team_common_name")
+            .cast("string"),
+        F.col("team_abbrev")
+            .cast("string"),
+        F.col("conference_abbrev")
+            .cast("string"),
+        F.col("conference_name")
+            .cast("string"),
+        F.col("division_abbrev")
+            .cast("string"),
+        F.col("division_name")
+            .cast("string"),
+        F.col("team_logo")
+            .cast("string")
+    )
+    .dropDuplicates([
+        "nhl_team_id"
+    ])
+)
+dim_team_df = add_audit_columns(
+    dim_team_df
+)
+upsert_gold_table(
+    dim_team_df,
+    "dim_team"
+)
+team_lookup_schema = StructType([
+    StructField(
+        "nhl_team_id",
+        IntegerType(),
+        True
+    ),
+    StructField(
+        "team_id",
+        LongType(),
+        True
+    )
+])
+gold_dim_team_df = read_gold_query_df(
+    """
+    SELECT
+        nhl_team_id,
+        team_id
+    FROM [dbo].[dim_team]
+    """,
+    schema=team_lookup_schema,
+    label="dim_team surrogate keys"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD DIM PLAYER
+# ============================================================
+
+print("BUILDING DIM PLAYER")
+print("=" * 80)
+dim_player_base_df = (
+    silver_players
+    .select(
+        F.col("player_id")
+            .cast("int")
+            .alias("nhl_player_id"),
+        F.col("draft_team_id")
+            .cast("int")
+            .alias("draft_team_nhl_id"),
+        F.col("first_name")
+            .cast("string"),
+        F.col("last_name")
+            .cast("string"),
+        F.col("player_slug")
+            .cast("string"),
+        F.col("is_active")
+            .cast("boolean"),
+        F.col("position")
+            .cast("string"),
+        F.col("shoots_catches")
+            .cast("string"),
+        F.col("height_in_inches")
+            .cast("int"),
+        F.col("height_in_centimeters")
+            .cast("int"),
+        F.col("weight_in_pounds")
+            .cast("int"),
+        F.col("weight_in_kilograms")
+            .cast("int"),
+        F.col("birth_date")
+            .cast("date"),
+        F.col("birth_city")
+            .cast("string"),
+        F.col("birth_country")
+            .cast("string"),
+        F.col("draft_year")
+            .cast("int"),
+        F.col("draft_round")
+            .cast("int"),
+        F.col("draft_pick_in_round")
+            .cast("int"),
+        F.col("draft_overall_pick")
+            .cast("int"),
+        F.col("in_top_100_all_time")
+            .cast("boolean"),
+        F.col("in_hhof")
+            .cast("boolean"),
+        F.col("headshot")
+            .cast("string"),
+        F.col("hero_image")
+            .cast("string")
+    )
+    .dropDuplicates([
+        "nhl_player_id"
+    ])
+)
+team_lookup_for_player = (
+    gold_dim_team_df
+    .select(
+        F.col("nhl_team_id")
+            .alias("draft_team_nhl_id"),
+        F.col("team_id")
+            .alias("draft_team_gold_id")
     )
 )
+dim_player_df = (
+    dim_player_base_df
+    .join(
+        team_lookup_for_player,
+        on="draft_team_nhl_id",
+        how="left"
+    )
+    .drop(
+        "draft_team_nhl_id"
+    )
+    .withColumnRenamed(
+        "draft_team_gold_id",
+        "draft_team_id"
+    )
+)
+dim_player_df = add_audit_columns(
+    dim_player_df
+)
+upsert_gold_table(
+    dim_player_df,
+    "dim_player"
+)
+player_lookup_schema = StructType([
+    StructField(
+        "nhl_player_id",
+        IntegerType(),
+        True
+    ),
+    StructField(
+        "player_id",
+        LongType(),
+        True
+    )
+])
+gold_dim_player_df = read_gold_query_df(
+    """
+    SELECT
+        nhl_player_id,
+        player_id
+    FROM [dbo].[dim_player]
+    """,
+    schema=player_lookup_schema,
+    label="dim_player surrogate keys"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD DIM DATE
+# ============================================================
 
+print("BUILDING DIM DATE")
+print("=" * 80)
+MIN_DATE = date(
+    2026,
+    1,
+    1
+)
+max_game_date = (
+    silver_games
+    .select(
+        F.max("game_date")
+    )
+    .collect()[0][0]
+)
+max_roster_date = (
+    silver_rosters
+    .select(
+        F.max("snapshot_date")
+    )
+    .collect()[0][0]
+)
+max_standings_date = (
+    silver_team_standings
+    .select(
+        F.max("snapshot_date")
+    )
+    .collect()[0][0]
+)
+date_candidates = [
+    date.today(),
+    max_game_date,
+    max_roster_date,
+    max_standings_date
+]
+date_candidates = [
+    d
+    for d in date_candidates
+    if d is not None
+]
+MAX_DATE = max(
+    date_candidates
+)
+print(
+    f"Date dimension range: "
+    f"{MIN_DATE} → {MAX_DATE}"
+)
+date_df = spark.sql(
+    f"""
+    SELECT
+        explode(
+            sequence(
+                to_date('{MIN_DATE}'),
+                to_date('{MAX_DATE}'),
+                interval 1 day
+            )
+        ) AS full_date
+    """
+)
+dim_date_df = (
+    date_df
+    .withColumn(
+        "date_id",
+        F.date_format(
+            "full_date",
+            "yyyyMMdd"
+        ).cast("int")
+    )
+    .withColumn(
+        "day_of_month",
+        F.dayofmonth(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "day_name",
+        F.date_format(
+            "full_date",
+            "EEEE"
+        )
+    )
+    .withColumn(
+        "day_of_week",
+        F.dayofweek(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "week_of_year",
+        F.weekofyear(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "month_number",
+        F.month(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "month_name",
+        F.date_format(
+            "full_date",
+            "MMMM"
+        )
+    )
+    .withColumn(
+        "quarter",
+        F.quarter(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "year",
+        F.year(
+            "full_date"
+        )
+    )
+    .withColumn(
+        "is_weekend",
+        F.dayofweek(
+            "full_date"
+        ).isin([1, 7])
+    )
+    .select(
+        "date_id",
+        "full_date",
+        "day_of_month",
+        "day_name",
+        "day_of_week",
+        "week_of_year",
+        "month_number",
+        "month_name",
+        "quarter",
+        "year",
+        "is_weekend"
+    )
+)
+dim_date_df = add_audit_columns(
+    dim_date_df
+)
+upsert_gold_table(
+    dim_date_df,
+    "dim_date"
+)
+date_lookup_schema = StructType([
+    StructField(
+        "full_date",
+        DateType(),
+        True
+    ),
+    StructField(
+        "date_id",
+        IntegerType(),
+        True
+    )
+])
+gold_dim_date_df = read_gold_query_df(
+    """
+    SELECT
+        full_date,
+        date_id
+    FROM [dbo].[dim_date]
+    """,
+    schema=date_lookup_schema,
+    label="dim_date keys"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD DIM GAME
+# ============================================================
 
-write_warehouse_table(
-    fact_player_game_stats,
+print("BUILDING DIM GAME")
+print("=" * 80)
+dim_game_base_df = (
+    silver_games
+    .select(
+        F.col("game_id")
+            .cast("int")
+            .alias("nhl_game_id"),
+        F.col("season_id")
+            .cast("int"),
+        F.col("game_type_id")
+            .cast("int"),
+        F.col("game_date")
+            .cast("date"),
+        F.col("start_time_utc")
+            .cast("timestamp"),
+        F.col("away_team_id")
+            .cast("int")
+            .alias("away_nhl_team_id"),
+        F.col("home_team_id")
+            .cast("int")
+            .alias("home_nhl_team_id"),
+        F.col("away_team_score")
+            .cast("int"),
+        F.col("home_team_score")
+            .cast("int"),
+        F.col("away_shots_on_goal")
+            .cast("int"),
+        F.col("home_shots_on_goal")
+            .cast("int"),
+        F.col("venue")
+            .cast("string"),
+        F.col("venue_time_zone")
+            .cast("string")
+    )
+    .dropDuplicates([
+        "nhl_game_id"
+    ])
+)
+game_date_lookup = (
+    gold_dim_date_df
+    .select(
+        F.col("full_date")
+            .alias("lookup_game_date"),
+        F.col("date_id")
+            .alias("game_date_id")
+    )
+)
+away_team_lookup = (
+    gold_dim_team_df
+    .select(
+        F.col("nhl_team_id")
+            .alias(
+                "away_lookup_nhl_team_id"
+            ),
+        F.col("team_id")
+            .alias(
+                "away_team_gold_id"
+            )
+    )
+)
+home_team_lookup = (
+    gold_dim_team_df
+    .select(
+        F.col("nhl_team_id")
+            .alias(
+                "home_lookup_nhl_team_id"
+            ),
+        F.col("team_id")
+            .alias(
+                "home_team_gold_id"
+            )
+    )
+)
+dim_game_joined_df = (
+    dim_game_base_df.alias("g")
+    .join(
+        game_date_lookup.alias("d"),
+        F.col("g.game_date")
+        == F.col("d.lookup_game_date"),
+        "left"
+    )
+    .join(
+        away_team_lookup.alias("a"),
+        F.col("g.away_nhl_team_id")
+        == F.col(
+            "a.away_lookup_nhl_team_id"
+        ),
+        "left"
+    )
+    .join(
+        home_team_lookup.alias("h"),
+        F.col("g.home_nhl_team_id")
+        == F.col(
+            "h.home_lookup_nhl_team_id"
+        ),
+        "left"
+    )
+)
+validate_surrogate_key(
+    dim_game_joined_df,
+    "game_date_id",
+    "dim_game",
+    "a matching dim_date row"
+)
+validate_surrogate_key(
+    dim_game_joined_df,
+    "away_team_gold_id",
+    "dim_game",
+    "a valid away team"
+)
+validate_surrogate_key(
+    dim_game_joined_df,
+    "home_team_gold_id",
+    "dim_game",
+    "a valid home team"
+)
+dim_game_df = (
+    dim_game_joined_df
+    .select(
+        F.col("g.nhl_game_id")
+            .alias("nhl_game_id"),
+        F.col("game_date_id")
+            .alias("date_id"),
+        F.col("g.season_id")
+            .alias("season_id"),
+        F.col("g.game_type_id")
+            .alias("game_type_id"),
+        F.col("g.game_date")
+            .alias("game_date"),
+        F.col("g.start_time_utc")
+            .alias("start_time_utc"),
+        F.col("away_team_gold_id")
+            .alias("away_team_id"),
+        F.col("home_team_gold_id")
+            .alias("home_team_id"),
+        F.col("g.away_team_score")
+            .alias("away_team_score"),
+        F.col("g.home_team_score")
+            .alias("home_team_score"),
+        F.col("g.away_shots_on_goal")
+            .alias("away_shots_on_goal"),
+        F.col("g.home_shots_on_goal")
+            .alias("home_shots_on_goal"),
+        F.col("g.venue")
+            .alias("venue"),
+        F.col("g.venue_time_zone")
+            .alias("venue_time_zone")
+    )
+)
+dim_game_df = add_audit_columns(
+    dim_game_df
+)
+upsert_gold_table(
+    dim_game_df,
+    "dim_game"
+)
+game_lookup_schema = StructType([
+    StructField(
+        "nhl_game_id",
+        IntegerType(),
+        True
+    ),
+    StructField(
+        "game_id",
+        LongType(),
+        True
+    ),
+    StructField(
+        "date_id",
+        IntegerType(),
+        True
+    )
+])
+gold_dim_game_df = read_gold_query_df(
+    """
+    SELECT
+        nhl_game_id,
+        game_id,
+        date_id
+    FROM [dbo].[dim_game]
+    """,
+    schema=game_lookup_schema,
+    label="dim_game surrogate keys"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD FACT ROSTERS
+# ============================================================
+
+print("BUILDING FACT ROSTERS")
+print("=" * 80)
+fact_rosters_base_df = (
+    silver_rosters
+    .select(
+        F.col("team_id")
+            .cast("int")
+            .alias("nhl_team_id"),
+        F.col("player_id")
+            .cast("int")
+            .alias("nhl_player_id"),
+        F.col("snapshot_date")
+            .cast("date")
+            .alias("full_date"),
+        F.col("effective_from")
+            .cast("timestamp"),
+        F.col("effective_to")
+            .cast("timestamp"),
+        F.col("sweater_number")
+            .cast("int")
+    )
+)
+roster_team_lookup = (
+    gold_dim_team_df
+    .select(
+        F.col("nhl_team_id")
+            .alias(
+                "roster_lookup_nhl_team_id"
+            ),
+        F.col("team_id")
+            .alias(
+                "roster_team_gold_id"
+            )
+    )
+)
+roster_player_lookup = (
+    gold_dim_player_df
+    .select(
+        F.col("nhl_player_id")
+            .alias(
+                "roster_lookup_nhl_player_id"
+            ),
+        F.col("player_id")
+            .alias(
+                "roster_player_gold_id"
+            )
+    )
+)
+roster_date_lookup = (
+    gold_dim_date_df
+    .select(
+        F.col("full_date")
+            .alias(
+                "roster_lookup_full_date"
+            ),
+        F.col("date_id")
+            .alias(
+                "roster_date_id"
+            )
+    )
+)
+fact_rosters_joined_df = (
+    fact_rosters_base_df.alias("r")
+    .join(
+        roster_team_lookup.alias("t"),
+        F.col("r.nhl_team_id")
+        == F.col(
+            "t.roster_lookup_nhl_team_id"
+        ),
+        "left"
+    )
+    .join(
+        roster_player_lookup.alias("p"),
+        F.col("r.nhl_player_id")
+        == F.col(
+            "p.roster_lookup_nhl_player_id"
+        ),
+        "left"
+    )
+    .join(
+        roster_date_lookup.alias("d"),
+        F.col("r.full_date")
+        == F.col(
+            "d.roster_lookup_full_date"
+        ),
+        "left"
+    )
+)
+validate_surrogate_key(
+    fact_rosters_joined_df,
+    "roster_team_gold_id",
+    "fact_rosters",
+    "a valid team surrogate key"
+)
+validate_surrogate_key(
+    fact_rosters_joined_df,
+    "roster_player_gold_id",
+    "fact_rosters",
+    "a valid player surrogate key"
+)
+validate_surrogate_key(
+    fact_rosters_joined_df,
+    "roster_date_id",
+    "fact_rosters",
+    "a valid date surrogate key"
+)
+fact_rosters_df = (
+    fact_rosters_joined_df
+    .select(
+        F.col(
+            "roster_team_gold_id"
+        ).alias("team_id"),
+        F.col(
+            "roster_player_gold_id"
+        ).alias("player_id"),
+        F.col(
+            "roster_date_id"
+        ).alias("date_id"),
+        F.col(
+            "r.effective_from"
+        ).alias("effective_from"),
+        F.col(
+            "r.effective_to"
+        ).alias("effective_to"),
+        F.col(
+            "r.sweater_number"
+        ).alias("sweater_number")
+    )
+    .dropDuplicates([
+        "team_id",
+        "player_id",
+        "effective_from"
+    ])
+)
+fact_rosters_df = add_audit_columns(
+    fact_rosters_df
+)
+upsert_gold_table(
+    fact_rosters_df,
+    "fact_rosters"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD FACT TEAM STANDINGS
+# ============================================================
+
+print("BUILDING FACT TEAM STANDINGS")
+print("=" * 80)
+fact_team_standings_base_df = (
+    silver_team_standings
+    .select(
+        F.col("team_id")
+            .cast("int")
+            .alias("nhl_team_id"),
+        F.col("snapshot_date")
+            .cast("date")
+            .alias("full_date"),
+        F.col("season_id")
+            .cast("int"),
+        F.col("game_type_id")
+            .cast("int"),
+        F.col("clinch_indicator")
+            .cast("string"),
+        F.col("games_played")
+            .cast("int"),
+        F.col("wins")
+            .cast("int"),
+        F.col("losses")
+            .cast("int"),
+        F.col("ot_losses")
+            .cast("int"),
+        F.col("ties")
+            .cast("int"),
+        F.col("points")
+            .cast("int"),
+        F.col("point_pctg")
+            .cast("decimal(8,6)"),
+        F.col("win_pctg")
+            .cast("decimal(8,6)"),
+        F.col("regulation_wins")
+            .cast("int"),
+        F.col("regulation_win_pctg")
+            .cast("decimal(8,6)"),
+        F.col("regulation_plus_ot_wins")
+            .cast("int"),
+        F.col("regulation_plus_ot_win_pctg")
+            .cast("decimal(8,6)"),
+        F.col("shootout_wins")
+            .cast("int"),
+        F.col("shootout_losses")
+            .cast("int"),
+        F.col("goals_for")
+            .cast("int"),
+        F.col("goals_against")
+            .cast("int"),
+        F.col("goal_differential")
+            .cast("int"),
+        F.col("goals_for_pctg")
+            .cast("decimal(8,6)"),
+        F.col("goal_differential_pctg")
+            .cast("decimal(8,6)"),
+        F.col("home_games_played")
+            .cast("int"),
+        F.col("home_wins")
+            .cast("int"),
+        F.col("home_losses")
+            .cast("int"),
+        F.col("home_ot_losses")
+            .cast("int"),
+        F.col("home_ties")
+            .cast("int"),
+        F.col("home_points")
+            .cast("int"),
+        F.col("home_goals_for")
+            .cast("int"),
+        F.col("home_goals_against")
+            .cast("int"),
+        F.col("home_goal_differential")
+            .cast("int"),
+        F.col("home_regulation_wins")
+            .cast("int"),
+        F.col("home_regulation_plus_ot_wins")
+            .cast("int"),
+        F.col("road_games_played")
+            .cast("int"),
+        F.col("road_wins")
+            .cast("int"),
+        F.col("road_losses")
+            .cast("int"),
+        F.col("road_ot_losses")
+            .cast("int"),
+        F.col("road_ties")
+            .cast("int"),
+        F.col("road_points")
+            .cast("int"),
+        F.col("road_goals_for")
+            .cast("int"),
+        F.col("road_goals_against")
+            .cast("int"),
+        F.col("road_goal_differential")
+            .cast("int"),
+        F.col("road_regulation_wins")
+            .cast("int"),
+        F.col("road_regulation_plus_ot_wins")
+            .cast("int"),
+        F.col("l10_games_played")
+            .cast("int"),
+        F.col("l10_wins")
+            .cast("int"),
+        F.col("l10_losses")
+            .cast("int"),
+        F.col("l10_ot_losses")
+            .cast("int"),
+        F.col("l10_ties")
+            .cast("int"),
+        F.col("l10_points")
+            .cast("int"),
+        F.col("l10_goals_for")
+            .cast("int"),
+        F.col("l10_goals_against")
+            .cast("int"),
+        F.col("l10_goal_differential")
+            .cast("int"),
+        F.col("l10_regulation_wins")
+            .cast("int"),
+        F.col("l10_regulation_plus_ot_wins")
+            .cast("int"),
+        F.col("league_sequence")
+            .cast("int"),
+        F.col("league_home_sequence")
+            .cast("int"),
+        F.col("league_road_sequence")
+            .cast("int"),
+        F.col("league_l10_sequence")
+            .cast("int"),
+        F.col("conference_sequence")
+            .cast("int"),
+        F.col("conference_home_sequence")
+            .cast("int"),
+        F.col("conference_road_sequence")
+            .cast("int"),
+        F.col("conference_l10_sequence")
+            .cast("int"),
+        F.col("division_sequence")
+            .cast("int"),
+        F.col("division_home_sequence")
+            .cast("int"),
+        F.col("division_road_sequence")
+            .cast("int"),
+        F.col("division_l10_sequence")
+            .cast("int"),
+        F.col("wildcard_sequence")
+            .cast("int"),
+        F.col("waivers_sequence")
+            .cast("int"),
+        F.col("streak_code")
+            .cast("string"),
+        F.col("streak_count")
+            .cast("int")
+    )
+)
+standings_team_lookup = (
+    gold_dim_team_df
+    .select(
+        F.col("nhl_team_id")
+            .alias(
+                "standings_lookup_nhl_team_id"
+            ),
+        F.col("team_id")
+            .alias(
+                "standings_team_gold_id"
+            )
+    )
+)
+standings_date_lookup = (
+    gold_dim_date_df
+    .select(
+        F.col("full_date")
+            .alias(
+                "standings_lookup_full_date"
+            ),
+        F.col("date_id")
+            .alias(
+                "standings_date_id"
+            )
+    )
+)
+fact_team_standings_joined_df = (
+    fact_team_standings_base_df.alias("s")
+    .join(
+        standings_team_lookup.alias("t"),
+        F.col("s.nhl_team_id")
+        == F.col(
+            "t.standings_lookup_nhl_team_id"
+        ),
+        "left"
+    )
+    .join(
+        standings_date_lookup.alias("d"),
+        F.col("s.full_date")
+        == F.col(
+            "d.standings_lookup_full_date"
+        ),
+        "left"
+    )
+)
+validate_surrogate_key(
+    fact_team_standings_joined_df,
+    "standings_team_gold_id",
+    "fact_team_standings",
+    "a valid team surrogate key"
+)
+validate_surrogate_key(
+    fact_team_standings_joined_df,
+    "standings_date_id",
+    "fact_team_standings",
+    "a valid date surrogate key"
+)
+fact_team_standings_df = (
+    fact_team_standings_joined_df
+    .select(
+        F.col(
+            "standings_team_gold_id"
+        ).alias("team_id"),
+        F.col(
+            "standings_date_id"
+        ).alias("date_id"),
+        F.col(
+            "s.season_id"
+        ).alias("season_id"),
+        F.col(
+            "s.game_type_id"
+        ).alias("game_type_id"),
+        F.col(
+            "s.clinch_indicator"
+        ).alias("clinch_indicator"),
+        F.col("s.games_played"),
+        F.col("s.wins"),
+        F.col("s.losses"),
+        F.col("s.ot_losses"),
+        F.col("s.ties"),
+        F.col("s.points"),
+        F.col("s.point_pctg"),
+        F.col("s.win_pctg"),
+        F.col("s.regulation_wins"),
+        F.col("s.regulation_win_pctg"),
+        F.col("s.regulation_plus_ot_wins"),
+        F.col(
+            "s.regulation_plus_ot_win_pctg"
+        ),
+        F.col("s.shootout_wins"),
+        F.col("s.shootout_losses"),
+        F.col("s.goals_for"),
+        F.col("s.goals_against"),
+        F.col("s.goal_differential"),
+        F.col("s.goals_for_pctg"),
+        F.col("s.goal_differential_pctg"),
+        F.col("s.home_games_played"),
+        F.col("s.home_wins"),
+        F.col("s.home_losses"),
+        F.col("s.home_ot_losses"),
+        F.col("s.home_ties"),
+        F.col("s.home_points"),
+        F.col("s.home_goals_for"),
+        F.col("s.home_goals_against"),
+        F.col("s.home_goal_differential"),
+        F.col("s.home_regulation_wins"),
+        F.col(
+            "s.home_regulation_plus_ot_wins"
+        ),
+        F.col("s.road_games_played"),
+        F.col("s.road_wins"),
+        F.col("s.road_losses"),
+        F.col("s.road_ot_losses"),
+        F.col("s.road_ties"),
+        F.col("s.road_points"),
+        F.col("s.road_goals_for"),
+        F.col("s.road_goals_against"),
+        F.col("s.road_goal_differential"),
+        F.col("s.road_regulation_wins"),
+        F.col(
+            "s.road_regulation_plus_ot_wins"
+        ),
+        F.col("s.l10_games_played"),
+        F.col("s.l10_wins"),
+        F.col("s.l10_losses"),
+        F.col("s.l10_ot_losses"),
+        F.col("s.l10_ties"),
+        F.col("s.l10_points"),
+        F.col("s.l10_goals_for"),
+        F.col("s.l10_goals_against"),
+        F.col("s.l10_goal_differential"),
+        F.col("s.l10_regulation_wins"),
+        F.col(
+            "s.l10_regulation_plus_ot_wins"
+        ),
+        F.col("s.league_sequence"),
+        F.col("s.league_home_sequence"),
+        F.col("s.league_road_sequence"),
+        F.col("s.league_l10_sequence"),
+        F.col("s.conference_sequence"),
+        F.col("s.conference_home_sequence"),
+        F.col("s.conference_road_sequence"),
+        F.col("s.conference_l10_sequence"),
+        F.col("s.division_sequence"),
+        F.col("s.division_home_sequence"),
+        F.col("s.division_road_sequence"),
+        F.col("s.division_l10_sequence"),
+        F.col("s.wildcard_sequence"),
+        F.col("s.waivers_sequence"),
+        F.col("s.streak_code"),
+        F.col("s.streak_count")
+    )
+    .dropDuplicates([
+        "team_id",
+        "date_id",
+        "season_id",
+        "game_type_id"
+    ])
+)
+fact_team_standings_df = add_audit_columns(
+    fact_team_standings_df
+)
+upsert_gold_table(
+    fact_team_standings_df,
+    "fact_team_standings"
+)
+print()
+print("=" * 80)
+# ============================================================
+# BUILD FACT PLAYER GAME STATS
+# ============================================================
+
+print("BUILDING FACT PLAYER GAME STATS")
+print("=" * 80)
+fact_player_game_stats_base_df = (
+    silver_player_game_stats
+    .select(
+        F.col("player_id")
+            .cast("int")
+            .alias("nhl_player_id"),
+        F.col("game_id")
+            .cast("int")
+            .alias("nhl_game_id"),
+        F.col("goals")
+            .cast("int"),
+        F.col("assists")
+            .cast("int"),
+        F.col("points")
+            .cast("int"),
+        F.col("game_winning_goals")
+            .cast("int"),
+        F.col("overtime_goals")
+            .cast("int"),
+        F.col("power_play_goals")
+            .cast("int"),
+        F.col("power_play_points")
+            .cast("int"),
+        F.col("shorthanded_goals")
+            .cast("int"),
+        F.col("shorthanded_points")
+            .cast("int"),
+        F.col("shots")
+            .cast("int"),
+        F.col("plus_minus")
+            .cast("int"),
+        F.col("shifts")
+            .cast("int"),
+        F.col("pim")
+            .cast("int"),
+        F.col("time_on_ice")
+            .cast("string")
+    )
+)
+player_stats_player_lookup = (
+    gold_dim_player_df
+    .select(
+        F.col("nhl_player_id")
+            .alias(
+                "stats_lookup_nhl_player_id"
+            ),
+        F.col("player_id")
+            .alias(
+                "stats_player_gold_id"
+            )
+    )
+)
+player_stats_game_lookup = (
+    gold_dim_game_df
+    .select(
+        F.col("nhl_game_id")
+            .alias(
+                "stats_lookup_nhl_game_id"
+            ),
+        F.col("game_id")
+            .alias(
+                "stats_game_gold_id"
+            ),
+        F.col("date_id")
+            .alias(
+                "stats_game_date_id"
+            )
+    )
+)
+fact_player_game_stats_joined_df = (
+    fact_player_game_stats_base_df.alias("s")
+    .join(
+        player_stats_player_lookup.alias("p"),
+        F.col("s.nhl_player_id")
+        == F.col(
+            "p.stats_lookup_nhl_player_id"
+        ),
+        "inner"
+    )
+    .join(
+        player_stats_game_lookup.alias("g"),
+        F.col("s.nhl_game_id")
+        == F.col(
+            "g.stats_lookup_nhl_game_id"
+        ),
+        "inner"
+    )
+)
+validate_surrogate_key(
+    fact_player_game_stats_joined_df,
+    "stats_player_gold_id",
     "fact_player_game_stats",
-    "overwrite"
+    "a valid player surrogate key"
 )
-
-
-print(
-    f"fact_player_game_stats loaded: "
-    f"{fact_player_game_stats.count()} rows."
+validate_surrogate_key(
+    fact_player_game_stats_joined_df,
+    "stats_game_gold_id",
+    "fact_player_game_stats",
+    "a valid game surrogate key"
 )
-
+validate_surrogate_key(
+    fact_player_game_stats_joined_df,
+    "stats_game_date_id",
+    "fact_player_game_stats",
+    "a valid date surrogate key"
+)
+fact_player_game_stats_df = (
+    fact_player_game_stats_joined_df
+    .select(
+        F.col(
+            "stats_player_gold_id"
+        ).alias("player_id"),
+        F.col(
+            "stats_game_gold_id"
+        ).alias("game_id"),
+        F.col(
+            "stats_game_date_id"
+        ).alias("date_id"),
+        F.col("s.goals"),
+        F.col("s.assists"),
+        F.col("s.points"),
+        F.col(
+            "s.game_winning_goals"
+        ),
+        F.col(
+            "s.overtime_goals"
+        ),
+        F.col(
+            "s.power_play_goals"
+        ),
+        F.col(
+            "s.power_play_points"
+        ),
+        F.col(
+            "s.shorthanded_goals"
+        ),
+        F.col(
+            "s.shorthanded_points"
+        ),
+        F.col("s.shots"),
+        F.col("s.plus_minus"),
+        F.col("s.shifts"),
+        F.col("s.pim"),
+        F.col("s.time_on_ice")
+    )
+    .dropDuplicates([
+        "player_id",
+        "game_id"
+    ])
+)
+fact_player_game_stats_df = add_audit_columns(
+    fact_player_game_stats_df
+)
+upsert_gold_table(
+    fact_player_game_stats_df,
+    "fact_player_game_stats"
+)
 print()
-
-
+print("=" * 80)
 # ============================================================
-# PIPELINE SUMMARY
+# FINAL GOLD VALIDATION
 # ============================================================
 
-print("=" * 60)
+print("FINAL GOLD VALIDATION")
+print("=" * 80)
+for table_name in GOLD_TABLES:
+    count = gold_table_count(
+        table_name
+    )
+    print(
+        f"{table_name}: "
+        f"{count:,} rows"
+    )
+print()
+print("=" * 80)
+# ============================================================
+# FINAL KEY VALIDATION
+# ============================================================
+
+print("FINAL KEY VALIDATION")
+print("=" * 80)
+team_count = gold_table_count(
+    "dim_team"
+)
+if team_count == 0:
+    raise ValueError(
+        "dim_team is empty."
+    )
+player_count = gold_table_count(
+    "dim_player"
+)
+if player_count == 0:
+    raise ValueError(
+        "dim_player is empty."
+    )
+date_count = gold_table_count(
+    "dim_date"
+)
+if date_count == 0:
+    raise ValueError(
+        "dim_date is empty."
+    )
+print()
+print("=" * 80)
+# ============================================================
+# COMPLETION
+# ============================================================
+
 print("NHL GOLD PIPELINE COMPLETE")
-print("=" * 60)
-
+print("=" * 80)
 print()
-
-print(
-    f"dim_date: "
-    f"{dim_date.count()}"
-)
-
-print(
-    f"dim_team: "
-    f"{dim_team.count()}"
-)
-
-print(
-    f"dim_player: "
-    f"{dim_player.count()}"
-)
-
-print(
-    f"dim_game: "
-    f"{dim_game.count()}"
-)
-
-print(
-    f"fact_rosters: "
-    f"{fact_rosters.count()}"
-)
-
-print(
-    f"fact_team_standings: "
-    f"{fact_team_standings.count()}"
-)
-
-print(
-    f"fact_player_game_stats: "
-    f"{fact_player_game_stats.count()}"
-)
-
+print("Pipeline pattern:")
+print("  Silver Lakehouse")
+print("        ↓")
+print("  Spark DataFrame Reads")
+print("        ↓")
+print("  PySpark Transformations")
+print("        ↓")
+print("  Direct parameterized MERGE")
+print("        ↓")
+print("  Gold Warehouse")
 print()
-
-print(
-    "Gold Warehouse load completed successfully."
-)
+print("Gold access:")
+print("  Reads:   Direct ODBC SQL")
+print("  Writes:  Direct ODBC SQL")
+print("  Auth:    Microsoft Entra ID / Fabric notebook token")
+print()
+print("UPSERT keys:")
+for table_name, keys in UPSERT_KEYS.items():
+    print(
+        f"  {table_name}: "
+        f"{', '.join(keys)}"
+    )
+print()
+print("Identity columns:")
+for table_name, column in IDENTITY_COLUMNS.items():
+    print(
+        f"  {table_name}.{column}"
+    )
+print()
+print("Non-identity key:")
+print("  dim_date.date_id = YYYYMMDD")
+print()
+print("Write behavior:")
+print("  Existing rows:  UPDATE")
+print("  New rows:       INSERT")
+print("  Missing source: NO DELETE")
+print()
+print("Staging:")
+print("  Persistent: None")
+print("  Temporary:  None")
+print()
+print("MERGE strategy:")
+print("  Direct parameterized MERGE ... USING (VALUES ...)")
+print()
+print("✓ Gold pipeline completed successfully.")
+print("=" * 80)
 
 # METADATA ********************
 

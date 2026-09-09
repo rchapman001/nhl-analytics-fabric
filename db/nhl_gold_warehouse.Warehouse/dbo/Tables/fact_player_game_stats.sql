@@ -1,7 +1,8 @@
 CREATE TABLE [dbo].[fact_player_game_stats] (
 
-	[player_id] int NOT NULL, 
-	[game_id] int NOT NULL, 
+	[player_stats_id] bigint IDENTITY NOT NULL, 
+	[player_id] bigint NULL, 
+	[game_id] bigint NULL, 
 	[date_id] int NOT NULL, 
 	[goals] int NULL, 
 	[assists] int NULL, 

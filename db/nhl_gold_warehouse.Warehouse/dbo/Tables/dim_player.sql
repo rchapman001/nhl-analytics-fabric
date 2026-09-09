@@ -1,7 +1,8 @@
 CREATE TABLE [dbo].[dim_player] (
 
-	[player_id] int NOT NULL, 
-	[draft_team_id] int NULL, 
+	[player_id] bigint IDENTITY NOT NULL, 
+	[nhl_player_id] int NOT NULL, 
+	[draft_team_id] bigint NULL, 
 	[first_name] varchar(100) NULL, 
 	[last_name] varchar(100) NULL, 
 	[player_slug] varchar(255) NULL, 

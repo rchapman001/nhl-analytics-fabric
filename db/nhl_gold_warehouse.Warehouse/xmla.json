@@ -47,12 +47,12 @@
             ]
           },
           {
-            "name": "day",
+            "name": "day_of_month",
             "dataType": "int64",
-            "sourceColumn": "day",
+            "sourceColumn": "day_of_month",
             "formatString": "0",
             "sourceProviderType": "int",
-            "sourceLineageTag": "day",
+            "sourceLineageTag": "day_of_month",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -106,12 +106,12 @@
             ]
           },
           {
-            "name": "month",
+            "name": "month_number",
             "dataType": "int64",
-            "sourceColumn": "month",
+            "sourceColumn": "month_number",
             "formatString": "0",
             "sourceProviderType": "int",
-            "sourceLineageTag": "month",
+            "sourceLineageTag": "month_number",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -238,8 +238,23 @@
             "dataType": "int64",
             "sourceColumn": "game_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "game_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "nhl_game_id",
+            "dataType": "int64",
+            "sourceColumn": "nhl_game_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "nhl_game_id",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -328,7 +343,7 @@
             "dataType": "int64",
             "sourceColumn": "away_team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "away_team_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -343,7 +358,7 @@
             "dataType": "int64",
             "sourceColumn": "home_team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "home_team_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -500,8 +515,23 @@
             "dataType": "int64",
             "sourceColumn": "player_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "player_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "nhl_player_id",
+            "dataType": "int64",
+            "sourceColumn": "nhl_player_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "nhl_player_id",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -515,7 +545,7 @@
             "dataType": "int64",
             "sourceColumn": "draft_team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "draft_team_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -890,8 +920,23 @@
             "dataType": "int64",
             "sourceColumn": "team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "team_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "nhl_team_id",
+            "dataType": "int64",
+            "sourceColumn": "nhl_team_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "nhl_team_id",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -1081,11 +1126,26 @@
         "sourceLineageTag": "[dbo].[fact_player_game_stats]",
         "columns": [
           {
+            "name": "player_stats_id",
+            "dataType": "int64",
+            "sourceColumn": "player_stats_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "player_stats_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
             "name": "player_id",
             "dataType": "int64",
             "sourceColumn": "player_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "player_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -1100,7 +1160,7 @@
             "dataType": "int64",
             "sourceColumn": "game_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "game_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -1389,11 +1449,26 @@
         "sourceLineageTag": "[dbo].[fact_rosters]",
         "columns": [
           {
+            "name": "roster_id",
+            "dataType": "int64",
+            "sourceColumn": "roster_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "roster_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
             "name": "team_id",
             "dataType": "int64",
             "sourceColumn": "team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "team_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -1408,7 +1483,7 @@
             "dataType": "int64",
             "sourceColumn": "player_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "player_id",
             "summarizeBy": "sum",
             "annotations": [
@@ -1426,6 +1501,36 @@
             "sourceProviderType": "int",
             "sourceLineageTag": "date_id",
             "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "effective_from",
+            "dataType": "dateTime",
+            "sourceColumn": "effective_from",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "effective_from",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "effective_to",
+            "dataType": "dateTime",
+            "sourceColumn": "effective_to",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "effective_to",
+            "summarizeBy": "none",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1503,11 +1608,26 @@
         "sourceLineageTag": "[dbo].[fact_team_standings]",
         "columns": [
           {
+            "name": "team_standings_id",
+            "dataType": "int64",
+            "sourceColumn": "team_standings_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "team_standings_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
             "name": "team_id",
             "dataType": "int64",
             "sourceColumn": "team_id",
             "formatString": "0",
-            "sourceProviderType": "int",
+            "sourceProviderType": "bigint",
             "sourceLineageTag": "team_id",
             "summarizeBy": "sum",
             "annotations": [

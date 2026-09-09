@@ -1,10 +1,11 @@
 CREATE TABLE [dbo].[dim_team] (
 
-	[team_id] int NOT NULL, 
+	[team_id] bigint IDENTITY NOT NULL, 
+	[nhl_team_id] int NOT NULL, 
 	[place_name] varchar(100) NULL, 
-	[team_name] varchar(100) NULL, 
+	[team_name] varchar(100) NOT NULL, 
 	[team_common_name] varchar(100) NULL, 
-	[team_abbrev] varchar(10) NULL, 
+	[team_abbrev] varchar(10) NOT NULL, 
 	[conference_abbrev] varchar(10) NULL, 
 	[conference_name] varchar(100) NULL, 
 	[division_abbrev] varchar(10) NULL, 

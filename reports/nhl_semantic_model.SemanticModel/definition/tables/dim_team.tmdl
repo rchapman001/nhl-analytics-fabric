@@ -1,0 +1,147 @@
+table dim_team
+	lineageTag: c04f2749-7c4b-4caf-8175-d1dd71d3ef70
+	sourceLineageTag: [dbo].[dim_team]
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f2724136-3ab3-4580-9008-111fc1d137e9
+		sourceLineageTag: team_id
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhl_team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: cd05d094-7cd6-429e-916d-8b8cb775aefe
+		sourceLineageTag: nhl_team_id
+		summarizeBy: sum
+		sourceColumn: nhl_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column place_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 2c37aff5-e5b0-4367-8eac-c784e5f7f2c7
+		sourceLineageTag: place_name
+		summarizeBy: none
+		sourceColumn: place_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 1d8018d1-d1e7-40a8-82cc-45e86d3cd510
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_common_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: b7c5144f-cd00-40f7-9a9a-bda5b1db1079
+		sourceLineageTag: team_common_name
+		summarizeBy: none
+		sourceColumn: team_common_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_abbrev
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: 54fb1118-a340-4137-8f50-7e18e52180df
+		sourceLineageTag: team_abbrev
+		summarizeBy: none
+		sourceColumn: team_abbrev
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_abbrev
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: 94f14be6-8de5-4012-b190-90bdb3b8f79b
+		sourceLineageTag: conference_abbrev
+		summarizeBy: none
+		sourceColumn: conference_abbrev
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 7e0fa720-d4c5-48c1-9e1d-da4fd5e692af
+		sourceLineageTag: conference_name
+		summarizeBy: none
+		sourceColumn: conference_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_abbrev
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: c550c425-3c8a-4385-808e-22520c2fa82d
+		sourceLineageTag: division_abbrev
+		summarizeBy: none
+		sourceColumn: division_abbrev
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 2750f442-fd36-4b06-a088-39303272955f
+		sourceLineageTag: division_name
+		summarizeBy: none
+		sourceColumn: division_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_logo
+		dataType: string
+		sourceProviderType: varchar(1000)
+		lineageTag: 036c4d8d-e533-4f01-9739-f60831848049
+		sourceLineageTag: team_logo
+		summarizeBy: none
+		sourceColumn: team_logo
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 873658db-7997-4ca0-9969-51753c6681a9
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e2f12872-d1ee-4d01-87ca-61b920741e04
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_team = entity
+		mode: directLake
+		source
+			entityName: dim_team
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

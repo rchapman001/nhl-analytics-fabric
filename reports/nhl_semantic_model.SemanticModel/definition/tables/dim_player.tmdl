@@ -1,0 +1,323 @@
+table dim_player
+	lineageTag: 0ae2b034-bd02-41f6-a7ed-8b04a783ff46
+	sourceLineageTag: [dbo].[dim_player]
+
+	measure 'First Name Label' = "First Name:"
+		lineageTag: 27615b3f-3d1a-4b55-a4ce-79f691b55143
+
+		changedProperty = Name
+
+	measure 'Last Name Label' =
+			
+			"Last Name:"
+		lineageTag: d398df1c-a282-4dd6-8742-ab21050092c0
+
+		changedProperty = Name
+
+	measure 'Position Label' =
+			
+			"Position:"
+		lineageTag: d6e94cf6-4587-4fb0-ac6c-a6c1fa7e40ee
+
+		changedProperty = Name
+
+	measure 'Shoots Label' =
+			
+			"Shoots:"
+		lineageTag: 6c6b4fc4-0ce0-44bd-85bc-d5d24429eed9
+
+		changedProperty = Name
+
+	measure 'Drafts Label' =
+			
+			"Drafts:"
+		lineageTag: ff12aabf-93cb-4557-8bd2-9ca27cbe7105
+
+		changedProperty = Name
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0246bb1d-b6f2-4789-a257-459783c3e26b
+		sourceLineageTag: player_id
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhl_player_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0cbafa7f-2bb6-41d8-bbc5-0dbe0cfaabac
+		sourceLineageTag: nhl_player_id
+		summarizeBy: sum
+		sourceColumn: nhl_player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column draft_team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: fec46e9d-48e7-4c2d-9505-1b9806594a4a
+		sourceLineageTag: draft_team_id
+		summarizeBy: sum
+		sourceColumn: draft_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: fff42b80-9461-4dcf-a586-a528726553a5
+		sourceLineageTag: first_name
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: cf3b9cde-0fd1-4144-9784-2251e1b427cf
+		sourceLineageTag: last_name
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_slug
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 46fd8c75-1240-4842-9d2c-3292a31ae08c
+		sourceLineageTag: player_slug
+		summarizeBy: none
+		sourceColumn: player_slug
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 8879b188-198a-4fbb-934a-2300e26724ac
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: ce2a5e97-4427-4c22-94a3-4f1629b8a5ad
+		sourceLineageTag: position
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column shoots_catches
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: d8435473-c62f-4e13-9823-cf71e584856e
+		sourceLineageTag: shoots_catches
+		summarizeBy: none
+		sourceColumn: shoots_catches
+
+		annotation SummarizationSetBy = Automatic
+
+	column height_in_inches
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: aec372ba-99dc-410b-bd66-ec15aefd2bb9
+		sourceLineageTag: height_in_inches
+		summarizeBy: sum
+		sourceColumn: height_in_inches
+
+		annotation SummarizationSetBy = Automatic
+
+	column height_in_centimeters
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5e3eca81-c816-4e5a-9932-094b8f54b24c
+		sourceLineageTag: height_in_centimeters
+		summarizeBy: sum
+		sourceColumn: height_in_centimeters
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_in_pounds
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 40bb3932-71ee-4def-a49f-f9e7383122d9
+		sourceLineageTag: weight_in_pounds
+		summarizeBy: sum
+		sourceColumn: weight_in_pounds
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_in_kilograms
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f23f2097-af2b-4ebb-9438-b52c990c601a
+		sourceLineageTag: weight_in_kilograms
+		summarizeBy: sum
+		sourceColumn: weight_in_kilograms
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 2581a08a-34db-46a2-94d4-df8264b4f38b
+		sourceLineageTag: birth_date
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_city
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 372bc81d-a86d-4286-8c4e-54174b6a70f4
+		sourceLineageTag: birth_city
+		summarizeBy: none
+		sourceColumn: birth_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_country
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: c7d2b515-f22b-417e-85df-24794c7263dc
+		sourceLineageTag: birth_country
+		summarizeBy: none
+		sourceColumn: birth_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column draft_year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 33e914f3-187d-4b83-a211-20066ccc37b5
+		sourceLineageTag: draft_year
+		summarizeBy: sum
+		sourceColumn: draft_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column draft_round
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f41caf6b-078c-4a3b-829a-5e1033ce3563
+		sourceLineageTag: draft_round
+		summarizeBy: sum
+		sourceColumn: draft_round
+
+		annotation SummarizationSetBy = Automatic
+
+	column draft_pick_in_round
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e89b5142-851c-457a-b631-94270359f2c3
+		sourceLineageTag: draft_pick_in_round
+		summarizeBy: sum
+		sourceColumn: draft_pick_in_round
+
+		annotation SummarizationSetBy = Automatic
+
+	column draft_overall_pick
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6bb118bf-79b9-49ba-8180-250f7397ac5d
+		sourceLineageTag: draft_overall_pick
+		summarizeBy: sum
+		sourceColumn: draft_overall_pick
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_top_100_all_time
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 9836f2ae-a744-4a4d-a468-5cbafc918cfe
+		sourceLineageTag: in_top_100_all_time
+		summarizeBy: none
+		sourceColumn: in_top_100_all_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_hhof
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 344fce6a-204b-4a1e-ad68-10223567a3c6
+		sourceLineageTag: in_hhof
+		summarizeBy: none
+		sourceColumn: in_hhof
+
+		annotation SummarizationSetBy = Automatic
+
+	column headshot
+		dataType: string
+		sourceProviderType: varchar(1000)
+		lineageTag: a62075af-76bd-47ea-b573-b2d2823105ce
+		sourceLineageTag: headshot
+		summarizeBy: none
+		sourceColumn: headshot
+
+		annotation SummarizationSetBy = Automatic
+
+	column hero_image
+		dataType: string
+		sourceProviderType: varchar(1000)
+		lineageTag: 910fd1c4-dd45-406c-9f47-7dc48a2cc74a
+		sourceLineageTag: hero_image
+		summarizeBy: none
+		sourceColumn: hero_image
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 18524f59-df7c-47f2-9d39-4cc024547b14
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 2608d6e4-9fa1-4023-a97c-ab916805e8bc
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_player = entity
+		mode: directLake
+		source
+			entityName: dim_player
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

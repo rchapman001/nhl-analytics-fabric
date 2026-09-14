@@ -134,7 +134,7 @@ from zoneinfo import ZoneInfo
 # ------------------------------------------------------------
 
 BRONZE_LAKEHOUSE = "nhl_bronze_lakehouse"
-BRONZE_RUN = "20260828_022821"
+BRONZE_RUN = "20260628_000000"
 BRONZE_ABFS_ROOT = (
     "abfss://1fbf55a3-b2fc-4021-8697-98890ec67e3f"
     "@onelake.dfs.fabric.microsoft.com/"

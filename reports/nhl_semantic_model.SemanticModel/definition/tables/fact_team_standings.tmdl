@@ -1,0 +1,871 @@
+table fact_team_standings
+	lineageTag: 95aa8c71-0655-4ba4-97ad-f9b05cf4b1d9
+	sourceLineageTag: [dbo].[fact_team_standings]
+
+	measure 'Is Latest Date' =
+			
+			VAR LatestDate =
+			    CALCULATE (
+			        MAX ( fact_team_standings[date_id]),
+			        ALL ( fact_team_standings )
+			    )
+			RETURN
+			    IF (
+			        MAX ( fact_team_standings[date_id] ) = LatestDate,
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: 3345c77f-d590-4863-8c30-94a8926e8c02
+
+		changedProperty = Name
+
+	column team_standings_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f39599c7-6c56-4d6f-b604-7b815d4153ac
+		sourceLineageTag: team_standings_id
+		summarizeBy: sum
+		sourceColumn: team_standings_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0435b39c-c3f8-43eb-9d16-2104a7195488
+		sourceLineageTag: team_id
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d7390912-3a4e-452b-9b2d-c768fc13e758
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c945e337-7ef8-4ab3-851f-c5755642c52d
+		sourceLineageTag: season_id
+		summarizeBy: sum
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_type_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c8140670-dd17-48f4-8bbf-8ee0675ae467
+		sourceLineageTag: game_type_id
+		summarizeBy: sum
+		sourceColumn: game_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column clinch_indicator
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: ff664d6e-1a40-445b-89c7-3700ee71175f
+		sourceLineageTag: clinch_indicator
+		summarizeBy: none
+		sourceColumn: clinch_indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column games_played
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5657fb3f-028f-483b-8890-27021f7bd9c3
+		sourceLineageTag: games_played
+		summarizeBy: sum
+		sourceColumn: games_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 37a08ac5-018b-4659-9cc8-23c5a7bfb10b
+		sourceLineageTag: wins
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4ed609bf-d200-42e1-b27b-aa0c5186eab1
+		sourceLineageTag: losses
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column ot_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9c415592-f210-40be-9469-03996dd9cdf1
+		sourceLineageTag: ot_losses
+		summarizeBy: sum
+		sourceColumn: ot_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column ties
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 49eb511a-bd9b-463d-9ae1-794382d5582d
+		sourceLineageTag: ties
+		summarizeBy: sum
+		sourceColumn: ties
+
+		annotation SummarizationSetBy = Automatic
+
+	column points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 94fac3dd-543e-46cd-9c84-24ff1506bd80
+		sourceLineageTag: points
+		summarizeBy: sum
+		sourceColumn: points
+
+		annotation SummarizationSetBy = Automatic
+
+	column point_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: 51c4e68c-ab45-4dac-92c6-687e79bdaa45
+		sourceLineageTag: point_pctg
+		summarizeBy: sum
+		sourceColumn: point_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column win_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: c3def553-2b97-4b7c-a5a7-07e009a23171
+		sourceLineageTag: win_pctg
+		summarizeBy: sum
+		sourceColumn: win_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column regulation_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 778c2669-6e3b-44ef-8a8c-56bcfb5815d6
+		sourceLineageTag: regulation_wins
+		summarizeBy: sum
+		sourceColumn: regulation_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column regulation_win_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: 3e3e0ff3-90a9-4840-a93e-7099356b7f64
+		sourceLineageTag: regulation_win_pctg
+		summarizeBy: sum
+		sourceColumn: regulation_win_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column regulation_plus_ot_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fcae1c7e-e1d1-462c-962b-ac353c473b8e
+		sourceLineageTag: regulation_plus_ot_wins
+		summarizeBy: sum
+		sourceColumn: regulation_plus_ot_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column regulation_plus_ot_win_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: cd5b7219-dbbe-41c3-96ce-0a9b64fee127
+		sourceLineageTag: regulation_plus_ot_win_pctg
+		summarizeBy: sum
+		sourceColumn: regulation_plus_ot_win_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shootout_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8e2ccba5-0866-4125-8292-f448102e23ef
+		sourceLineageTag: shootout_wins
+		summarizeBy: sum
+		sourceColumn: shootout_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column shootout_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: beefbb02-e185-4b52-b097-872677a5c231
+		sourceLineageTag: shootout_losses
+		summarizeBy: sum
+		sourceColumn: shootout_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_for
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1e87462b-e6e5-46c7-8ab7-0a0f392f398a
+		sourceLineageTag: goals_for
+		summarizeBy: sum
+		sourceColumn: goals_for
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_against
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 490bcdb4-5b46-4422-8c75-9da74a08c05b
+		sourceLineageTag: goals_against
+		summarizeBy: sum
+		sourceColumn: goals_against
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_differential
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3963c2c9-5626-409c-bb84-75c62779b145
+		sourceLineageTag: goal_differential
+		summarizeBy: sum
+		sourceColumn: goal_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_for_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: 6c5a71b5-1838-4ee6-9bdf-01f8c253c4c9
+		sourceLineageTag: goals_for_pctg
+		summarizeBy: sum
+		sourceColumn: goals_for_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goal_differential_pctg
+		dataType: double
+		sourceProviderType: decimal(8, 6)
+		lineageTag: 453e26db-2d68-4e1b-bcce-769a5f38b9c3
+		sourceLineageTag: goal_differential_pctg
+		summarizeBy: sum
+		sourceColumn: goal_differential_pctg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column home_games_played
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5241c5db-2d35-454c-94cf-3a12e124c700
+		sourceLineageTag: home_games_played
+		summarizeBy: sum
+		sourceColumn: home_games_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1922a573-2b3c-4359-88e2-a882a40d8d2b
+		sourceLineageTag: home_wins
+		summarizeBy: sum
+		sourceColumn: home_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b77b1c03-bf8b-4b6e-ac54-791d9ff35bc0
+		sourceLineageTag: home_losses
+		summarizeBy: sum
+		sourceColumn: home_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_ot_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9d524e79-528c-48b7-84e3-7aee15929cfc
+		sourceLineageTag: home_ot_losses
+		summarizeBy: sum
+		sourceColumn: home_ot_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_ties
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: dbb96a84-6d01-4159-8e64-aab51792def2
+		sourceLineageTag: home_ties
+		summarizeBy: sum
+		sourceColumn: home_ties
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e860a88a-5f5c-41f5-9f56-a03293c528de
+		sourceLineageTag: home_points
+		summarizeBy: sum
+		sourceColumn: home_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_goals_for
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5b66fe38-a404-4385-aaaf-f68a9a0aa54c
+		sourceLineageTag: home_goals_for
+		summarizeBy: sum
+		sourceColumn: home_goals_for
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_goals_against
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3284f96e-7a9d-4c9b-9853-361a36444146
+		sourceLineageTag: home_goals_against
+		summarizeBy: sum
+		sourceColumn: home_goals_against
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_goal_differential
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: edbc5c76-9f5f-4ca0-bd8c-f0c40e077065
+		sourceLineageTag: home_goal_differential
+		summarizeBy: sum
+		sourceColumn: home_goal_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_regulation_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 621abb9a-48ae-42e0-8c15-c54db00ceb54
+		sourceLineageTag: home_regulation_wins
+		summarizeBy: sum
+		sourceColumn: home_regulation_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_regulation_plus_ot_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c9558b36-2b00-41c8-8b95-413c1223caf5
+		sourceLineageTag: home_regulation_plus_ot_wins
+		summarizeBy: sum
+		sourceColumn: home_regulation_plus_ot_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_games_played
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1872fd0f-d64a-4389-b3a4-d981b210ca18
+		sourceLineageTag: road_games_played
+		summarizeBy: sum
+		sourceColumn: road_games_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f784478a-bc3a-4224-bd3d-de50ba385e36
+		sourceLineageTag: road_wins
+		summarizeBy: sum
+		sourceColumn: road_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4b397141-1980-4d41-97de-20ef44dc7d58
+		sourceLineageTag: road_losses
+		summarizeBy: sum
+		sourceColumn: road_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_ot_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 873eb0e4-c5cf-4913-b051-a0ee5a46e426
+		sourceLineageTag: road_ot_losses
+		summarizeBy: sum
+		sourceColumn: road_ot_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_ties
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a2098eda-c113-4f40-8d1e-4ec3f4d696de
+		sourceLineageTag: road_ties
+		summarizeBy: sum
+		sourceColumn: road_ties
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e3e2f88b-64a1-4f7c-bf20-8ca919971299
+		sourceLineageTag: road_points
+		summarizeBy: sum
+		sourceColumn: road_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_goals_for
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d999d0dd-cc56-41c4-b401-2d5ee435fe62
+		sourceLineageTag: road_goals_for
+		summarizeBy: sum
+		sourceColumn: road_goals_for
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_goals_against
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3fcf018d-6e88-4955-b537-467ddca4758e
+		sourceLineageTag: road_goals_against
+		summarizeBy: sum
+		sourceColumn: road_goals_against
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_goal_differential
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a38d8433-c659-496d-8437-77655c11fac7
+		sourceLineageTag: road_goal_differential
+		summarizeBy: sum
+		sourceColumn: road_goal_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_regulation_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: cfc89b2c-ae1d-4014-8ae1-9d6fb4014e07
+		sourceLineageTag: road_regulation_wins
+		summarizeBy: sum
+		sourceColumn: road_regulation_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_regulation_plus_ot_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b57ffcee-3461-47d0-a80e-93de528a63f1
+		sourceLineageTag: road_regulation_plus_ot_wins
+		summarizeBy: sum
+		sourceColumn: road_regulation_plus_ot_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_games_played
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a079a5d7-c775-40b2-9fa8-1e4affd14a96
+		sourceLineageTag: l10_games_played
+		summarizeBy: sum
+		sourceColumn: l10_games_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6e4e58f4-7c85-4575-9d70-b2aed8389af6
+		sourceLineageTag: l10_wins
+		summarizeBy: sum
+		sourceColumn: l10_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 854fbb12-4a1e-4aa1-99e7-bbc8aa089550
+		sourceLineageTag: l10_losses
+		summarizeBy: sum
+		sourceColumn: l10_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_ot_losses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 893c8459-9b9d-46c1-8e2f-0456c9411ef3
+		sourceLineageTag: l10_ot_losses
+		summarizeBy: sum
+		sourceColumn: l10_ot_losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_ties
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9159a7bb-68e1-4c94-94ce-559750d3be1b
+		sourceLineageTag: l10_ties
+		summarizeBy: sum
+		sourceColumn: l10_ties
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e9284a9e-55e3-40b2-be27-389e5ea666fc
+		sourceLineageTag: l10_points
+		summarizeBy: sum
+		sourceColumn: l10_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_goals_for
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 615e3efd-1177-467f-a379-d8562c0c7287
+		sourceLineageTag: l10_goals_for
+		summarizeBy: sum
+		sourceColumn: l10_goals_for
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_goals_against
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a98810e0-fcef-4a85-b140-38c59e409d3e
+		sourceLineageTag: l10_goals_against
+		summarizeBy: sum
+		sourceColumn: l10_goals_against
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_goal_differential
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2c551166-c729-4076-9cea-6ad516f9ef3c
+		sourceLineageTag: l10_goal_differential
+		summarizeBy: sum
+		sourceColumn: l10_goal_differential
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_regulation_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b502cf9e-efa0-4faa-840a-2b5f1ee490e2
+		sourceLineageTag: l10_regulation_wins
+		summarizeBy: sum
+		sourceColumn: l10_regulation_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column l10_regulation_plus_ot_wins
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e0a0be22-e5b1-4906-ad0e-33212d22f85e
+		sourceLineageTag: l10_regulation_plus_ot_wins
+		summarizeBy: sum
+		sourceColumn: l10_regulation_plus_ot_wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column league_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 562d9848-00fb-4333-a3a7-5a1d605cbf82
+		sourceLineageTag: league_sequence
+		summarizeBy: sum
+		sourceColumn: league_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column league_home_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4fd330f0-843b-4ed3-af4e-9f654c3a4a7d
+		sourceLineageTag: league_home_sequence
+		summarizeBy: sum
+		sourceColumn: league_home_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column league_road_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b0bb1097-5832-4477-b1be-0ed9a9bf9264
+		sourceLineageTag: league_road_sequence
+		summarizeBy: sum
+		sourceColumn: league_road_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column league_l10_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1f76aa5e-3222-4f7a-a5a2-1fbbb2db9ae9
+		sourceLineageTag: league_l10_sequence
+		summarizeBy: sum
+		sourceColumn: league_l10_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 315c90d2-c152-4f76-9a96-575649cf93a8
+		sourceLineageTag: conference_sequence
+		summarizeBy: sum
+		sourceColumn: conference_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_home_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2ead25e7-ba9c-491d-b8ce-3ffef8f9746b
+		sourceLineageTag: conference_home_sequence
+		summarizeBy: sum
+		sourceColumn: conference_home_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_road_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9b14f465-5707-4c6e-858d-eef750e079e4
+		sourceLineageTag: conference_road_sequence
+		summarizeBy: sum
+		sourceColumn: conference_road_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column conference_l10_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 12cc95c2-78e4-4afd-be09-54ab85660947
+		sourceLineageTag: conference_l10_sequence
+		summarizeBy: sum
+		sourceColumn: conference_l10_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8f4cbab5-0ee8-4e13-afdd-f5575854fbdb
+		sourceLineageTag: division_sequence
+		summarizeBy: sum
+		sourceColumn: division_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_home_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7ab607db-36b1-4de9-84df-eeef622a4ad8
+		sourceLineageTag: division_home_sequence
+		summarizeBy: sum
+		sourceColumn: division_home_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_road_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d8705df1-3ba9-4252-b121-42d6dc85a334
+		sourceLineageTag: division_road_sequence
+		summarizeBy: sum
+		sourceColumn: division_road_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column division_l10_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1268371c-d9a8-4008-99ce-5be2e7fdd104
+		sourceLineageTag: division_l10_sequence
+		summarizeBy: sum
+		sourceColumn: division_l10_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column wildcard_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d8232ac6-607f-4ed0-a0ec-6454fdcc662a
+		sourceLineageTag: wildcard_sequence
+		summarizeBy: sum
+		sourceColumn: wildcard_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column waivers_sequence
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 985fdba6-775b-429e-a1e0-d8b9fbc2a383
+		sourceLineageTag: waivers_sequence
+		summarizeBy: sum
+		sourceColumn: waivers_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column streak_code
+		dataType: string
+		sourceProviderType: varchar(20)
+		lineageTag: 599df905-1859-4f0b-a785-658da82fbcc9
+		sourceLineageTag: streak_code
+		summarizeBy: none
+		sourceColumn: streak_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column streak_count
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4a72bca5-5907-4738-a295-2aa7586a6ce2
+		sourceLineageTag: streak_count
+		summarizeBy: sum
+		sourceColumn: streak_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 089a3c4c-7347-4f19-b384-7e7388d7cd75
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: fc94e479-b003-4453-8af7-6494de379f00
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_team_standings = entity
+		mode: directLake
+		source
+			entityName: fact_team_standings
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,112 @@
+table fact_rosters
+	lineageTag: 86d31e44-13ec-44c4-86d7-d84bc74e7378
+	sourceLineageTag: [dbo].[fact_rosters]
+
+	column roster_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6ed8858d-4589-4b34-9120-56db54f118fc
+		sourceLineageTag: roster_id
+		summarizeBy: sum
+		sourceColumn: roster_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c7ef4e82-b3f8-4dbf-bde1-1210bbbae888
+		sourceLineageTag: team_id
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a753f4bc-666e-43ad-be40-aa1558b1b64f
+		sourceLineageTag: player_id
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 65d504d4-c2c0-492f-a24b-0da00e02713d
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_from
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 04aa2891-43d1-49bf-bc42-1a25cefcbb17
+		sourceLineageTag: effective_from
+		summarizeBy: none
+		sourceColumn: effective_from
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_to
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 3874b076-8a1a-4d88-b3d6-3a08f2d8b35c
+		sourceLineageTag: effective_to
+		summarizeBy: none
+		sourceColumn: effective_to
+
+		annotation SummarizationSetBy = Automatic
+
+	column sweater_number
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2671c35f-d8f8-4243-b530-4fb110e56256
+		sourceLineageTag: sweater_number
+		summarizeBy: sum
+		sourceColumn: sweater_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 130a5a77-dc4f-42da-87fa-70daee2e0529
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e08ce050-653f-4ec2-a3a3-0603232bc3ba
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_rosters = entity
+		mode: directLake
+		source
+			entityName: fact_rosters
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

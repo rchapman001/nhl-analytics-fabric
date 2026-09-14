@@ -1,0 +1,247 @@
+table dim_game
+	lineageTag: ae90157d-9dd1-4b7d-af11-0f30581cc3b6
+	sourceLineageTag: [dbo].[dim_game]
+
+	measure 'Home Team Abbrev' =
+			
+			CALCULATE (
+			    MAX ( dim_team[team_abbrev] ),
+			    TREATAS (
+			        VALUES ( dim_game[home_team_id] ),
+			        dim_team[team_id]
+			    )
+			)
+		lineageTag: 4d0bf9d1-d184-4082-bb8e-c3ee1dd9e8be
+
+		changedProperty = Name
+
+	measure 'Away Team Abbrev' =
+			
+			CALCULATE (
+			    MAX ( dim_team[team_abbrev] ),
+			    TREATAS (
+			        VALUES ( dim_game[away_team_id] ),
+			        dim_team[team_id]
+			    )
+			)
+		lineageTag: 773ed9a0-a416-41af-916c-06cb4858bb2c
+
+		changedProperty = Name
+
+	measure 'Game Date' =
+			
+			CALCULATE (
+			    MAX ( dim_date[full_date] ),
+			    TREATAS (
+			        VALUES ( dim_game[date_id] ),
+			        dim_date[date_id]
+			    )
+			)
+		formatString: General Date
+		lineageTag: 9c0d6aec-3e26-4f7a-8a86-85719faeb92c
+
+		changedProperty = Name
+
+	measure Score =
+			
+			MAX ( dim_game[away_team_score] )
+			    & " - "
+			    & MAX ( dim_game[home_team_score] )
+		lineageTag: ec4d1912-d544-4fbe-8c11-4441165e9784
+
+		changedProperty = Name
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b291adfa-39d4-483f-8a5b-4c23b7880541
+		sourceLineageTag: game_id
+		summarizeBy: none
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhl_game_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 42f459f7-b2b7-40e3-bc41-4017aeeaf0cd
+		sourceLineageTag: nhl_game_id
+		summarizeBy: none
+		sourceColumn: nhl_game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8025ea60-fdf3-4a04-bb64-f2af12ad0e09
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7ca84db9-20ef-4465-aa2a-b19e75f7f447
+		sourceLineageTag: season_id
+		summarizeBy: none
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_type_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 51c76232-0fd7-4a9d-a631-1e45b3faec5c
+		sourceLineageTag: game_type_id
+		summarizeBy: none
+		sourceColumn: game_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 1817d724-3a8d-4e21-b762-40bc541684e2
+		sourceLineageTag: game_date
+		summarizeBy: none
+		sourceColumn: game_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_time_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 10e9314d-c32e-431a-9322-80225c7f0aab
+		sourceLineageTag: start_time_utc
+		summarizeBy: none
+		sourceColumn: start_time_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6c5ffe1f-81c4-442f-8fe4-e8798a915841
+		sourceLineageTag: away_team_id
+		summarizeBy: none
+		sourceColumn: away_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_team_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 66980581-cb11-430d-a3cf-0acaecd1c2d7
+		sourceLineageTag: home_team_id
+		summarizeBy: none
+		sourceColumn: home_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_team_score
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3d733ca4-be58-4271-9cab-439211d79d5f
+		sourceLineageTag: away_team_score
+		summarizeBy: none
+		sourceColumn: away_team_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_team_score
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ab177209-e801-4329-8732-e920853fb88f
+		sourceLineageTag: home_team_score
+		summarizeBy: none
+		sourceColumn: home_team_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_shots_on_goal
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4d14d6ad-69a7-4dff-a89a-5ba556d0cb92
+		sourceLineageTag: away_shots_on_goal
+		summarizeBy: none
+		sourceColumn: away_shots_on_goal
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_shots_on_goal
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 824eebe0-0204-4fd6-af39-79ce5cf70003
+		sourceLineageTag: home_shots_on_goal
+		summarizeBy: none
+		sourceColumn: home_shots_on_goal
+
+		annotation SummarizationSetBy = Automatic
+
+	column venue
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 530f5ac5-534a-4984-87ab-a4e5ab4d7f07
+		sourceLineageTag: venue
+		summarizeBy: none
+		sourceColumn: venue
+
+		annotation SummarizationSetBy = Automatic
+
+	column venue_time_zone
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 0b90d34c-9849-42fe-87f6-8dc257cd27bb
+		sourceLineageTag: venue_time_zone
+		summarizeBy: none
+		sourceColumn: venue_time_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ae9cee68-d7e9-4039-90c8-17601bcbdb6d
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 016aa563-1c99-4dfd-a4ba-6bcf75379dae
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_game = entity
+		mode: directLake
+		source
+			entityName: dim_game
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

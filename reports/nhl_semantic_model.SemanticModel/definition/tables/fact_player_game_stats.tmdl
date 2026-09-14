@@ -1,0 +1,278 @@
+table fact_player_game_stats
+	lineageTag: 7763986a-e1dc-4306-bbeb-fbea0344eb38
+	sourceLineageTag: [dbo].[fact_player_game_stats]
+
+	measure Opponent =
+			
+			VAR PlayerID =
+			    SELECTEDVALUE ( fact_player_game_stats[player_id] )
+			
+			VAR GameID =
+			    SELECTEDVALUE ( fact_player_game_stats[game_id] )
+			
+			VAR PlayerTeamID =
+			    CALCULATE (
+			        MAX ( fact_rosters[team_id] ),
+			        FILTER (
+			            ALL ( fact_rosters ),
+			            fact_rosters[player_id] = PlayerID
+			        )
+			    )
+			
+			VAR HomeTeamID =
+			    LOOKUPVALUE (
+			        dim_game[home_team_id],
+			        dim_game[game_id], GameID
+			    )
+			
+			VAR AwayTeamID =
+			    LOOKUPVALUE (
+			        dim_game[away_team_id],
+			        dim_game[game_id], GameID
+			    )
+			
+			VAR OpponentTeamID =
+			    SWITCH (
+			        TRUE (),
+			        PlayerTeamID = HomeTeamID, AwayTeamID,
+			        PlayerTeamID = AwayTeamID, HomeTeamID,
+			        BLANK ()
+			    )
+			
+			RETURN
+			    LOOKUPVALUE (
+			        dim_team[team_abbrev],
+			        dim_team[team_id], OpponentTeamID
+			    )
+		lineageTag: 29cb5970-8a33-4cbb-b438-f9e5f821d0ab
+
+		changedProperty = Name
+
+	column player_stats_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8ea42155-2c5c-4436-93f5-01dda53962bd
+		sourceLineageTag: player_stats_id
+		summarizeBy: sum
+		sourceColumn: player_stats_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 5682b5b7-f745-4e0b-92a2-67b552864d64
+		sourceLineageTag: player_id
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b084e0e1-91c0-4149-a4a1-f4730e56ac8b
+		sourceLineageTag: game_id
+		summarizeBy: none
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 700b3489-3dda-40bf-9b55-1fa9719cbbe0
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 45283051-8f29-4a56-8db3-0ac6981ba391
+		sourceLineageTag: goals
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3ac11cf3-aadf-48c9-ab00-dad169454577
+		sourceLineageTag: assists
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e13fe2ab-a8a3-4584-9b81-2ed930230545
+		sourceLineageTag: points
+		summarizeBy: sum
+		sourceColumn: points
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_winning_goals
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7a4cecf8-3139-4abf-9212-4ed145d605f5
+		sourceLineageTag: game_winning_goals
+		summarizeBy: sum
+		sourceColumn: game_winning_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column overtime_goals
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 160e48a8-39c5-4131-bc2c-b41a03389d62
+		sourceLineageTag: overtime_goals
+		summarizeBy: sum
+		sourceColumn: overtime_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column power_play_goals
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e9a880e7-c198-4d84-a209-ed7701014c91
+		sourceLineageTag: power_play_goals
+		summarizeBy: sum
+		sourceColumn: power_play_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column power_play_points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 17f8e10b-049a-447a-a2c6-11f09738df9f
+		sourceLineageTag: power_play_points
+		summarizeBy: sum
+		sourceColumn: power_play_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column shorthanded_goals
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 24a53076-92f3-40ec-be73-19c131295302
+		sourceLineageTag: shorthanded_goals
+		summarizeBy: sum
+		sourceColumn: shorthanded_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column shorthanded_points
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 52909ff8-9ed9-4a8b-bff2-7a706d1593f9
+		sourceLineageTag: shorthanded_points
+		summarizeBy: sum
+		sourceColumn: shorthanded_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column shots
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d6d01684-7ebc-4a35-b8dd-0d24a15d2bff
+		sourceLineageTag: shots
+		summarizeBy: sum
+		sourceColumn: shots
+
+		annotation SummarizationSetBy = Automatic
+
+	column plus_minus
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 61351a33-fe29-4d4d-b46a-450bded1270a
+		sourceLineageTag: plus_minus
+		summarizeBy: sum
+		sourceColumn: plus_minus
+
+		annotation SummarizationSetBy = Automatic
+
+	column shifts
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6a95888e-d012-4e77-8781-7cb353fff44c
+		sourceLineageTag: shifts
+		summarizeBy: sum
+		sourceColumn: shifts
+
+		annotation SummarizationSetBy = Automatic
+
+	column pim
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 735b5eb4-c409-48e4-ae0d-d69a4b69ec27
+		sourceLineageTag: pim
+		summarizeBy: sum
+		sourceColumn: pim
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_on_ice
+		dataType: string
+		sourceProviderType: varchar(20)
+		lineageTag: de7a7784-e2a4-4fd0-83f6-83bc0d649395
+		sourceLineageTag: time_on_ice
+		summarizeBy: none
+		sourceColumn: time_on_ice
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 0105cf60-5b44-4bab-9a7f-bcf4941bb2f5
+		sourceLineageTag: created_at
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 3edf2146-e1bc-4c14-84af-f59f3fa4a83b
+		sourceLineageTag: updated_at
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_player_game_stats = entity
+		mode: directLake
+		source
+			entityName: fact_player_game_stats
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

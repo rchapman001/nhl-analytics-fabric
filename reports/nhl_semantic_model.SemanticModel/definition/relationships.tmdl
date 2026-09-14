@@ -1,0 +1,32 @@
+relationship 1684d1a1-268c-853a-56cc-51c72dcad8af
+	fromColumn: fact_team_standings.date_id
+	toColumn: dim_date.date_id
+
+relationship 846a6fa6-066e-d2b0-32fa-d630937b4b1c
+	fromColumn: fact_rosters.date_id
+	toColumn: dim_date.date_id
+
+relationship d15b6887-e892-0fde-0537-179f39d0e8bc
+	fromColumn: fact_player_game_stats.date_id
+	toColumn: dim_date.date_id
+
+relationship 325aa507-6980-bb77-152a-564e5d2ff197
+	fromColumn: fact_team_standings.team_id
+	toColumn: dim_team.team_id
+
+relationship 91984bab-1239-86ce-3485-89cd58e361fc
+	fromColumn: fact_rosters.team_id
+	toColumn: dim_team.team_id
+
+relationship 818425a9-50be-ccfa-386c-94a7dbb7c2ee
+	fromColumn: fact_rosters.player_id
+	toColumn: dim_player.player_id
+
+relationship 15b36bc7-cb91-ae00-d350-8f22fd1f72d8
+	fromColumn: fact_player_game_stats.player_id
+	toColumn: dim_player.player_id
+
+relationship 744109bc-b8ef-38ca-bd58-c58043128bc1
+	fromColumn: fact_player_game_stats.game_id
+	toColumn: dim_game.game_id
+

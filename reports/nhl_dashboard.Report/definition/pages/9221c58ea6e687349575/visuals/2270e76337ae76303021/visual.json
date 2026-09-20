@@ -3,11 +3,11 @@
   "name": "2270e76337ae76303021",
   "position": {
     "x": 0,
-    "y": 687.98737174427777,
-    "z": 8000,
-    "height": 392.48618784530385,
+    "y": 692.533543804262,
+    "z": 6000,
+    "height": 387.94001578531964,
     "width": 1921.5153906866612,
-    "tabOrder": 8000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "tableEx",
@@ -147,16 +147,21 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "dim_player"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fact_player_game_stats"
+                      }
+                    },
+                    "Property": "points"
                   }
                 },
-                "Property": "last_name"
+                "Function": 0
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "af6bb85485cd2e59a8d8",
+  "name": "238ddc44b066864a70c8",
   "position": {
-    "x": 0,
-    "y": 300.04735595895818,
-    "z": 4000,
-    "height": 393,
+    "x": 960,
+    "y": 671.850699844479,
+    "z": 6000,
+    "height": 407.58942457231728,
     "width": 960,
-    "tabOrder": 4000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,120 +20,63 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_date"
+                      "Entity": "dim_player"
                     }
                   },
-                  "Property": "full_date"
+                  "Property": "first_name"
                 }
               },
-              "queryRef": "dim_date.full_date",
-              "nativeQueryRef": "Date",
-              "displayName": "Date"
+              "queryRef": "dim_player.first_name",
+              "nativeQueryRef": "First Name",
+              "displayName": "First Name"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_team"
+                      "Entity": "dim_player"
                     }
                   },
-                  "Property": "team_name"
+                  "Property": "last_name"
                 }
               },
-              "queryRef": "dim_team.team_name",
-              "nativeQueryRef": "Team",
-              "displayName": "Team"
+              "queryRef": "dim_player.last_name",
+              "nativeQueryRef": "Last Name",
+              "displayName": "Last Name"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_team_standings"
+                      "Entity": "dim_player"
                     }
                   },
-                  "Property": "games_played"
+                  "Property": "position"
                 }
               },
-              "queryRef": "Sum(fact_team_standings.games_played)",
-              "nativeQueryRef": "GP",
-              "displayName": "GP"
+              "queryRef": "dim_player.position",
+              "nativeQueryRef": "Position",
+              "displayName": "Position"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_team_standings"
+                      "Entity": "fact_rosters"
                     }
                   },
-                  "Property": "wins"
+                  "Property": "sweater_number"
                 }
               },
-              "queryRef": "Sum(fact_team_standings.wins)",
-              "nativeQueryRef": "W",
-              "displayName": "W"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fact_team_standings"
-                    }
-                  },
-                  "Property": "losses"
-                }
-              },
-              "queryRef": "Sum(fact_team_standings.losses)",
-              "nativeQueryRef": "L",
-              "displayName": "L"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fact_team_standings"
-                        }
-                      },
-                      "Property": "points"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(fact_team_standings.points)",
-              "nativeQueryRef": "PTS",
-              "displayName": "PTS"
+              "queryRef": "Sum(fact_rosters.sweater_number)",
+              "nativeQueryRef": "Sweater #",
+              "displayName": "Sweater #"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Aggregation": {
-                "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "fact_team_standings"
-                      }
-                    },
-                    "Property": "points"
-                  }
-                },
-                "Function": 0
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {
@@ -150,7 +93,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Left'"
+                  "Value": "'Auto'"
                 }
               }
             }
@@ -190,6 +133,64 @@
           }
         }
       ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "250D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_player.first_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "250D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_player.last_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_player.position"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "175D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_rosters.sweater_number)"
+          }
+        }
+      ],
       "columnFormatting": [
         {
           "properties": {
@@ -202,23 +203,49 @@
             }
           },
           "selector": {
-            "metadata": "dim_date.full_date"
+            "metadata": "dim_player.first_name"
           }
-        }
-      ],
-      "columnWidth": [
+        },
         {
           "properties": {
-            "value": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "367.30013178886037D"
+                  "Value": "'Left'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "dim_team.team_name"
+            "metadata": "dim_player.last_name"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_player.position"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_rosters.sweater_number)"
           }
         }
       ]
@@ -237,7 +264,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'NHL Standings'"
+                  "Value": "'Roster'"
                 }
               }
             },
@@ -296,7 +323,8 @@
             "Property": "games_played"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "ecf6b6c6ec048800d848",
@@ -311,7 +339,8 @@
             "Property": "losses"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "96fe78f0703c506e7431",
@@ -326,7 +355,8 @@
             "Property": "team_name"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "e27a40758d586cce8c96",
@@ -341,7 +371,8 @@
             "Property": "wins"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "4b7960ef6be0c0832904",
@@ -356,57 +387,128 @@
             "Property": "full_date"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
-        "name": "0909cf6d8b7205cb35d3",
+        "name": "192e8e13d2270c861be5",
         "ordinal": 5,
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
                 "Entity": "fact_team_standings"
               }
             },
-            "Property": "Is Latest Date"
+            "Property": "goals_for"
           }
         },
         "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "fact_team_standings",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 0,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "Is Latest Date"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "1L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "User"
+      },
+      {
+        "name": "70d4bb62db6796425edc",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "goals_against"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f792de35426729b60591",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "points"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "49e015c503e4d972e372",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "goal_differential"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "a2181df03d7dbc0ce580",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_player"
+              }
+            },
+            "Property": "first_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ca2bf2d67a42ea961950",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_player"
+              }
+            },
+            "Property": "last_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c7d02864087301659730",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_player"
+              }
+            },
+            "Property": "position"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d625e8e24cbc4a3eb308",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_rosters"
+              }
+            },
+            "Property": "sweater_number"
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

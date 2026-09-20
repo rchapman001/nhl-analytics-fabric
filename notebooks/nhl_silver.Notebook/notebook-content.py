@@ -125,6 +125,8 @@ from pyspark.sql.types import (
 )
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+
 # ============================================================
 # CONFIGURATION
 # ============================================================
@@ -134,14 +136,187 @@ from zoneinfo import ZoneInfo
 # ------------------------------------------------------------
 
 BRONZE_LAKEHOUSE = "nhl_bronze_lakehouse"
-BRONZE_RUN = "20260628_000000"
-BRONZE_ABFS_ROOT = (
+
+# ------------------------------------------------------------
+# Bronze Run
+# ------------------------------------------------------------
+#
+# The Silver pipeline now automatically selects the newest
+# timestamp-formatted run folder under Files/runs.
+#
+# To manually run a specific Bronze snapshot for testing,
+# uncomment the line below and replace the run ID.
+#
+# BRONZE_RUN = "20260628_000000"
+# BRONZE_RUN = "20260914_222953"
+# BRONZE_RUN = "20260914_223739"
+# BRONZE_RUN = "20260915_100043"
+# BRONZE_RUN = "20260916_100050"
+BRONZE_RUN = None
+
+# ------------------------------------------------------------
+# Bronze OneLake ABFS Root
+# ------------------------------------------------------------
+
+BRONZE_ABFS_LAKEHOUSE_ROOT = (
     "abfss://1fbf55a3-b2fc-4021-8697-98890ec67e3f"
     "@onelake.dfs.fabric.microsoft.com/"
     "be67e106-5585-4ba8-844b-55d35cc9aeca/"
-    f"Files/runs/{BRONZE_RUN}"
 )
+
+BRONZE_RUNS_ROOT = (
+    f"{BRONZE_ABFS_LAKEHOUSE_ROOT}Files/runs"
+)
+
+# ------------------------------------------------------------
+# Silver Lakehouse
+# ------------------------------------------------------------
+
 SILVER_LAKEHOUSE = "nhl_silver_lakehouse"
+
+
+# ============================================================
+# DISCOVER BRONZE RUN
+# ============================================================
+
+print("DISCOVERING BRONZE RUN")
+print("=" * 70)
+
+if not BRONZE_RUNS_ROOT:
+    raise ValueError(
+        "BRONZE_RUNS_ROOT is empty."
+    )
+
+if not BRONZE_RUNS_ROOT.startswith("abfss://"):
+    raise ValueError(
+        "BRONZE_RUNS_ROOT must be an ABFS path "
+        "starting with abfss://"
+    )
+
+print()
+print(
+    "Bronze runs root:"
+)
+print(
+    f"  {BRONZE_RUNS_ROOT}"
+)
+print()
+
+# ------------------------------------------------------------
+# Automatically select the most recent Bronze run
+# ------------------------------------------------------------
+
+if BRONZE_RUN is None:
+
+    print(
+        "No Bronze run was hard-coded."
+    )
+
+    print(
+        "Searching for timestamp-formatted run folders..."
+    )
+
+    run_entries = (
+        mssparkutils.fs.ls(
+            BRONZE_RUNS_ROOT
+        )
+    )
+
+    run_folders = []
+
+    for entry in run_entries:
+
+        if not entry.isDir:
+            continue
+
+        run_name = entry.name.rstrip("/")
+
+        try:
+
+            datetime.strptime(
+                run_name,
+                "%Y%m%d_%H%M%S"
+            )
+
+            run_folders.append(
+                run_name
+            )
+
+        except ValueError:
+
+            # Ignore folders that do not follow
+            # the expected Bronze run format.
+            continue
+
+    if not run_folders:
+
+        raise ValueError(
+            f"""
+No valid Bronze run folders were found.
+
+Expected folder format:
+YYYYMMDD_HHMMSS
+
+Bronze runs root:
+{BRONZE_RUNS_ROOT}
+"""
+        )
+
+    # --------------------------------------------------------
+    # Sort by timestamp embedded in the folder name
+    # --------------------------------------------------------
+
+    run_folders.sort()
+
+    BRONZE_RUN = run_folders[-1]
+
+    print()
+    print(
+        f"Discovered {len(run_folders):,} "
+        f"valid Bronze run folder(s)."
+    )
+
+    print()
+    print(
+        f"Most recent Bronze run selected:"
+    )
+
+    print(
+        f"  {BRONZE_RUN}"
+    )
+
+else:
+
+    print(
+        "Using manually selected Bronze run:"
+    )
+
+    print(
+        f"  {BRONZE_RUN}"
+    )
+
+print()
+print("=" * 70)
+
+
+# ============================================================
+# BUILD BRONZE RUN PATH
+# ============================================================
+
+BRONZE_ABFS_ROOT = (
+    f"{BRONZE_RUNS_ROOT}/{BRONZE_RUN}"
+)
+
+print(
+    "Bronze run path:"
+)
+print(
+    f"  {BRONZE_ABFS_ROOT}"
+)
+print()
+print("=" * 70)
+
+
 # ============================================================
 # SILVER TABLE NAMES
 # ============================================================
@@ -154,6 +329,8 @@ SILVER_TABLES = [
     "games",
     "player_game_stats"
 ]
+
+
 print("=" * 70)
 print("NHL ANALYTICS - FABRIC SILVER PIPELINE")
 print("=" * 70)
@@ -162,56 +339,92 @@ print(f"Bronze Run       : {BRONZE_RUN}")
 print()
 print()
 print("Silver Tables:")
+
 for table_name in SILVER_TABLES:
+
     print(
         f"  {table_name}"
     )
+
 print()
 print("=" * 70)
 print()
+
+
 # ============================================================
 # VALIDATE BRONZE CONFIGURATION
 # ============================================================
 
 print("VALIDATING BRONZE CONFIGURATION")
 print("=" * 70)
+
+
 if not BRONZE_ABFS_ROOT:
+
     raise ValueError(
         "BRONZE_ABFS_ROOT is empty."
     )
+
+
 if not BRONZE_ABFS_ROOT.startswith("abfss://"):
+
     raise ValueError(
         "BRONZE_ABFS_ROOT must be an ABFS path "
         "starting with abfss://"
     )
+
+
+if not BRONZE_RUN:
+
+    raise ValueError(
+        "BRONZE_RUN was not determined."
+    )
+
+
 if BRONZE_RUN not in BRONZE_ABFS_ROOT:
+
     raise ValueError(
         f"""
 BRONZE_RUN does not appear in BRONZE_ABFS_ROOT.
+
 Bronze Run:
 {BRONZE_RUN}
+
 Bronze ABFS Root:
 {BRONZE_ABFS_ROOT}
 """
     )
+
+
 print()
-print("✓ Bronze ABFS configuration is valid.")
+print(
+    "✓ Bronze ABFS configuration is valid."
+)
 print()
 print("=" * 70)
+
+
 # ============================================================
 # VALIDATE SILVER LAKEHOUSE CONFIGURATION
 # ============================================================
 
 print("VALIDATING SILVER LAKEHOUSE CONFIGURATION")
 print("=" * 70)
+
+
 if not SILVER_LAKEHOUSE:
+
     raise ValueError(
         "SILVER_LAKEHOUSE is empty."
     )
+
+
 print()
 print(
     "✓ Silver Lakehouse configuration is valid."
 )
+
+
 # ============================================================
 # BRONZE FILE PATH
 # ============================================================
@@ -220,17 +433,24 @@ def bronze_path(filename):
     """
     Returns the full ABFS path for a Bronze JSONL file.
     """
+
     return (
         f"{BRONZE_ABFS_ROOT}/{filename}"
     )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # VALIDATE BRONZE FILES
 # ============================================================
 
 print("VALIDATING BRONZE FILES")
 print("=" * 70)
+
+
 required_bronze_files = [
     "standings.jsonl",
     "rosters.jsonl",
@@ -238,50 +458,176 @@ required_bronze_files = [
     "game_logs.jsonl",
     "scores.jsonl"
 ]
-for filename in required_bronze_files:
-    path = bronze_path(filename)
-    print()
-    print(f"  ✓ {filename}")
-    print(f"    {path}")
+
+
+# ------------------------------------------------------------
+# Confirm the selected Bronze run exists and is a directory
+# ------------------------------------------------------------
+
+bronze_run_entries = (
+    mssparkutils.fs.ls(
+        BRONZE_RUNS_ROOT
+    )
+)
+
+bronze_run_exists = False
+
+for entry in bronze_run_entries:
+
+    if not entry.isDir:
+        continue
+
+    entry_name = entry.name.rstrip("/")
+
+    if entry_name == BRONZE_RUN:
+
+        bronze_run_exists = True
+        break
+
+
+if not bronze_run_exists:
+
+    raise ValueError(
+        f"""
+Selected Bronze run does not exist.
+
+Bronze Run:
+{BRONZE_RUN}
+
+Bronze Runs Root:
+{BRONZE_RUNS_ROOT}
+"""
+    )
+
+
 print()
 print(
-    "Bronze file paths generated successfully."
+    f"✓ Bronze run exists: {BRONZE_RUN}"
 )
+
+
+# ------------------------------------------------------------
+# List files in the selected Bronze run
+# ------------------------------------------------------------
+
+bronze_files = (
+    mssparkutils.fs.ls(
+        BRONZE_ABFS_ROOT
+    )
+)
+
+available_bronze_files = {
+    entry.name.rstrip("/")
+    for entry in bronze_files
+    if not entry.isDir
+}
+
+
+# ------------------------------------------------------------
+# Validate required files
+# ------------------------------------------------------------
+
+missing_bronze_files = [
+    filename
+    for filename in required_bronze_files
+    if filename not in available_bronze_files
+]
+
+
+if missing_bronze_files:
+
+    raise ValueError(
+        f"""
+Bronze run validation failed.
+
+Bronze Run:
+{BRONZE_RUN}
+
+Missing required Bronze files:
+{missing_bronze_files}
+
+Required Bronze files:
+{required_bronze_files}
+"""
+    )
+
+
+# ------------------------------------------------------------
+# Print validated file paths
+# ------------------------------------------------------------
+
+for filename in required_bronze_files:
+
+    path = bronze_path(filename)
+
+    print()
+    print(
+        f"  ✓ {filename}"
+    )
+
+    print(
+        f"    {path}"
+    )
+
+
+print()
+print(
+    "✓ All required Bronze files are present."
+)
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # READ BRONZE DATA
 # ============================================================
 
 print("READING BRONZE DATA")
 print("=" * 70)
+
+
 standings_df = read_jsonl(
     bronze_path("standings.jsonl")
 )
+
+
 rosters_df = read_jsonl(
     bronze_path("rosters.jsonl")
 )
+
+
 players_df = read_jsonl(
     bronze_path("players.jsonl")
 )
+
+
 game_logs_df = read_jsonl(
     bronze_path("game_logs.jsonl")
 )
+
+
 scores_df = read_jsonl(
     bronze_path("scores.jsonl")
 )
+
+
 print()
 print("=" * 70)
 print("BRONZE DATA SUCCESSFULLY LOADED")
 print("=" * 70)
 print()
 print("=" * 70)
+
+
 # ============================================================
 # BUILD TEAM LOOKUP
 # ============================================================
 
 print("BUILDING TEAM LOOKUP")
 print("=" * 70)
+
+
 team_lookup_df = (
     players_df
     .select(
@@ -300,20 +646,31 @@ team_lookup_df = (
         ["team_abbrev"]
     )
 )
-team_lookup_count = team_lookup_df.count()
+
+
+team_lookup_count = (
+    team_lookup_df.count()
+)
+
+
 print()
 print(
     f"Team lookup contains "
     f"{team_lookup_count:,} teams."
 )
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # BUILD GAME LOOKUP
 # ============================================================
 
 print("BUILDING GAME LOOKUP")
 print("=" * 70)
+
+
 game_lookup_df = (
     scores_df
     .select(
@@ -333,20 +690,31 @@ game_lookup_df = (
         ["game_id"]
     )
 )
-game_lookup_count = game_lookup_df.count()
+
+
+game_lookup_count = (
+    game_lookup_df.count()
+)
+
+
 print()
 print(
     f"Game lookup contains "
     f"{game_lookup_count:,} games."
 )
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS TEAMS
 # ============================================================
 
 print("PROCESSING TEAMS")
 print("=" * 70)
+
+
 teams_source_df = (
     standings_df
     .select(
@@ -355,6 +723,8 @@ teams_source_df = (
         ).alias("standing")
     )
 )
+
+
 teams_df = (
     teams_source_df
     .select(
@@ -401,86 +771,120 @@ teams_df = (
         ["team_id"]
     )
 )
+
+
 teams_count = teams_df.count()
+
+
 print()
 print(
     f"Teams prepared: "
     f"{teams_count:,}"
 )
+
 print()
 print("WRITING TEAMS")
 print("-" * 70)
+
+
 write_delta_table(
     teams_df,
     "teams",
     mode="overwrite"
 )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS PLAYERS
 # ============================================================
 
 print("PROCESSING PLAYERS")
 print("=" * 70)
+
+
 players_source_df = (
     players_df
     .select(
         F.col("data").alias("player")
     )
 )
+
+
 players_silver_df = (
     players_source_df
     .select(
         F.col("player.playerId")
             .cast("integer")
             .alias("player_id"),
+
         F.col("player.draftDetails.teamAbbrev")
             .alias("draft_team_abbrev"),
+
         F.col("player.firstName.default")
             .alias("first_name"),
+
         F.col("player.lastName.default")
             .alias("last_name"),
+
         F.col("player.playerSlug")
             .alias("player_slug"),
+
         F.col("player.isActive")
             .cast("boolean")
             .alias("is_active"),
+
         F.col("player.position")
             .alias("position"),
+
         F.col("player.shootsCatches")
             .alias("shoots_catches"),
+
         F.col("player.heightInInches")
             .cast("integer")
             .alias("height_in_inches"),
+
         F.col("player.heightInCentimeters")
             .cast("integer")
             .alias("height_in_centimeters"),
+
         F.col("player.weightInPounds")
             .cast("integer")
             .alias("weight_in_pounds"),
+
         F.col("player.weightInKilograms")
             .cast("integer")
             .alias("weight_in_kilograms"),
+
         F.to_date(
             F.col("player.birthDate")
         ).alias("birth_date"),
+
         F.col("player.birthCity.default")
             .alias("birth_city"),
+
         F.col("player.birthCountry")
             .alias("birth_country"),
+
         F.col("player.draftDetails.year")
             .cast("integer")
             .alias("draft_year"),
+
         F.col("player.draftDetails.round")
             .cast("integer")
             .alias("draft_round"),
+
         F.col("player.draftDetails.pickInRound")
             .cast("integer")
             .alias("draft_pick_in_round"),
+
         F.col("player.draftDetails.overallPick")
             .cast("integer")
             .alias("draft_overall_pick"),
+
         F.coalesce(
             F.col("player.inTop100AllTime")
                 .cast("boolean"),
@@ -488,6 +892,7 @@ players_silver_df = (
         ).alias(
             "in_top_100_all_time"
         ),
+
         F.coalesce(
             F.col("player.inHHOF")
                 .cast("boolean"),
@@ -495,8 +900,10 @@ players_silver_df = (
         ).alias(
             "in_hhof"
         ),
+
         F.col("player.headshot")
             .alias("headshot"),
+
         F.col("player.heroImage")
             .alias("hero_image")
     )
@@ -509,8 +916,10 @@ players_silver_df = (
     )
     .select(
         F.col("player_id"),
+
         F.col("team_id")
             .alias("draft_team_id"),
+
         "first_name",
         "last_name",
         "player_slug",
@@ -540,44 +949,66 @@ players_silver_df = (
         ["player_id"]
     )
 )
-players_count = players_silver_df.count()
+
+
+players_count = (
+    players_silver_df.count()
+)
+
+
 print()
 print(
     f"Players prepared: "
     f"{players_count:,}"
 )
+
 print()
 print("WRITING PLAYERS")
 print("-" * 70)
+
+
 write_delta_table(
     players_silver_df,
     "players",
     mode="overwrite"
 )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS TEAM ROSTERS
 # ============================================================
 
 print("PROCESSING TEAM ROSTERS")
 print("=" * 70)
+
+
 snapshot_time = (
     datetime.now(
         ZoneInfo("America/Chicago")
     )
     .replace(tzinfo=None)
 )
+
+
 snapshot_date = snapshot_time.date()
+
+
 print()
 print(
     f"Roster snapshot time: "
     f"{snapshot_time}"
 )
+
 print(
     f"Roster snapshot date: "
     f"{snapshot_date}"
 )
+
+
 roster_source_df = (
     rosters_df
     .select(
@@ -585,6 +1016,8 @@ roster_source_df = (
         F.col("roster")
     )
 )
+
+
 forwards_df = (
     roster_source_df
     .select(
@@ -603,6 +1036,8 @@ forwards_df = (
             .alias("sweater_number")
     )
 )
+
+
 defensemen_df = (
     roster_source_df
     .select(
@@ -621,6 +1056,8 @@ defensemen_df = (
             .alias("sweater_number")
     )
 )
+
+
 goalies_df = (
     roster_source_df
     .select(
@@ -639,6 +1076,8 @@ goalies_df = (
             .alias("sweater_number")
     )
 )
+
+
 roster_players_df = (
     forwards_df
     .unionByName(
@@ -651,6 +1090,8 @@ roster_players_df = (
         F.col("player_id").isNotNull()
     )
 )
+
+
 incoming_rosters_df = (
     roster_players_df
     .join(
@@ -662,12 +1103,15 @@ incoming_rosters_df = (
         F.col("team_id")
             .cast("integer")
             .alias("team_id"),
+
         F.col("player_id")
             .cast("integer")
             .alias("player_id"),
+
         F.lit(snapshot_date)
             .cast("date")
             .alias("snapshot_date"),
+
         F.col("sweater_number")
             .cast("integer")
             .alias("sweater_number")
@@ -681,55 +1125,79 @@ incoming_rosters_df = (
         ["team_id", "player_id"]
     )
 )
-rosters_count = incoming_rosters_df.count()
+
+
+rosters_count = (
+    incoming_rosters_df.count()
+)
+
+
 print()
 print(
     f"Roster records prepared: "
     f"{rosters_count:,}"
 )
+
+
 if table_exists("rosters"):
+
     print()
     print(
         "Existing Silver Delta rosters table found."
     )
+
+
     existing_rosters_df = read_delta_table(
         "rosters"
     )
+
+
     existing_rosters_df = (
         existing_rosters_df
         .select(
             F.col("team_id")
                 .cast("integer")
                 .alias("team_id"),
+
             F.col("player_id")
                 .cast("integer")
                 .alias("player_id"),
+
             F.col("snapshot_date")
                 .cast("date")
                 .alias("snapshot_date"),
+
             F.col("effective_from")
                 .cast("timestamp")
                 .alias("effective_from"),
+
             F.col("effective_to")
                 .cast("timestamp")
                 .alias("effective_to"),
+
             F.col("sweater_number")
                 .cast("integer")
                 .alias("sweater_number"),
+
             F.col("created_at")
                 .cast("timestamp")
                 .alias("created_at"),
+
             F.col("updated_at")
                 .cast("timestamp")
                 .alias("updated_at")
         )
     )
+
+
     current_active_df = (
         existing_rosters_df
         .filter(
             F.col("effective_to").isNull()
         )
     )
+
+
     roster_changes_df = (
         incoming_rosters_df.alias("incoming")
         .join(
@@ -759,29 +1227,44 @@ if table_exists("rosters"):
         .select(
             F.col("incoming.team_id")
                 .alias("team_id"),
+
             F.col("incoming.player_id")
                 .alias("player_id"),
+
             F.col("incoming.snapshot_date")
                 .alias("snapshot_date"),
+
             F.col("incoming.sweater_number")
                 .alias("sweater_number")
         )
     )
-    changed_count = roster_changes_df.count()
+
+
+    changed_count = (
+        roster_changes_df.count()
+    )
+
+
     print()
     print(
         f"Roster changes detected: "
         f"{changed_count:,}"
     )
+
+
     if changed_count == 0:
+
         print()
         print(
             "No roster changes detected."
         )
+
         final_rosters_df = (
             existing_rosters_df
         )
+
     else:
+
         changed_players_df = (
             roster_changes_df
             .select(
@@ -791,6 +1274,8 @@ if table_exists("rosters"):
                 ["player_id"]
             )
         )
+
+
         closed_rosters_df = (
             existing_rosters_df.alias(
                 "existing"
@@ -841,6 +1326,8 @@ if table_exists("rosters"):
                 "existing.updated_at"
             )
         )
+
+
         new_roster_records_df = (
             roster_changes_df
             .withColumn(
@@ -883,63 +1370,86 @@ if table_exists("rosters"):
                 "updated_at"
             )
         )
+
+
         final_rosters_df = (
             closed_rosters_df
             .unionByName(
                 new_roster_records_df
             )
         )
+
+
         print()
         print(
             f"Historical roster records: "
             f"{final_rosters_df.count():,}"
         )
+
+
     final_rosters_df = (
         final_rosters_df
         .select(
             F.col("team_id")
                 .cast("integer")
                 .alias("team_id"),
+
             F.col("player_id")
                 .cast("integer")
                 .alias("player_id"),
+
             F.col("snapshot_date")
                 .cast("date")
                 .alias("snapshot_date"),
+
             F.col("effective_from")
                 .cast("timestamp")
                 .alias("effective_from"),
+
             F.col("effective_to")
                 .cast("timestamp")
                 .alias("effective_to"),
+
             F.col("sweater_number")
                 .cast("integer")
                 .alias("sweater_number"),
+
             F.col("created_at")
                 .cast("timestamp")
                 .alias("created_at"),
+
             F.col("updated_at")
                 .cast("timestamp")
                 .alias("updated_at")
         )
     )
+
+
     write_delta_table(
         final_rosters_df,
         "rosters",
         mode="overwrite"
     )
+
+
     print()
     print(
         "✓ Silver roster history updated."
     )
+
+
 else:
+
     print()
     print(
         "Silver rosters Delta table does not exist."
     )
+
     print(
         "Creating initial roster snapshot."
     )
+
+
     initial_rosters_df = (
         incoming_rosters_df
         .withColumn(
@@ -975,47 +1485,64 @@ else:
             F.col("team_id")
                 .cast("integer")
                 .alias("team_id"),
+
             F.col("player_id")
                 .cast("integer")
                 .alias("player_id"),
+
             F.col("snapshot_date")
                 .cast("date")
                 .alias("snapshot_date"),
+
             F.col("effective_from")
                 .cast("timestamp")
                 .alias("effective_from"),
+
             F.col("effective_to")
                 .cast("timestamp")
                 .alias("effective_to"),
+
             F.col("sweater_number")
                 .cast("integer")
                 .alias("sweater_number"),
+
             F.col("created_at")
                 .cast("timestamp")
                 .alias("created_at"),
+
             F.col("updated_at")
                 .cast("timestamp")
                 .alias("updated_at")
         )
     )
+
+
     write_delta_table(
         initial_rosters_df,
         "rosters",
         mode="overwrite"
     )
+
+
     print()
     print(
         f"✓ Created rosters with "
         f"{rosters_count:,} records."
     )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS TEAM STANDINGS
 # ============================================================
 
 print("PROCESSING TEAM STANDINGS")
 print("=" * 70)
+
+
 standings_source_df = (
     standings_df
     .select(
@@ -1032,6 +1559,8 @@ standings_source_df = (
         )
     )
 )
+
+
 team_standings_df = (
     standings_source_df
     .join(
@@ -1047,126 +1576,160 @@ team_standings_df = (
         F.col("team_id")
             .cast("integer")
             .alias("team_id"),
+
         F.to_date(
             F.col(
                 "standings_datetime_utc"
             )
         ).alias("snapshot_date"),
+
         F.col("standing.seasonId")
             .cast("integer")
             .alias("season_id"),
+
         F.col("standing.gameTypeId")
             .cast("integer")
             .alias("game_type_id"),
+
         F.col("standing.clinchIndicator")
             .alias("clinch_indicator"),
+
         F.col("standing.gamesPlayed")
             .cast("integer")
             .alias("games_played"),
+
         F.col("standing.wins")
             .cast("integer")
             .alias("wins"),
+
         F.col("standing.losses")
             .cast("integer")
             .alias("losses"),
+
         F.col("standing.otLosses")
             .cast("integer")
             .alias("ot_losses"),
+
         F.col("standing.ties")
             .cast("integer")
             .alias("ties"),
+
         F.col("standing.points")
             .cast("integer")
             .alias("points"),
+
         F.col("standing.pointPctg")
             .cast("decimal(8,6)")
             .alias("point_pctg"),
+
         F.col("standing.winPctg")
             .cast("decimal(8,6)")
             .alias("win_pctg"),
+
         F.col("standing.regulationWins")
             .cast("integer")
             .alias("regulation_wins"),
+
         F.col("standing.regulationWinPctg")
             .cast("decimal(8,6)")
             .alias("regulation_win_pctg"),
+
         F.col("standing.regulationPlusOtWins")
             .cast("integer")
             .alias("regulation_plus_ot_wins"),
+
         F.col("standing.regulationPlusOtWinPctg")
             .cast("decimal(8,6)")
             .alias(
                 "regulation_plus_ot_win_pctg"
             ),
+
         F.col("standing.shootoutWins")
             .cast("integer")
             .alias("shootout_wins"),
+
         F.col("standing.shootoutLosses")
             .cast("integer")
             .alias("shootout_losses"),
+
         F.col("standing.goalFor")
             .cast("integer")
             .alias("goals_for"),
+
         F.col("standing.goalAgainst")
             .cast("integer")
             .alias("goals_against"),
+
         F.col("standing.goalDifferential")
             .cast("integer")
             .alias(
                 "goal_differential"
             ),
+
         F.col("standing.goalsForPctg")
             .cast("decimal(8,6)")
             .alias("goals_for_pctg"),
+
         F.col("standing.goalDifferentialPctg")
             .cast("decimal(8,6)")
             .alias(
                 "goal_differential_pctg"
             ),
+
         F.col("standing.homeGamesPlayed")
             .cast("integer")
             .alias(
                 "home_games_played"
             ),
+
         F.col("standing.homeWins")
             .cast("integer")
             .alias("home_wins"),
+
         F.col("standing.homeLosses")
             .cast("integer")
             .alias(
                 "home_losses"
             ),
+
         F.col("standing.homeOtLosses")
             .cast("integer")
             .alias(
                 "home_ot_losses"
             ),
+
         F.col("standing.homeTies")
             .cast("integer")
             .alias("home_ties"),
+
         F.col("standing.homePoints")
             .cast("integer")
             .alias("home_points"),
+
         F.col("standing.homeGoalsFor")
             .cast("integer")
             .alias(
                 "home_goals_for"
             ),
+
         F.col("standing.homeGoalsAgainst")
             .cast("integer")
             .alias(
                 "home_goals_against"
             ),
+
         F.col("standing.homeGoalDifferential")
             .cast("integer")
             .alias(
                 "home_goal_differential"
             ),
+
         F.col("standing.homeRegulationWins")
             .cast("integer")
             .alias(
                 "home_regulation_wins"
             ),
+
         F.col(
             "standing.homeRegulationPlusOtWins"
         )
@@ -1174,50 +1737,61 @@ team_standings_df = (
         .alias(
             "home_regulation_plus_ot_wins"
         ),
+
         F.col("standing.roadGamesPlayed")
             .cast("integer")
             .alias(
                 "road_games_played"
             ),
+
         F.col("standing.roadWins")
             .cast("integer")
             .alias("road_wins"),
+
         F.col("standing.roadLosses")
             .cast("integer")
             .alias(
                 "road_losses"
             ),
+
         F.col("standing.roadOtLosses")
             .cast("integer")
             .alias(
                 "road_ot_losses"
             ),
+
         F.col("standing.roadTies")
             .cast("integer")
             .alias("road_ties"),
+
         F.col("standing.roadPoints")
             .cast("integer")
             .alias("road_points"),
+
         F.col("standing.roadGoalsFor")
             .cast("integer")
             .alias(
                 "road_goals_for"
             ),
+
         F.col("standing.roadGoalsAgainst")
             .cast("integer")
             .alias(
                 "road_goals_against"
             ),
+
         F.col("standing.roadGoalDifferential")
             .cast("integer")
             .alias(
                 "road_goal_differential"
             ),
+
         F.col("standing.roadRegulationWins")
             .cast("integer")
             .alias(
                 "road_regulation_wins"
             ),
+
         F.col(
             "standing.roadRegulationPlusOtWins"
         )
@@ -1225,52 +1799,63 @@ team_standings_df = (
         .alias(
             "road_regulation_plus_ot_wins"
         ),
+
         F.col("standing.l10GamesPlayed")
             .cast("integer")
             .alias(
                 "l10_games_played"
             ),
+
         F.col("standing.l10Wins")
             .cast("integer")
             .alias("l10_wins"),
+
         F.col("standing.l10Losses")
             .cast("integer")
             .alias(
                 "l10_losses"
             ),
+
         F.col("standing.l10OtLosses")
             .cast("integer")
             .alias(
                 "l10_ot_losses"
             ),
+
         F.col("standing.l10Ties")
             .cast("integer")
             .alias("l10_ties"),
+
         F.col("standing.l10Points")
             .cast("integer")
             .alias(
                 "l10_points"
             ),
+
         F.col("standing.l10GoalsFor")
             .cast("integer")
             .alias(
                 "l10_goals_for"
             ),
+
         F.col("standing.l10GoalsAgainst")
             .cast("integer")
             .alias(
                 "l10_goals_against"
             ),
+
         F.col("standing.l10GoalDifferential")
             .cast("integer")
             .alias(
                 "l10_goal_differential"
             ),
+
         F.col("standing.l10RegulationWins")
             .cast("integer")
             .alias(
                 "l10_regulation_wins"
             ),
+
         F.col(
             "standing.l10RegulationPlusOtWins"
         )
@@ -1278,31 +1863,37 @@ team_standings_df = (
         .alias(
             "l10_regulation_plus_ot_wins"
         ),
+
         F.col("standing.leagueSequence")
             .cast("integer")
             .alias(
                 "league_sequence"
             ),
+
         F.col("standing.leagueHomeSequence")
             .cast("integer")
             .alias(
                 "league_home_sequence"
             ),
+
         F.col("standing.leagueRoadSequence")
             .cast("integer")
             .alias(
                 "league_road_sequence"
             ),
+
         F.col("standing.leagueL10Sequence")
             .cast("integer")
             .alias(
                 "league_l10_sequence"
             ),
+
         F.col("standing.conferenceSequence")
             .cast("integer")
             .alias(
                 "conference_sequence"
             ),
+
         F.col(
             "standing.conferenceHomeSequence"
         )
@@ -1310,6 +1901,7 @@ team_standings_df = (
         .alias(
             "conference_home_sequence"
         ),
+
         F.col(
             "standing.conferenceRoadSequence"
         )
@@ -1317,6 +1909,7 @@ team_standings_df = (
         .alias(
             "conference_road_sequence"
         ),
+
         F.col(
             "standing.conferenceL10Sequence"
         )
@@ -1324,11 +1917,13 @@ team_standings_df = (
         .alias(
             "conference_l10_sequence"
         ),
+
         F.col("standing.divisionSequence")
             .cast("integer")
             .alias(
                 "division_sequence"
             ),
+
         F.col(
             "standing.divisionHomeSequence"
         )
@@ -1336,6 +1931,7 @@ team_standings_df = (
         .alias(
             "division_home_sequence"
         ),
+
         F.col(
             "standing.divisionRoadSequence"
         )
@@ -1343,6 +1939,7 @@ team_standings_df = (
         .alias(
             "division_road_sequence"
         ),
+
         F.col(
             "standing.divisionL10Sequence"
         )
@@ -1350,18 +1947,22 @@ team_standings_df = (
         .alias(
             "division_l10_sequence"
         ),
+
         F.col("standing.wildcardSequence")
             .cast("integer")
             .alias(
                 "wildcard_sequence"
             ),
+
         F.col("standing.waiversSequence")
             .cast("integer")
             .alias(
                 "waivers_sequence"
             ),
+
         F.col("standing.streakCode")
             .alias("streak_code"),
+
         F.col("standing.streakCount")
             .cast("integer")
             .alias(
@@ -1377,30 +1978,43 @@ team_standings_df = (
         ["team_id", "snapshot_date"]
     )
 )
+
+
 team_standings_count = (
     team_standings_df.count()
 )
+
+
 print()
 print(
     f"Team standings prepared: "
     f"{team_standings_count:,}"
 )
+
 print()
 print("WRITING TEAM STANDINGS")
 print("-" * 70)
+
+
 write_delta_table(
     team_standings_df,
     "team_standings",
     mode="overwrite"
 )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS GAMES
 # ============================================================
 
 print("PROCESSING GAMES")
 print("=" * 70)
+
+
 team_result_schema = StructType(
     [
         StructField(
@@ -1408,6 +2022,7 @@ team_result_schema = StructType(
             IntegerType(),
             True
         ),
+
         StructField(
             "name",
             StructType(
@@ -1421,26 +2036,31 @@ team_result_schema = StructType(
             ),
             True
         ),
+
         StructField(
             "abbrev",
             StringType(),
             True
         ),
+
         StructField(
             "record",
             StringType(),
             True
         ),
+
         StructField(
             "logo",
             StringType(),
             True
         ),
+
         StructField(
             "score",
             IntegerType(),
             True
         ),
+
         StructField(
             "sog",
             IntegerType(),
@@ -1448,6 +2068,8 @@ team_result_schema = StructType(
         )
     ]
 )
+
+
 games_source_df = (
     scores_df
     .select(
@@ -1456,6 +2078,8 @@ games_source_df = (
         ).alias("game")
     )
 )
+
+
 games_normalized_df = (
     games_source_df
     .withColumn(
@@ -1477,44 +2101,58 @@ games_normalized_df = (
         )
     )
 )
+
+
 games_df = (
     games_normalized_df
     .select(
         F.col("game.id")
             .cast("integer")
             .alias("game_id"),
+
         F.col("game.season")
             .cast("integer")
             .alias("season_id"),
+
         F.col("game.gameType")
             .cast("integer")
             .alias("game_type_id"),
+
         F.to_date(
             F.col("game.gameDate")
         ).alias("game_date"),
+
         F.to_timestamp(
             F.col("game.startTimeUTC")
         ).alias("start_time_utc"),
+
         F.col("away_team.id")
             .cast("integer")
             .alias("away_team_id"),
+
         F.col("home_team.id")
             .cast("integer")
             .alias("home_team_id"),
+
         F.col("away_team.score")
             .cast("integer")
             .alias("away_team_score"),
+
         F.col("home_team.score")
             .cast("integer")
             .alias("home_team_score"),
+
         F.col("away_team.sog")
             .cast("integer")
             .alias("away_shots_on_goal"),
+
         F.col("home_team.sog")
             .cast("integer")
             .alias("home_shots_on_goal"),
+
         F.col("game.venue.default")
             .alias("venue"),
+
         F.col("game.venueTimezone")
             .alias("venue_time_zone")
     )
@@ -1525,17 +2163,27 @@ games_df = (
         ["game_id"]
     )
 )
-games_count = games_df.count()
+
+
+games_count = (
+    games_df.count()
+)
+
+
 print()
 print(
     f"Games prepared: "
     f"{games_count:,}"
 )
+
 print()
 print("Game schema:")
+
 games_df.printSchema()
+
 print()
 print("Game sample:")
+
 games_df.select(
     "game_id",
     "game_date",
@@ -1549,93 +2197,121 @@ games_df.select(
     10,
     truncate=False
 )
+
+
 print()
 print("WRITING GAMES")
 print("-" * 70)
+
+
 write_delta_table(
     games_df,
     "games",
     mode="overwrite"
 )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # PROCESS PLAYER GAME STATS
 # ============================================================
 
 print("PROCESSING PLAYER GAME STATS")
 print("=" * 70)
+
+
 player_game_log_source_df = (
     game_logs_df
     .select(
         F.col("player_id")
             .cast("integer")
             .alias("player_id"),
+
         F.explode(
             F.col("game_logs.gameLog")
         ).alias("game")
     )
 )
+
+
 player_game_stats_df = (
     player_game_log_source_df
     .select(
         F.col("player_id"),
+
         F.col("game.gameId")
             .cast("integer")
             .alias("game_id"),
+
         F.col("game.goals")
             .cast("integer")
             .alias("goals"),
+
         F.col("game.assists")
             .cast("integer")
             .alias("assists"),
+
         F.col("game.points")
             .cast("integer")
             .alias("points"),
+
         F.col("game.gameWinningGoals")
             .cast("integer")
             .alias(
                 "game_winning_goals"
             ),
+
         F.col("game.otGoals")
             .cast("integer")
             .alias(
                 "overtime_goals"
             ),
+
         F.col("game.powerPlayGoals")
             .cast("integer")
             .alias(
                 "power_play_goals"
             ),
+
         F.col("game.powerPlayPoints")
             .cast("integer")
             .alias(
                 "power_play_points"
             ),
+
         F.col("game.shorthandedGoals")
             .cast("integer")
             .alias(
                 "shorthanded_goals"
             ),
+
         F.col("game.shorthandedPoints")
             .cast("integer")
             .alias(
                 "shorthanded_points"
             ),
+
         F.col("game.shots")
             .cast("integer")
             .alias("shots"),
+
         F.col("game.plusMinus")
             .cast("integer")
             .alias(
                 "plus_minus"
             ),
+
         F.col("game.shifts")
             .cast("integer")
             .alias("shifts"),
+
         F.col("game.pim")
             .cast("integer")
             .alias("pim"),
+
         F.col("game.toi")
             .alias(
                 "time_on_ice"
@@ -1647,6 +2323,8 @@ player_game_stats_df = (
         F.col("game_id").isNotNull()
     )
 )
+
+
 player_game_stats_df = (
     player_game_stats_df
     .join(
@@ -1676,61 +2354,91 @@ player_game_stats_df = (
         ["player_id", "game_id"]
     )
 )
+
+
 player_game_stats_count = (
     player_game_stats_df.count()
 )
+
+
 print()
 print(
     f"Player game stats prepared: "
     f"{player_game_stats_count:,}"
 )
+
 print()
 print("WRITING PLAYER GAME STATS")
 print("-" * 70)
+
+
 write_delta_table(
     player_game_stats_df,
     "player_game_stats",
     mode="overwrite"
 )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # VALIDATE SILVER DELTA TABLES
 # ============================================================
 
 print("VALIDATING SILVER DELTA TABLES")
 print("=" * 70)
+
+
 silver_counts = {}
+
+
 for table_name in SILVER_TABLES:
+
     print()
     print(
         f"Checking Silver Delta table: "
         f"{table_name}"
     )
+
     try:
+
         table_df = read_delta_table(
             table_name
         )
+
         row_count = table_df.count()
+
         silver_counts[
             table_name
         ] = row_count
+
         print(
             f"  ✓ {table_name}: "
             f"{row_count:,} rows"
         )
+
     except Exception as error:
+
         print(
             f"  ✗ Failed to validate "
             f"{table_name}"
         )
+
         print()
+
         print(
             str(error)
         )
+
         raise
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # SILVER PIPELINE SUMMARY
 # ============================================================
@@ -1738,16 +2446,24 @@ print("=" * 70)
 print("SILVER PIPELINE SUMMARY")
 print("=" * 70)
 print()
+
+
 for table_name in SILVER_TABLES:
+
     row_count = silver_counts[
         table_name
     ]
+
     print(
         f"{table_name:25} "
         f"{row_count:>12,} rows"
     )
+
+
 print()
 print("=" * 70)
+
+
 # ============================================================
 # COMPLETE
 # ============================================================
@@ -1755,32 +2471,52 @@ print("=" * 70)
 print("NHL ANALYTICS - SILVER PIPELINE COMPLETE")
 print("=" * 70)
 print()
+
+
 print("Bronze Lakehouse:")
 print(
     f"  {BRONZE_LAKEHOUSE}"
 )
+
 print()
+
+
 print("Bronze Run:")
 print(
     f"  {BRONZE_RUN}"
 )
+
 print()
+
+
 print("Bronze ABFS:")
 print(
     f"  {BRONZE_ABFS_ROOT}"
 )
+
 print()
+
+
 print("Silver Lakehouse:")
 print(
     f"  {SILVER_LAKEHOUSE}"
 )
+
 print()
+
+
 print("Silver tables:")
+
 for table_name in SILVER_TABLES:
+
     print(
         f"  ✓ {table_name}"
     )
+
+
 print()
+
+
 print("Architecture:")
 print("  NHL API")
 print("      ↓")
@@ -1795,9 +2531,13 @@ print("      ↓")
 print("  Silver Lakehouse")
 print("      ↓")
 print("  Delta Tables")
+
+
 print()
-print("✓ Silver pipeline completed successfully.")
-print("=" * 70)# ============================================================
+print(
+    "✓ Silver pipeline completed successfully."
+)
+print("=" * 70)
 
 # METADATA ********************
 

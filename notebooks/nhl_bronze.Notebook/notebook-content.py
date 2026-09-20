@@ -106,8 +106,8 @@ LAKEHOUSE_PATH = (
 # Total: approximately 25 API requests
 # ----------------------------------------------------------
 
-MAX_TEAMS = 3
-MAX_PLAYERS = 10
+MAX_TEAMS = None
+MAX_PLAYERS = None
 
 
 # ==========================================================

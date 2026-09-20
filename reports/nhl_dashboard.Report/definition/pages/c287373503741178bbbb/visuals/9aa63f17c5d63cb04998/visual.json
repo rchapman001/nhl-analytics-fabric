@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "26dfafc521b042384c67",
+  "name": "9aa63f17c5d63cb04998",
   "position": {
     "x": 0,
     "y": 0,
     "z": 0,
-    "height": 100.34321372854915,
-    "width": 1440.7488299531981,
+    "height": 113.25102880658436,
+    "width": 961.31687242798353,
     "tabOrder": 0
   },
   "visual": {
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'NHL Overview'"
+                  "Value": "'Team Analytics'"
                 }
               }
             },

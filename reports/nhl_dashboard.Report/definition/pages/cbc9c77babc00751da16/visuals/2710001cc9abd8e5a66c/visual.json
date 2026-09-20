@@ -125,6 +125,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_game"
+                  }
+                },
+                "Property": "Game Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {

@@ -9,8 +9,8 @@
         },
         "policy": {
           "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
+          "retry": 2,
+          "retryIntervalInSeconds": 60,
           "secureInput": false,
           "secureOutput": false
         },
@@ -25,8 +25,8 @@
         },
         "policy": {
           "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
+          "retry": 2,
+          "retryIntervalInSeconds": 60,
           "secureInput": false,
           "secureOutput": false
         },
@@ -48,8 +48,8 @@
         },
         "policy": {
           "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
+          "retry": 2,
+          "retryIntervalInSeconds": 60,
           "secureInput": false,
           "secureOutput": false
         },
@@ -57,6 +57,36 @@
         "dependsOn": [
           {
             "activity": "NHL Silver",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "POST",
+          "groupId": "1fbf55a3-b2fc-4021-8697-98890ec67e3f",
+          "datasetId": "a3f76d2b-33dc-4157-8a53-44e3b31eaf07",
+          "commitMode": "Transactional",
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "c16d9256-e977-4842-81c7-d53742cd8e2d"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Semantic Model Refresh",
+        "dependsOn": [
+          {
+            "activity": "NHL Gold",
             "dependencyConditions": [
               "Succeeded"
             ]

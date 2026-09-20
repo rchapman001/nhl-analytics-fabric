@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "af6bb85485cd2e59a8d8",
+  "name": "bb01f360ebeb71773e08",
   "position": {
     "x": 0,
-    "y": 300.04735595895818,
-    "z": 4000,
-    "height": 393,
+    "y": 671.850699844479,
+    "z": 5000,
+    "height": 407.58942457231728,
     "width": 960,
-    "tabOrder": 4000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -15,21 +15,6 @@
       "queryState": {
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_date"
-                    }
-                  },
-                  "Property": "full_date"
-                }
-              },
-              "queryRef": "dim_date.full_date",
-              "nativeQueryRef": "Date",
-              "displayName": "Date"
-            },
             {
               "field": {
                 "Column": {
@@ -68,12 +53,12 @@
                       "Entity": "fact_team_standings"
                     }
                   },
-                  "Property": "wins"
+                  "Property": "points"
                 }
               },
-              "queryRef": "Sum(fact_team_standings.wins)",
-              "nativeQueryRef": "W",
-              "displayName": "W"
+              "queryRef": "Sum(fact_team_standings.points)",
+              "nativeQueryRef": "points",
+              "displayName": "PTS"
             },
             {
               "field": {
@@ -83,32 +68,42 @@
                       "Entity": "fact_team_standings"
                     }
                   },
-                  "Property": "losses"
+                  "Property": "goals_for"
                 }
               },
-              "queryRef": "Sum(fact_team_standings.losses)",
-              "nativeQueryRef": "L",
-              "displayName": "L"
+              "queryRef": "Sum(fact_team_standings.goals_for)",
+              "nativeQueryRef": "goals_for",
+              "displayName": "GF"
             },
             {
               "field": {
-                "Aggregation": {
+                "Column": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fact_team_standings"
-                        }
-                      },
-                      "Property": "points"
+                    "SourceRef": {
+                      "Entity": "fact_team_standings"
                     }
                   },
-                  "Function": 0
+                  "Property": "goals_against"
                 }
               },
-              "queryRef": "Sum(fact_team_standings.points)",
-              "nativeQueryRef": "PTS",
-              "displayName": "PTS"
+              "queryRef": "Sum(fact_team_standings.goals_against)",
+              "nativeQueryRef": "goals_against",
+              "displayName": "GA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_team_standings"
+                    }
+                  },
+                  "Property": "goal_differential"
+                }
+              },
+              "queryRef": "Sum(fact_team_standings.goal_differential)",
+              "nativeQueryRef": "goal_differential",
+              "displayName": "+/-"
             }
           ]
         }
@@ -117,18 +112,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Column": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "fact_team_standings"
-                      }
-                    },
-                    "Property": "points"
+                  "SourceRef": {
+                    "Entity": "fact_team_standings"
                   }
                 },
-                "Function": 0
+                "Property": "points"
               }
             },
             "direction": "Descending"
@@ -190,7 +180,135 @@
           }
         }
       ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "400D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_team.team_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.games_played)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.points)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.goals_for)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.goals_against)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.goal_differential)"
+          }
+        }
+      ],
       "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_team.team_name"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.games_played)"
+          }
+        },
         {
           "properties": {
             "alignment": {
@@ -202,23 +320,49 @@
             }
           },
           "selector": {
-            "metadata": "dim_date.full_date"
+            "metadata": "Sum(fact_team_standings.points)"
           }
-        }
-      ],
-      "columnWidth": [
+        },
         {
           "properties": {
-            "value": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "367.30013178886037D"
+                  "Value": "'Left'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "dim_team.team_name"
+            "metadata": "Sum(fact_team_standings.goals_for)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.goals_against)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fact_team_standings.goal_differential)"
           }
         }
       ]
@@ -237,7 +381,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'NHL Standings'"
+                  "Value": "'Standings'"
                 }
               }
             },
@@ -311,7 +455,8 @@
             "Property": "losses"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "96fe78f0703c506e7431",
@@ -341,7 +486,8 @@
             "Property": "wins"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       },
       {
         "name": "4b7960ef6be0c0832904",
@@ -356,11 +502,72 @@
             "Property": "full_date"
           }
         },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "192e8e13d2270c861be5",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "goals_for"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "70d4bb62db6796425edc",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "goals_against"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f792de35426729b60591",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "points"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "49e015c503e4d972e372",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_team_standings"
+              }
+            },
+            "Property": "goal_differential"
+          }
+        },
         "type": "Advanced"
       },
       {
         "name": "0909cf6d8b7205cb35d3",
-        "ordinal": 5,
+        "ordinal": 9,
         "field": {
           "Measure": {
             "Expression": {

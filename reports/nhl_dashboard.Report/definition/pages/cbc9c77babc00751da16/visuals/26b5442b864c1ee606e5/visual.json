@@ -168,7 +168,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'Jackson'"
+                            "Value": "'Hugh'"
                           }
                         }
                       }
@@ -210,7 +210,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'jackson-blake-8482809'"
+                                "Value": "'quinn-hughes-8480800'"
                               }
                             }
                           ]
@@ -293,5 +293,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7d116bcc052a5987a9ae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_player"
+              }
+            },
+            "Property": "player_slug"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

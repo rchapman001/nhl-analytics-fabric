@@ -4,26 +4,66 @@ table dim_game
 
 	measure 'Home Team Abbrev' =
 			
-			CALCULATE (
-			    MAX ( dim_team[team_abbrev] ),
-			    TREATAS (
-			        VALUES ( dim_game[home_team_id] ),
-			        dim_team[team_id]
+			VAR ValidGames =
+			    FILTER (
+			        VALUES ( dim_game[game_id] ),
+			        NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[away_team_id] ) ) )
+			            && NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[home_team_id] ) ) )
 			    )
-			)
+			RETURN
+			    CONCATENATEX (
+			        ValidGames,
+			
+			        VAR HomeTeamID =
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_game[home_team_id] )
+			            )
+			
+			        RETURN
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_team[team_abbrev] ),
+			                REMOVEFILTERS ( dim_team ),
+			                TREATAS ( { HomeTeamID }, dim_team[team_id] )
+			            ),
+			
+			        UNICHAR ( 10 ),
+			
+			        dim_game[game_id],
+			        ASC
+			    )
 		lineageTag: 4d0bf9d1-d184-4082-bb8e-c3ee1dd9e8be
 
 		changedProperty = Name
 
 	measure 'Away Team Abbrev' =
 			
-			CALCULATE (
-			    MAX ( dim_team[team_abbrev] ),
-			    TREATAS (
-			        VALUES ( dim_game[away_team_id] ),
-			        dim_team[team_id]
+			VAR ValidGames =
+			    FILTER (
+			        VALUES ( dim_game[game_id] ),
+			        NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[away_team_id] ) ) )
+			            && NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[home_team_id] ) ) )
 			    )
-			)
+			RETURN
+			    CONCATENATEX (
+			        ValidGames,
+			
+			        VAR AwayTeamID =
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_game[away_team_id] )
+			            )
+			
+			        RETURN
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_team[team_abbrev] ),
+			                REMOVEFILTERS ( dim_team ),
+			                TREATAS ( { AwayTeamID }, dim_team[team_id] )
+			            ),
+			
+			        UNICHAR ( 10 ),
+			
+			        dim_game[game_id],
+			        ASC
+			    )
 		lineageTag: 773ed9a0-a416-41af-916c-06cb4858bb2c
 
 		changedProperty = Name
@@ -44,9 +84,36 @@ table dim_game
 
 	measure Score =
 			
-			MAX ( dim_game[away_team_score] )
-			    & " - "
-			    & MAX ( dim_game[home_team_score] )
+			VAR ValidGames =
+			    FILTER (
+			        VALUES ( dim_game[game_id] ),
+			        NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[away_team_id] ) ) )
+			            && NOT ISBLANK ( CALCULATE ( SELECTEDVALUE ( dim_game[home_team_id] ) ) )
+			    )
+			RETURN
+			    CONCATENATEX (
+			        ValidGames,
+			
+			        VAR AwayScore =
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_game[away_team_score] )
+			            )
+			
+			        VAR HomeScore =
+			            CALCULATE (
+			                SELECTEDVALUE ( dim_game[home_team_score] )
+			            )
+			
+			        RETURN
+			            COALESCE ( AwayScore, "-" )
+			                & " - "
+			                & COALESCE ( HomeScore, "-" ),
+			
+			        UNICHAR ( 10 ),
+			
+			        dim_game[game_id],
+			        ASC
+			    )
 		lineageTag: ec4d1912-d544-4fbe-8c11-4441165e9784
 
 		changedProperty = Name

@@ -453,62 +453,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "a2181df03d7dbc0ce580",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_player"
-              }
-            },
-            "Property": "first_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ca2bf2d67a42ea961950",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_player"
-              }
-            },
-            "Property": "last_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c7d02864087301659730",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_player"
-              }
-            },
-            "Property": "position"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d625e8e24cbc4a3eb308",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fact_rosters"
-              }
-            },
-            "Property": "sweater_number"
-          }
-        },
-        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

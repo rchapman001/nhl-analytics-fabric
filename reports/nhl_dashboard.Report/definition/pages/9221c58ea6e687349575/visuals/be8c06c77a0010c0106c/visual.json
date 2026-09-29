@@ -4,10 +4,10 @@
   "position": {
     "x": 1437.3525818989451,
     "y": 0,
-    "z": 8000,
+    "z": 7000,
     "height": 113.71460299833426,
     "width": 482.14991671293728,
-    "tabOrder": 8000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -142,44 +142,6 @@
                 }
               }
             },
-            "selfFilter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "dim_player",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Contains": {
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "d"
-                              }
-                            },
-                            "Property": "player_slug"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "'Jackson'"
-                          }
-                        }
-                      }
-                    },
-                    "Annotations": {
-                      "PowerBI.MParameterBehavior": 1
-                    }
-                  }
-                ]
-              }
-            },
             "filter": {
               "filter": {
                 "Version": 2,
@@ -210,7 +172,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "20252026L"
+                                "Value": "20262027L"
                               }
                             }
                           ]
@@ -293,5 +255,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4054daf19120d7917e96",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_game"
+              }
+            },
+            "Property": "season_id"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

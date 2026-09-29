@@ -2,6 +2,52 @@ table dim_date
 	lineageTag: b2be7966-070b-4775-abf6-85e78eb6fdc5
 	sourceLineageTag: [dbo].[dim_date]
 
+	measure 'Player Stats Players' =
+			
+			DISTINCTCOUNT ( fact_player_game_stats[player_id] )
+		formatString: 0
+		lineageTag: af5e957b-fcdd-4ee9-8c6f-0ceb7b0bbaeb
+
+		changedProperty = Name
+
+	measure 'Player Stats Rows' =
+			
+			COUNTROWS ( fact_player_game_stats )
+		formatString: 0
+		lineageTag: fca01595-7551-4393-a063-490aca3616c0
+
+		changedProperty = Name
+
+	measure 'Player Stats Goals' =
+			
+			SUM ( fact_player_game_stats[goals] )
+		formatString: 0
+		lineageTag: 59dc5574-4a06-4cfc-9bad-51e138456fa2
+
+		changedProperty = Name
+
+	measure 'Player Stats Rows All Dates' =
+			
+			CALCULATE (
+			    COUNTROWS ( fact_player_game_stats ),
+			    REMOVEFILTERS ( dim_date )
+			)
+		formatString: 0
+		lineageTag: c0c22522-d90a-4138-8896-9f9d0a91cc61
+
+		changedProperty = Name
+
+	measure 'Player Stats Players All Dates' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_player_game_stats[player_id] ),
+			    REMOVEFILTERS ( dim_date )
+			)
+		formatString: 0
+		lineageTag: dffea51b-8efd-4538-a27b-59aa33c90e56
+
+		changedProperty = Name
+
 	column date_id
 		dataType: int64
 		formatString: 0

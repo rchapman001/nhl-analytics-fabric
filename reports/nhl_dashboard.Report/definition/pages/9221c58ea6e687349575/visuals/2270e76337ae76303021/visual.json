@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 692.533543804262,
-    "z": 6000,
+    "z": 5000,
     "height": 387.94001578531964,
     "width": 1921.5153906866612,
-    "tabOrder": 6000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -147,21 +147,16 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Column": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "fact_player_game_stats"
-                      }
-                    },
-                    "Property": "points"
+                  "SourceRef": {
+                    "Entity": "dim_team"
                   }
                 },
-                "Function": 0
+                "Property": "team_abbrev"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }

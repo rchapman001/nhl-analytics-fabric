@@ -4,10 +4,10 @@
   "position": {
     "x": 960.75769534333062,
     "y": 300.04735595895818,
-    "z": 5000,
+    "z": 4000,
     "height": 393,
     "width": 959.24230465666926,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "tableEx",
@@ -76,23 +76,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "dim_game"
-                  }
-                },
-                "Property": "Game Date"
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {

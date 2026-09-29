@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "af6bb85485cd2e59a8d8",
+  "name": "707c91f0148037edda99",
   "position": {
     "x": 0,
     "y": 300.04735595895818,
-    "z": 4000,
+    "z": 8000,
     "height": 393,
     "width": 960,
-    "tabOrder": 4000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -407,6 +407,25 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "7135928c05de2d034cd6",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_team_standings"
+                  }
+                },
+                "Property": "points"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

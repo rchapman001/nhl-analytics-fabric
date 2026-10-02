@@ -5,7 +5,6 @@ CREATE TABLE [dbo].[fact_team_standings] (
 	[date_id] int NOT NULL, 
 	[season_id] int NULL, 
 	[game_type_id] int NULL, 
-	[clinch_indicator] varchar(50) NULL, 
 	[games_played] int NULL, 
 	[wins] int NULL, 
 	[losses] int NULL, 

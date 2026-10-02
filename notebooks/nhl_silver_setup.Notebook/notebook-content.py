@@ -246,7 +246,6 @@ team_standings_schema = StructType([
     # Context
     StructField("season_id", IntegerType(), True),
     StructField("game_type_id", IntegerType(), True),
-    StructField("clinch_indicator", StringType(), True),
 
     # Overall Record
     StructField("games_played", IntegerType(), True),

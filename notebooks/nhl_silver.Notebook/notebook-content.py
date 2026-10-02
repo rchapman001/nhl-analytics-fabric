@@ -1591,9 +1591,6 @@ team_standings_df = (
             .cast("integer")
             .alias("game_type_id"),
 
-        F.col("standing.clinchIndicator")
-            .alias("clinch_indicator"),
-
         F.col("standing.gamesPlayed")
             .cast("integer")
             .alias("games_played"),

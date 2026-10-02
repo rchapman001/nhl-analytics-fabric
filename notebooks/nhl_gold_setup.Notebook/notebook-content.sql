@@ -302,7 +302,6 @@ CREATE TABLE nhl_gold_warehouse.dbo.fact_team_standings (
     -- Context
     season_id INT,
     game_type_id INT,
-    clinch_indicator VARCHAR(50),
 
     -- Overall Record
     games_played INT,

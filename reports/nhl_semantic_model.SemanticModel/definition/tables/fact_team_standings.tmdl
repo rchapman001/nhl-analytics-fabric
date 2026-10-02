@@ -20,6 +20,8 @@ table fact_team_standings
 
 		changedProperty = Name
 
+		changedProperty = IsHidden
+
 	column team_standings_id
 		dataType: int64
 		formatString: 0
@@ -28,6 +30,8 @@ table fact_team_standings
 		sourceLineageTag: team_standings_id
 		summarizeBy: sum
 		sourceColumn: team_standings_id
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -40,6 +44,8 @@ table fact_team_standings
 		summarizeBy: none
 		sourceColumn: team_id
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column date_id
@@ -50,6 +56,8 @@ table fact_team_standings
 		sourceLineageTag: date_id
 		summarizeBy: none
 		sourceColumn: date_id
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -62,6 +70,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: season_id
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column game_type_id
@@ -73,15 +83,7 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: game_type_id
 
-		annotation SummarizationSetBy = Automatic
-
-	column clinch_indicator
-		dataType: string
-		sourceProviderType: varchar(50)
-		lineageTag: ff664d6e-1a40-445b-89c7-3700ee71175f
-		sourceLineageTag: clinch_indicator
-		summarizeBy: none
-		sourceColumn: clinch_indicator
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -94,6 +96,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: games_played
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column wins
@@ -104,6 +108,8 @@ table fact_team_standings
 		sourceLineageTag: wins
 		summarizeBy: sum
 		sourceColumn: wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -116,6 +122,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: losses
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column ot_losses
@@ -126,6 +134,8 @@ table fact_team_standings
 		sourceLineageTag: ot_losses
 		summarizeBy: sum
 		sourceColumn: ot_losses
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -138,6 +148,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: ties
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column points
@@ -149,6 +161,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: points
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column point_pctg
@@ -158,6 +172,8 @@ table fact_team_standings
 		sourceLineageTag: point_pctg
 		summarizeBy: sum
 		sourceColumn: point_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -170,6 +186,8 @@ table fact_team_standings
 		sourceLineageTag: win_pctg
 		summarizeBy: sum
 		sourceColumn: win_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -184,6 +202,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: regulation_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column regulation_win_pctg
@@ -193,6 +213,8 @@ table fact_team_standings
 		sourceLineageTag: regulation_win_pctg
 		summarizeBy: sum
 		sourceColumn: regulation_win_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -207,6 +229,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: regulation_plus_ot_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column regulation_plus_ot_win_pctg
@@ -216,6 +240,8 @@ table fact_team_standings
 		sourceLineageTag: regulation_plus_ot_win_pctg
 		summarizeBy: sum
 		sourceColumn: regulation_plus_ot_win_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -230,6 +256,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: shootout_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column shootout_losses
@@ -240,6 +268,8 @@ table fact_team_standings
 		sourceLineageTag: shootout_losses
 		summarizeBy: sum
 		sourceColumn: shootout_losses
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -252,6 +282,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: goals_for
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column goals_against
@@ -262,6 +294,8 @@ table fact_team_standings
 		sourceLineageTag: goals_against
 		summarizeBy: sum
 		sourceColumn: goals_against
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -274,6 +308,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: goal_differential
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column goals_for_pctg
@@ -283,6 +319,8 @@ table fact_team_standings
 		sourceLineageTag: goals_for_pctg
 		summarizeBy: sum
 		sourceColumn: goals_for_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -295,6 +333,8 @@ table fact_team_standings
 		sourceLineageTag: goal_differential_pctg
 		summarizeBy: sum
 		sourceColumn: goal_differential_pctg
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -309,6 +349,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_games_played
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column home_wins
@@ -319,6 +361,8 @@ table fact_team_standings
 		sourceLineageTag: home_wins
 		summarizeBy: sum
 		sourceColumn: home_wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -331,6 +375,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_losses
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column home_ot_losses
@@ -341,6 +387,8 @@ table fact_team_standings
 		sourceLineageTag: home_ot_losses
 		summarizeBy: sum
 		sourceColumn: home_ot_losses
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -353,6 +401,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_ties
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column home_points
@@ -363,6 +413,8 @@ table fact_team_standings
 		sourceLineageTag: home_points
 		summarizeBy: sum
 		sourceColumn: home_points
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -375,6 +427,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_goals_for
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column home_goals_against
@@ -385,6 +439,8 @@ table fact_team_standings
 		sourceLineageTag: home_goals_against
 		summarizeBy: sum
 		sourceColumn: home_goals_against
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -397,6 +453,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_goal_differential
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column home_regulation_wins
@@ -407,6 +465,8 @@ table fact_team_standings
 		sourceLineageTag: home_regulation_wins
 		summarizeBy: sum
 		sourceColumn: home_regulation_wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -419,6 +479,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: home_regulation_plus_ot_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_games_played
@@ -429,6 +491,8 @@ table fact_team_standings
 		sourceLineageTag: road_games_played
 		summarizeBy: sum
 		sourceColumn: road_games_played
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -441,6 +505,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: road_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_losses
@@ -451,6 +517,8 @@ table fact_team_standings
 		sourceLineageTag: road_losses
 		summarizeBy: sum
 		sourceColumn: road_losses
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -463,6 +531,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: road_ot_losses
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_ties
@@ -473,6 +543,8 @@ table fact_team_standings
 		sourceLineageTag: road_ties
 		summarizeBy: sum
 		sourceColumn: road_ties
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -485,6 +557,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: road_points
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_goals_for
@@ -495,6 +569,8 @@ table fact_team_standings
 		sourceLineageTag: road_goals_for
 		summarizeBy: sum
 		sourceColumn: road_goals_for
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -507,6 +583,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: road_goals_against
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_goal_differential
@@ -517,6 +595,8 @@ table fact_team_standings
 		sourceLineageTag: road_goal_differential
 		summarizeBy: sum
 		sourceColumn: road_goal_differential
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -529,6 +609,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: road_regulation_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column road_regulation_plus_ot_wins
@@ -539,6 +621,8 @@ table fact_team_standings
 		sourceLineageTag: road_regulation_plus_ot_wins
 		summarizeBy: sum
 		sourceColumn: road_regulation_plus_ot_wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -551,6 +635,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_games_played
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column l10_wins
@@ -561,6 +647,8 @@ table fact_team_standings
 		sourceLineageTag: l10_wins
 		summarizeBy: sum
 		sourceColumn: l10_wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -573,6 +661,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_losses
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column l10_ot_losses
@@ -583,6 +673,8 @@ table fact_team_standings
 		sourceLineageTag: l10_ot_losses
 		summarizeBy: sum
 		sourceColumn: l10_ot_losses
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -595,6 +687,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_ties
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column l10_points
@@ -605,6 +699,8 @@ table fact_team_standings
 		sourceLineageTag: l10_points
 		summarizeBy: sum
 		sourceColumn: l10_points
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -617,6 +713,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_goals_for
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column l10_goals_against
@@ -627,6 +725,8 @@ table fact_team_standings
 		sourceLineageTag: l10_goals_against
 		summarizeBy: sum
 		sourceColumn: l10_goals_against
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -639,6 +739,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_goal_differential
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column l10_regulation_wins
@@ -649,6 +751,8 @@ table fact_team_standings
 		sourceLineageTag: l10_regulation_wins
 		summarizeBy: sum
 		sourceColumn: l10_regulation_wins
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -661,6 +765,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: l10_regulation_plus_ot_wins
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column league_sequence
@@ -671,6 +777,8 @@ table fact_team_standings
 		sourceLineageTag: league_sequence
 		summarizeBy: sum
 		sourceColumn: league_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -683,6 +791,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: league_home_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column league_road_sequence
@@ -693,6 +803,8 @@ table fact_team_standings
 		sourceLineageTag: league_road_sequence
 		summarizeBy: sum
 		sourceColumn: league_road_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -705,6 +817,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: league_l10_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column conference_sequence
@@ -715,6 +829,8 @@ table fact_team_standings
 		sourceLineageTag: conference_sequence
 		summarizeBy: sum
 		sourceColumn: conference_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -727,6 +843,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: conference_home_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column conference_road_sequence
@@ -737,6 +855,8 @@ table fact_team_standings
 		sourceLineageTag: conference_road_sequence
 		summarizeBy: sum
 		sourceColumn: conference_road_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -749,6 +869,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: conference_l10_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column division_sequence
@@ -759,6 +881,8 @@ table fact_team_standings
 		sourceLineageTag: division_sequence
 		summarizeBy: sum
 		sourceColumn: division_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -771,6 +895,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: division_home_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column division_road_sequence
@@ -781,6 +907,8 @@ table fact_team_standings
 		sourceLineageTag: division_road_sequence
 		summarizeBy: sum
 		sourceColumn: division_road_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -793,6 +921,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: division_l10_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column wildcard_sequence
@@ -803,6 +933,8 @@ table fact_team_standings
 		sourceLineageTag: wildcard_sequence
 		summarizeBy: sum
 		sourceColumn: wildcard_sequence
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -815,6 +947,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: waivers_sequence
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column streak_code
@@ -824,6 +958,8 @@ table fact_team_standings
 		sourceLineageTag: streak_code
 		summarizeBy: none
 		sourceColumn: streak_code
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -836,6 +972,8 @@ table fact_team_standings
 		summarizeBy: sum
 		sourceColumn: streak_count
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column created_at
@@ -846,6 +984,8 @@ table fact_team_standings
 		sourceLineageTag: created_at
 		summarizeBy: none
 		sourceColumn: created_at
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -858,6 +998,8 @@ table fact_team_standings
 		summarizeBy: none
 		sourceColumn: updated_at
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition fact_team_standings = entity
@@ -866,6 +1008,8 @@ table fact_team_standings
 			entityName: fact_team_standings
 			schemaName: dbo
 			expressionSource: DatabaseQuery
+
+	changedProperty = IsHidden
 
 	annotation PBI_ResultType = Table
 

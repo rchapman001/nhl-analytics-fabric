@@ -283,7 +283,6 @@ EXPECTED_GOLD_COLUMNS = {
         "date_id",
         "season_id",
         "game_type_id",
-        "clinch_indicator",
         "games_played",
         "wins",
         "losses",
@@ -1799,8 +1798,6 @@ fact_team_standings_base_df = (
             .cast("int"),
         F.col("game_type_id")
             .cast("int"),
-        F.col("clinch_indicator")
-            .cast("string"),
         F.col("games_played")
             .cast("int"),
         F.col("wins")
@@ -2011,9 +2008,6 @@ fact_team_standings_df = (
         F.col(
             "s.game_type_id"
         ).alias("game_type_id"),
-        F.col(
-            "s.clinch_indicator"
-        ).alias("clinch_indicator"),
         F.col("s.games_played"),
         F.col("s.wins"),
         F.col("s.losses"),

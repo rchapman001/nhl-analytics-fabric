@@ -1683,20 +1683,6 @@
             ]
           },
           {
-            "name": "clinch_indicator",
-            "dataType": "string",
-            "sourceColumn": "clinch_indicator",
-            "sourceProviderType": "varchar",
-            "sourceLineageTag": "clinch_indicator",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
             "name": "games_played",
             "dataType": "int64",
             "sourceColumn": "games_played",

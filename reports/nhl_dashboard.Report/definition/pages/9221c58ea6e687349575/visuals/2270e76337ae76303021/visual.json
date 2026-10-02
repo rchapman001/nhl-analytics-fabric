@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "2270e76337ae76303021",
   "position": {
     "x": 0,
@@ -147,16 +147,21 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "dim_team"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fact_player_game_stats"
+                      }
+                    },
+                    "Property": "points"
                   }
                 },
-                "Property": "team_abbrev"
+                "Function": 0
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }

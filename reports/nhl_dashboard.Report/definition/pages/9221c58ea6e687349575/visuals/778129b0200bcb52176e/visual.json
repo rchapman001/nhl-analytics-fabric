@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "778129b0200bcb52176e",
   "position": {
     "x": 960.75769534333062,
@@ -17,18 +17,18 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "dim_game"
                     }
                   },
-                  "Property": "Game Date"
+                  "Property": "game_date"
                 }
               },
-              "queryRef": "dim_game.Game Date",
-              "nativeQueryRef": "Date",
-              "displayName": "Date"
+              "queryRef": "dim_game.game_date",
+              "nativeQueryRef": "Game Date",
+              "displayName": "Game Date"
             },
             {
               "field": {
@@ -166,20 +166,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "320D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "dim_game.Game Date"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "190D"
                 }
               }
@@ -191,20 +177,6 @@
         }
       ],
       "columnFormatting": [
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Left'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "dim_game.Game Date"
-          }
-        },
         {
           "properties": {
             "alignment": {
@@ -499,6 +471,34 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "a8b1e1863c34d3ce2cbe",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_game"
+              }
+            },
+            "Property": "Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c467f6b5dbbd9dc584d5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_game"
+              }
+            },
+            "Property": "game_date"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

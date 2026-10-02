@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "26b5442b864c1ee606e5",
   "position": {
     "x": 960,
@@ -168,7 +168,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'Hugh'"
+                            "Value": "'Easton'"
                           }
                         }
                       }
@@ -210,7 +210,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'quinn-hughes-8480800'"
+                                "Value": "'easton-cowan-8484158'"
                               }
                             }
                           ]

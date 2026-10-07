@@ -168,7 +168,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'Toro'"
+                            "Value": "'Minn'"
                           }
                         }
                       }
@@ -210,7 +210,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Toronto Maple Leafs'"
+                                "Value": "'Minnesota Wild'"
                               }
                             }
                           ]

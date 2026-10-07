@@ -23,11 +23,11 @@
                       "Entity": "dim_date"
                     }
                   },
-                  "Property": "month_name"
+                  "Property": "full_date"
                 }
               },
-              "queryRef": "dim_date.month_name",
-              "nativeQueryRef": "month_name",
+              "queryRef": "dim_date.full_date",
+              "nativeQueryRef": "full_date",
               "active": true
             }
           ]
@@ -60,21 +60,16 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Column": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "fact_team_standings"
-                      }
-                    },
-                    "Property": "points"
+                  "SourceRef": {
+                    "Entity": "dim_date"
                   }
                 },
-                "Function": 0
+                "Property": "full_date"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ],
         "isDefaultSort": true
@@ -215,20 +210,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dd268607e76040ecd0e0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "month_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "cc1be607a213437b4084",
         "field": {
           "Aggregation": {
@@ -246,6 +227,20 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "f4a7f0d05d922e7e5ca1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "full_date"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

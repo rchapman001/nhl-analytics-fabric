@@ -106,20 +106,53 @@ including the data pipeline, Lakehouses, Gold Warehouse, semantic model, and Pow
 
     ![Team Analytics Report](docs/team-analytics-report.png)
 
-
 ## Installation and Set Up
 
-1. Prerequisites: Before you begin, ensure you have the following:
-   - A Microsoft account with access to [Microsoft
-     Fabric](https://www.microsoft.com/en-us/microsoft-fabric).
+The NHL Analytics Platform is built entirely within Microsoft Fabric. A Microsoft Fabric
+environment must be provisioned before the project resources can be created and the pipeline can
+be executed.
 
-2. Microsoft Fabric Setup:
-   - Sign in to Microsoft Fabric using an account with access to the project workspace.
+1. Create a Microsoft Azure Account:
+   - Sign in to the [Microsoft Azure Portal](https://portal.azure.com/).
+   - Create or use an Azure subscription that will be used to provision the Microsoft Fabric
+     environment.
+   - Microsoft Fabric uses Microsoft Entra ID for identity and access management.
+
+2. Create a Microsoft Entra User:
+   - In the Azure Portal, navigate to --Microsoft Entra ID--.
+   - Create a dedicated user account for the Fabric environment.
+   - Assign the user the appropriate permissions required to access and administer the Fabric
+     resources used by the project.
+   - Sign in to Microsoft Fabric using this user account.
+
+3. Enable Microsoft Fabric:
+   - In the Azure Portal, provision the Microsoft Fabric capacity/environment required for the
+     project.
+   - Ensure the Fabric user created above has access to the Fabric capacity.
+   - Assign the appropriate Fabric permissions to the user so that they can create and manage
+     workspaces, Lakehouses, Warehouses, notebooks, pipelines, and Power BI resources.
+
+4. Create the Microsoft Fabric Workspace:
+   - Sign in to [Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric) using the
+     configured Fabric user.
+   - Create a workspace for the NHL Analytics Platform.
+   - Ensure the workspace is assigned to the appropriate Fabric capacity.
+
+5. Connect Fabric to GitHub:
    - Connect the Fabric workspace to the project's GitHub repository.
-   - Ensure the following Fabric resources are available in the workspace:
-     - `nhl_bronze_lakehouse`
-     - `nhl_silver_lakehouse`
-     - `nhl_gold_warehouse`
+   - Configure the Git integration using a GitHub account with access to the repository.
+   - Synchronize the repository with the Fabric workspace so that the project's notebooks and
+     supporting code are available within Fabric.
+
+6. Configure the Project:
+   - Verify that the Bronze and Silver Lakehouses are available to the notebooks.
+   - Verify that the Gold Warehouse is accessible for loading and querying analytical data.
+   - Configure any required authentication or connection settings for the NHL API, Fabric
+     resources, and GitHub integration.
+   - Verify that the Power BI semantic model is connected to the Gold Warehouse.
+
+Once the Fabric environment, workspace, and project resources have been configured, the
+`nhl_analytics_pipeline` can be used to execute the end-to-end NHL data pipeline.
 
 ## Usage
 
@@ -130,7 +163,7 @@ including the data pipeline, Lakehouses, Gold Warehouse, semantic model, and Pow
    - Open the `nhl_analytics_pipeline` pipeline.
    - The pipeline orchestrates the project's Bronze, Silver, and Gold notebooks in the correct
      order.
-   - Run the pipeline using the **Run** button.
+   - Run the pipeline using the --Run-- button.
    - The pipeline will execute the following layers:
 
      ```text
@@ -152,12 +185,12 @@ including the data pipeline, Lakehouses, Gold Warehouse, semantic model, and Pow
      the expected data.
    - Verify that the Gold Warehouse contains the expected dimensional and fact tables.
     ```sql
-      SELECT * FROM [dbo].[dim_date]
-      SELECT * FROM [dbo].[dim_game]
-      SELECT * FROM [dbo].[dim_player]
-      SELECT * FROM [dbo].[dim_team]
-      SELECT * FROM [dbo].[fact_player_game_stats]
-      SELECT * FROM [dbo].[fact_rosters]
-      SELECT * FROM [dbo].[fact_team_standings]
+      SELECT - FROM [dbo].[dim_date]
+      SELECT - FROM [dbo].[dim_game]
+      SELECT - FROM [dbo].[dim_player]
+      SELECT - FROM [dbo].[dim_team]
+      SELECT - FROM [dbo].[fact_player_game_stats]
+      SELECT - FROM [dbo].[fact_rosters]
+      SELECT - FROM [dbo].[fact_team_standings]
     ```
    - Check the Power BI reports and validate the data is showing right. 

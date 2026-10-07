@@ -1,0 +1,16 @@
+{
+    "editor.wordWrap": "wordWrapColumn", // Rewrap setting
+    "editor.wordWrapColumn": 100, // Rewrap setting
+    "editor.rulers": [100], // Rewrap setting
+    "hediet.vscode-drawio.theme": "Kennedy",
+    "chat.agentSkillsLocations": {
+        ".agents/skills": true,
+        ".github/skills": true,
+        ".claude/skills": true,
+        "~/.agents/skills": true,
+        "~/.copilot/skills": true,
+        "~/.claude/skills": true,
+        "~/.vscode/extensions/synapsevscode.synapse-1.25.0/copilot/skills": true,
+        "~/.vscode/extensions/synapsevscode.synapse-1.26.0/copilot/skills": true
+    }, // Draw.io Integration theme.
+}

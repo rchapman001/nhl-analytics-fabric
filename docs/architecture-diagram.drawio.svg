@@ -1,0 +1,1994 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="2372px" height="1123px" viewBox="0 0 2372 1123" id="ge-svg-XQqVw_FRlGr9VijiEXvI" content="&lt;mxfile&gt;&lt;diagram id=&quot;EUaZJuMHW6VAf1fLODSV&quot; name=&quot;Page-1&quot;&gt;7V1Zk6O2Fv41rps8zBSIxfZjLzOZrttJze2ZqiRPXdhgmzsYOYB7mV8fCZDMcmxjWzTYfVJJxwgQoO/oO5uWgXGzfPktclaL36nrBQOiuS8D43ZAyFjT2F9e8JoV6LpOspJ55Lt52abgm//TywvzG+dr3/Xi0oUJpUHir8qFUxqG3jQplTlRRJ/Ll81oUH7qypl7tYJvUyeol/7pu8kiKx1Z2qb8i+fPF+LJuvjipSMuzgvihePS50KR8Wlg3ESUJtmv5cuNF/DGE+2S3fd5y1n5YpEXJk1uIPUb8jri5FV8bvzsLwMnZEfX04UfuPfOK13zq+PEmf4QR9cLGvk/aZg4ATulswJ2Okpy9FjbFK/4xu9kxbw0ouvQ9dz8phk7n9+jm+I4fxctrTSiP2SzE36/F7Prv4pP0GTRvRMn4lVEO/OzrhMv0ufxAyfw5yH7PWV3exEviKb58/njnxd+4n1bOVNe8MzEmX9GshSfmLXVkxOs87aaRDT86T2yTw9dP5zHj3HorOIFwzO70osS76XQ0Dksv3l06SXRK7tkUZCcUS4mzxspI0KW8lpscY3oTPICJ5fyuax7IwjsRy4LWwRp3EQwNshpRzTVgNhBkiNcqtf+Z03FiQ9xisUVu4CYq5e0HnGe/Zrz///x5Z6dvvp6J2pkX5dVmp0/qul1e3/bE7PS9qaKtiea0rbnp5f0yZmkd+qidxSPaeIkhWNG117x2HP94mFApz/kg3OKLZzOOugNDSjrTbchTXlj5gdBpajW8Yo9XTCBuGdADMMYjz9/LjMEMSHB+kbXEWsIot2yzzoKfONw7MdDFdA34mOEfiv01yn9sjKmlVjNLWFf5Vwl2BuNuj3q4oN1cURjVlsHmtggKsSikSZGsThYLFYBp4gOxMI0FYiFOUJNcZqR4AdPXEO0qymYZ9uCqjDVWufvD/zfuMffNvSW3QL0NqoDxeogTolAqIO2tECNCHRLhXUwBIxGISJFeVg4K/4z74UlnPM+mjh+yFszbaQpDQKmFf1Nny2LUVqPFKOZ/+K5D1lULWOL53tWWZxXXpWHGn517BsSRPk1j4tBHAG3uQPuHF1LBbZANE/gvQ3bB95lyv1aA/AW/PDFc9xK0TVNw7Ja0xZ3I7r67kRzT/TkFfXDJP1s65r9y174RvtoDSz2rjfsWN8cs3/55RHj8JBBzgSQ1+ExOXj2uCxcJ3SVVxp4M8kUORD894QmCV3mB2rA3cXsJ6EJuPZDgLlzNNllie8ED1xzhvPAqynSLQCBTVZqpmL7VfQ2ZW01C1LWXfiu64VQq379r6p2NXY0a17Z5vsPrs0JGLuETsIkmmmruIaVfM9m8Bk9hE8waXbtdcx4zw/n99mddlNAM8336HOL6BfWB39Vha8+LOtAtXjrVXNKMeAmatY316wf9P2qdayCjC2gN5uoWk9VrazIF18wKGY0317d2gDCFqrbc1G3wx7Cp0bdZnrWWSeUf284jbwl+0RWEerdFOVGgU0McBwc4Eg8Z/mG4Q01LA5Eu4SAoBHWkhG2SyUrDG8IqSphu8fARhusr+GNERCsEgijvdV7e2sERKc6h0+NvcX1HgY3KnAD5jUaWQqMrHysyVFC1mTEYd3OUjLIZAQY3UJG0M46czsLsKFHe2xotLP6ameNAat5tN1qRjurX3bWGDKTu4YP7azW4IbMatSr7erVXeGq1/IlJzExkBEWeKNePTu9CqR7BcKoV/uvV4GEbufw4fCM9gAHB8Ii/XZJv6/7xajxPDhoXOuu4TfIx/3iY3DwavcAqmFkMWPo0WXNNbghgyvtl/Qn0RJ/6SFBp1zcLMScwx/SxBtAQd5qWDjOp3U08CaK0jIgxmw2I9NpzX1hZ1x7Ylv2oDafxGb/aIDY1ATif2vGyD6jaVZ8958ll4PodcUki//iwzycMH7mvtRnMUPd9Z82s9OzoklULWFNDFxXKPqaz1ng0+Mb3iKKmOiHJSjEpPpp9v18wn00n/xiG1wxEW3z/1/TWrSJM/0xT0P4Hwq3MD0VxgJyYKr+B3bNd9ZlifYH+0+8P5dLhji7fcEFd0ljviDAnDoBP+eH8kzgOXPW6JuPzT7jwGY75CWcOPbjpP4a67nXyvNy+6DNx014nRMvfdyAcCwZekT7cNADrtLO7kwT/4lXJ2fPHCiGRwj993QcSyryzpJ3+XASrw6E/8g7T3jrvt96hMaCAi2GUVZZm4tEvkpTEXvRDSD4gglMZdPgHufOMl3EJjkylUl2+AlbU5m2ionRugFEcqS8YNC1paDrcL9jqCKZqRvQ8FADh+6fadhVB5e3MLanp9HR75ejrwvO7heAGHptE3IgtoMcfCmxV90kALzm9tgNUnLfKBlyjjoHUA0lp44JEnIF8Jx7Pbe2bm3dPc4WR8yM9rpM8CqEY8KnpSWvD17g8ODmp82Zkq9Lyu6EF7pXfIlddvjpYemEr7zsxU/+EufZ77+5SDCmzY5uX0QX5weC4tnDo1d5Ez8o3MUPN7elR+K+7IsSwftFa6RCwHtcWEGtUfr9T+WGLYK7yw7On/GVa56C6yvDJHIxGMsqV5LBlN+3kY4GVQ21SlVZW9SqOkrQgDQ7hl2ULUaXhV0C2sWywXK1qpNsB+uCsj41rDxnuijGujUOV/plaZxMc0KulxZ+nNDo9SP7eRdOgzVfqZxoTC0uUjKZrwOHh9tjZk3SUN7FK6WzWcxv+9PPguuum57m6Ibes3xy/cH+bMBXMV+Hrqxvvcozkuk5psu9OHbSt1IUzpOzFSQRVZY7UxTOs5rNBz5PiXLSb90IlB/OaJZI25una5Z/0yrpPF0jWR5P/tCyfF41UbdHBuO6oEnhTD+iKnh7cnZdfebHre+lhnb39xIly8DpVrNlAc+zlxyas26Mfk7o+cx4LZu8BRH5PXW4lZ53AXldUdKzVK08NV0w38Dj1cwiupTnV5GfJlt5nylQ/cJJs6jpWIEpXXIU2S9md2ZZ2sib0sjl139feGEqYeltG5KHupxS2YYmp+0XbiWT0+Rj2hHuPmgALoEl+t9Kv0JWK+RbrACSg0q++63ITU2OwN7hzaLXcUKyN52yI7cqUWYa7s/0akpMQxsKVNrbmQEzvSrC0G+V6bWhKKaAHLMMZ5fptaFxGfb2cRmYVuhZWsGGgn+dA4iTV1sbww9uAoYMfCF5XnCfMYk5EnLvCRnM8nUPYBtzbAhOsKnrY2hJ8ouJ+VVCcwUndXt0Lg+CZIGS4h31OB1Uby1kd1CwLj2sROx4VWkNha85MgMD7DmxP/yiKQm/DS9wdEH2ZsVRAmK2eI8HCYyq/NR4kEB1KyLdrM7CUDhIQKzTfKi8AOsN9lhexKo9PZYXQ92gkpHd3qASsVT7JcmLwtFLdv+JaVzVM80FrUpMejUyrFDQoDVeMI9wSh5h5kwTRVPGpIu7K5Ew3qvHjrJwoNVjpLRgIqGlRIJu7UBcZSZhDOwFIjHHONbZZRLApSUEyBi46n3gSh9DY/o6B1DpnLFUET7iXi+7I5gaqHiRmS8kw6ABildiflZE/R5pmmiAnu0ePpza26ZmhlK+SMg9IGQV03NknWV4u84YIiE3hQ8KjHYOH07sbQ9wgnTcTzpWsQsx0YAMvsQc6bj3dAzkE7qHTw0d8zEPSMdVwMG4FdJx93SsqxjpQjTA+5GgIx/3nY91aEBr5/Cp4WMkYA6maAfM4CvN4KuYB9hk88pa+l7JPEAmiUC/F6KC6fu20vc6gHhloqeK9D0hkJlNts87QqurdavrNDyBpJ8E+aysrPeZvicESut1DqDCiYBSFWICf58oQClC5OYeeMRqpggCAQ+J+VlR9fskaiie0Tl8OGO7NcCHoGbGDYfb9YSqe940mFKxT2bakg9IXQ+3D7xEdd1QQFiRL75gkHvBHblXQ0hnD7smfXSvmndSSGt3DqA6rX2HPtVO/MWUJlTiqMRB+YCW/QAmw6ISP18lPiIQxl1v4YFKvHknhXJSnQOISvzNlDiYtEIljko8lw8oCTbCPdQuSolD0bhR1/OnUIk376RQuKxzAFGJv5UShxaMwexmH7KbSmbDQcu+kB3LvvSXn98lO0PLunQPH06/aA9wSB3jMk3oUwlRgDJf4z0+N6rrs/KpoAUKJPBnpbPfp09lQEsQdA8g+lRvpMQNaA0DVOKoxKV8kLp8SKFBJX4JStyA1j0wOp84j0q8eScFAmPdA4hK/M2U+IGRM1Ti70yJA6E5Y8fKgajEz1CJA9E4CTwq8TNQ4kC4rHsAUYm/VThdPBIX01C1mIbrLx/zncWOELBGW2nXdnLSlaRCDSgqIwQEDbrz3kqbGEBMRUKO5lgX4xhOwxMaXCxARtOr96YXMaCBRZ0DqHxiNtpeW0cWQqlqZOQejCxTsm6G2ByyPHC06yQnjixrOsgAylF3Dp8aeg4XwSOunQGAbgKgozt8qjuc7bPylg6xqWRNSRNyiEXN6BCfuUNsQg6xiebXuTrEJuQQC5DPyt56pw6xCTnEnQPYwlZj6BJvNbpBjYucfCEu8RhSuePt8PaXot8lQY8hDds5fOpcYtwPEtbL0EAvdINacINa39zGhKZLmjgm64LGZBETmiFpdj2kB/2g5nwL5YU6B1CNmkUHaA/2QNIIA9CnBqD5TPrjws+jHSy9NfpsKNHVIshZpoExml1vMr6+7eizBUU6rD1GNVpivY0+W1Bow+raN0arq7HmtaDgRucAKl9JBk2vrQIA+Mbb4Q9p4oHGT9VcirPfpIEGK0rLgBiz2YxMpzWVyc649sS27PxhhXKb/aOBZPktoRFv48h5Zn//H9OQH3jxinEzN42YQLA/7AX4RbEXMWH4yH59ZjUTbbkOEn+Vnoq8f9aMvfkddyk8aRtO6XLCjAL2K1l4y7S2VMocXpmfw8srZ3XazpJ/djiJV5sXPXBMACQddln2rHr8RAXND4FY2MUIyd0ta5orjmI+c+aGf2kaFBVHTshZZO4svXRmDQM+hTaiywx89vePL/fs79XXu4/HgQtsIloFV9etMrpDFRMgDA2drzZ2lo1onBw7/Ef22oO2lCUqhv8Y0FbSUkbQAWvJAdu1h7BCB8zQAQdMQo4O2Lk5YIYOOGASZHTAeu+AGTq0IEznAKpxwDIViC7YHhEgyMl942SFw38MAlH0DvepvxT9LgmaQATdOXy4k2x7Ghlc4QsdoHYdoPF+NtZ1JRYzEMuSmKO2PT8PCFpwS+96pxJUr03hg9bS6hy+FqY/oIKVkEOrbyEDX4q/owP5BIk5EnLfCVmM4uoXfLi3THuA58rWc+deoRXghCBdR9P8KmjVHl6HcEt4jC95ffACJ/Fp+GlzppTeI2VnwgvdqyhKYfz0sHTC17SMfcxfoh/zg7/5AaPa/PD2pXjyVrC89+Inf4l62e/CXexocxM/EPdkX5QI2h8Uti6tEMOefK5g1ij9/qdyyxbRbbCU7VeueAaFzB+pOEa1zF+GU37fRjzqVY2Mqo9VrSpri1pVR0mafaSkAQOSWpE0AH2xtHN/0B8Oq+gb1pHoj6tV6WalKpXoDy+UZ+pSI+ODXUkN+zbntXBBbrruoJSqJBg5D2wAz+psKpTGWJ1QDlsUylHPKUmNEpMGXI9p7FwkZnykxABrOryREpPxlPeBvqm1h74wl3qLvjolRrT+S42lK5Mao0XOEMtbXriWIWIfnB5JzKgCs11NIjWXmOp4y2GbEkO2CwgOyj1mUO4kouFP7zGeUvYOj3HorOIFTfLLlE+PtGtyN9ohvI1jq9Dy1ygWp4hF7AcM/Uc+tr+9ubJ6NWAzUpL6hNbSliKCIxXOe66sYUADFQTkmCY7u4EKBjRQweg6041DtZvbZNBQhc4BVJMZ4/oPM2MVwM0j3TZIB7+h2zbc7bfJCIF+aoRANzsOc9edNKOaz7KOjivVqhpWgw0K/T1o2RM07E9dAed4q/64BdhtJYYCtEiKsW+RFDTrz2MBdgNaMsXYseIGmvX9NuuhFVQkyGjW99+st6AoSucAKjfrcf7lVgGAAi3IyJcyHhla4UhijgR9BgQNxV06B1DdAuwYe4FAP3JgFqS5ezXQQk2qXR+PQRa+0MEZ1khV6IUdRpQmxcuZQ7n4nboev+Jf&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <style type="text/css">
+        @supports (color: light-dark(#000, #fff)) { #ge-svg-XQqVw_FRlGr9VijiEXvI { --ge-adaptive-bg: light-dark(#ffffff, var(--ge-dark-color, #121212)); } }
+    </style>
+    <defs>
+        <clipPath id="mx-clip-880-811-30-30-0">
+            <rect x="880" y="811" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-811-164-30-0">
+            <rect x="916" y="811" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-491-30-30-0">
+            <rect x="880" y="491" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-491-164-30-0">
+            <rect x="916" y="491" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-611-30-30-0">
+            <rect x="880" y="611" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-611-164-30-0">
+            <rect x="916" y="611" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-641-30-30-0">
+            <rect x="880" y="641" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-641-164-30-0">
+            <rect x="916" y="641" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-671-30-30-0">
+            <rect x="880" y="671" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-671-164-30-0">
+            <rect x="916" y="671" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-931-30-30-0">
+            <rect x="880" y="931" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-931-164-30-0">
+            <rect x="916" y="931" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-961-30-30-0">
+            <rect x="880" y="961" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-961-164-30-0">
+            <rect x="916" y="961" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-331-30-30-0">
+            <rect x="880" y="331" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-331-164-30-0">
+            <rect x="916" y="331" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-361-30-30-0">
+            <rect x="880" y="361" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-361-164-30-0">
+            <rect x="916" y="361" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1720-771-30-30-0">
+            <rect x="1720" y="771" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-771-164-30-0">
+            <rect x="1756" y="771" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-801-164-30-0">
+            <rect x="1756" y="801" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-831-164-30-0">
+            <rect x="1756" y="831" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-861-164-30-0">
+            <rect x="1756" y="861" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1720-331-30-30-0">
+            <rect x="1720" y="331" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-331-164-30-0">
+            <rect x="1756" y="331" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-361-164-30-0">
+            <rect x="1756" y="361" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-391-164-30-0">
+            <rect x="1756" y="391" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1320-451-30-30-0">
+            <rect x="1320" y="451" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-451-164-30-0">
+            <rect x="1356" y="451" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-481-164-30-0">
+            <rect x="1356" y="481" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1320-731-30-30-0">
+            <rect x="1320" y="731" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-731-164-30-0">
+            <rect x="1356" y="731" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-761-164-30-0">
+            <rect x="1356" y="761" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1320-611-30-30-0">
+            <rect x="1320" y="611" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-611-164-30-0">
+            <rect x="1356" y="611" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1720-531-30-30-0">
+            <rect x="1720" y="531" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-531-164-30-0">
+            <rect x="1756" y="531" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-561-164-30-0">
+            <rect x="1756" y="561" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-591-164-30-0">
+            <rect x="1756" y="591" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1756-621-164-30-0">
+            <rect x="1756" y="621" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-880-1091-30-30-0">
+            <rect x="880" y="1091" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-916-1091-164-30-0">
+            <rect x="916" y="1091" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1320-891-30-30-0">
+            <rect x="1320" y="891" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-891-164-30-0">
+            <rect x="1356" y="891" width="164" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1320-921-30-30-0">
+            <rect x="1320" y="921" width="30" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-1356-921-164-30-0">
+            <rect x="1356" y="921" width="164" height="30"/>
+        </clipPath>
+    </defs>
+    <g>
+        <g data-cell-id="0">
+            <g data-cell-id="1">
+                <g data-cell-id="2">
+                    <g>
+                        <path d="M 639.9 490.65 L 639.9 446.65 Q 639.9 440.65 633.9 440.65 L 445.9 440.65 Q 439.9 440.65 439.9 446.65 L 439.9 490.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 490.65 L 439.9 514.65 Q 439.9 520.65 445.9 520.65 L 633.9 520.65 Q 639.9 520.65 639.9 514.65 L 639.9 490.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 490.65 L 639.9 490.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 466px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                bronze_standings_snapshot
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="470" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    bronze_standings_snapshot
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="19">
+                    <g transform="translate(0.5,0.5)">
+                        <rect x="-0.1" y="640.65" width="200" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 721px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                <span style="font-size: 24px;">
+                                                    NHL API
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="100" y="724" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    NHL API
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="20">
+                    <g>
+                        <rect x="-0.1" y="210.65" width="200" height="30" fill="none" stroke="none" pointer-events="all"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 226px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #3399FF; ">
+                                            <div style="display: inline-block; font-size: 24px; font-family: Helvetica; color: light-dark(#3399FF, #2b82da); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                                Source Data
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="100" y="233" fill="#3399FF" font-family="Helvetica" font-size="24px" text-anchor="middle" font-weight="bold" style="fill: light-dark(rgb(51, 153, 255), rgb(43, 130, 218));">
+                                    Source Data
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="22">
+                    <g>
+                        <rect x="439.9" y="210.65" width="200" height="30" fill="none" stroke="none" pointer-events="all"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 226px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #3399FF; ">
+                                            <div style="display: inline-block; font-size: 24px; font-family: Helvetica; color: light-dark(#3399FF, #2b82da); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                                Bronze Layer
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="233" fill="#3399FF" font-family="Helvetica" font-size="24px" text-anchor="middle" font-weight="bold" style="fill: light-dark(rgb(51, 153, 255), rgb(43, 130, 218));">
+                                    Bronze Layer
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="30">
+                    <g>
+                        <path d="M 639.9 610.65 L 639.9 566.65 Q 639.9 560.65 633.9 560.65 L 445.9 560.65 Q 439.9 560.65 439.9 566.65 L 439.9 610.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 610.65 L 439.9 634.65 Q 439.9 640.65 445.9 640.65 L 633.9 640.65 Q 639.9 640.65 639.9 634.65 L 639.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 610.65 L 639.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 586px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                bronze_rosters_snapshot
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="590" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    bronze_rosters_snapshot
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="39">
+                    <g>
+                        <path d="M 639.9 730.65 L 639.9 686.65 Q 639.9 680.65 633.9 680.65 L 445.9 680.65 Q 439.9 680.65 439.9 686.65 L 439.9 730.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 730.65 L 439.9 754.65 Q 439.9 760.65 445.9 760.65 L 633.9 760.65 Q 639.9 760.65 639.9 754.65 L 639.9 730.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 730.65 L 639.9 730.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 706px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                bronze_players_snapshot
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="710" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    bronze_players_snapshot
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="48">
+                    <g>
+                        <rect x="879.9" y="210.65" width="200" height="30" fill="none" stroke="none" pointer-events="all"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 226px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #3399FF; ">
+                                            <div style="display: inline-block; font-size: 24px; font-family: Helvetica; color: light-dark(#3399FF, #2b82da); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                                Silver Layer
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="233" fill="#3399FF" font-family="Helvetica" font-size="24px" text-anchor="middle" font-weight="bold" style="fill: light-dark(rgb(51, 153, 255), rgb(43, 130, 218));">
+                                    Silver Layer
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="49">
+                    <g>
+                        <rect x="1319.9" y="210.65" width="200" height="30" fill="none" stroke="none" pointer-events="all"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 226px; margin-left: 1321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #3399FF; ">
+                                            <div style="display: inline-block; font-size: 24px; font-family: Helvetica; color: light-dark(#3399FF, #2b82da); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                                Gold Layer
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1420" y="233" fill="#3399FF" font-family="Helvetica" font-size="24px" text-anchor="middle" font-weight="bold" style="fill: light-dark(rgb(51, 153, 255), rgb(43, 130, 218));">
+                                    Gold Layer
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="69">
+                    <g>
+                        <path d="M 1079.9 810.65 L 1079.9 766.65 Q 1079.9 760.65 1073.9 760.65 L 885.9 760.65 Q 879.9 760.65 879.9 766.65 L 879.9 810.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 810.65 L 879.9 834.65 Q 879.9 840.65 885.9 840.65 L 1073.9 840.65 Q 1079.9 840.65 1079.9 834.65 L 1079.9 810.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 810.65 L 1079.9 810.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 786px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_players
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="790" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_players
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="70">
+                        <g/>
+                        <g data-cell-id="71">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="72">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="810.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 810.65 M 909.9 810.65 M 909.9 840.65 M 879.9 840.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-811-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="830.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="73">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="810.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 810.65 M 1079.9 810.65 M 1079.9 840.65 M 909.9 840.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-811-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="830.65">
+                                            player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g data-cell-id="74"/>
+                </g>
+                <g data-cell-id="78">
+                    <g>
+                        <path d="M 1079.9 490.65 L 1079.9 446.65 Q 1079.9 440.65 1073.9 440.65 L 885.9 440.65 Q 879.9 440.65 879.9 446.65 L 879.9 490.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 490.65 L 879.9 514.65 Q 879.9 520.65 885.9 520.65 L 1073.9 520.65 Q 1079.9 520.65 1079.9 514.65 L 1079.9 490.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 490.65 L 1079.9 490.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 466px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_teams
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="470" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_teams
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="79">
+                        <g/>
+                        <g data-cell-id="80">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="81">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="490.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 490.65 M 909.9 490.65 M 909.9 520.65 M 879.9 520.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-491-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="510.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="82">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="490.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 490.65 M 1079.9 490.65 M 1079.9 520.65 M 909.9 520.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-491-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="510.65">
+                                            team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="87">
+                    <g>
+                        <path d="M 1079.9 610.65 L 1079.9 566.65 Q 1079.9 560.65 1073.9 560.65 L 885.9 560.65 Q 879.9 560.65 879.9 566.65 L 879.9 610.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 610.65 L 879.9 714.65 Q 879.9 720.65 885.9 720.65 L 1073.9 720.65 Q 1079.9 720.65 1079.9 714.65 L 1079.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 610.65 L 1079.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 586px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_rosters
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="590" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_rosters
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="88">
+                        <g/>
+                        <g data-cell-id="89">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="90">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="610.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 610.65 M 909.9 610.65 M 909.9 640.65 M 879.9 640.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-611-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="630.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="91">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="610.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 610.65 M 1079.9 610.65 M 1079.9 640.65 M 909.9 640.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-611-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="630.65">
+                                            team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g data-cell-id="92">
+                        <g/>
+                        <g data-cell-id="93">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="94">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="640.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 640.65 M 909.9 640.65 M 909.9 670.65 M 879.9 670.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-641-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="660.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="95">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="640.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 640.65 M 1079.9 640.65 M 1079.9 670.65 M 909.9 670.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-641-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="660.65">
+                                            player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="269">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="270">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="670.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 670.65 M 909.9 670.65 M 909.9 700.65 M 879.9 700.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-671-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="690.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="271">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="670.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 670.65 M 1079.9 670.65 M 1079.9 700.65 M 909.9 700.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-671-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="690.65">
+                                            snapshot_date (date time)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="97">
+                    <g>
+                        <path d="M 2039.9 320.65 L 2349.9 320.65 L 2369.9 340.65 L 2369.9 600.65 L 2039.9 600.65 L 2039.9 320.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 2349.9 320.65 L 2349.9 340.65 L 2369.9 340.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 328px; height: 1px; padding-top: 461px; margin-left: 2042px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: left; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                Questions I'm tryping to answer?
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    Players:
+                                                </div>
+                                                <div>
+                                                    <span style="color: light-dark(rgb(63, 63, 63), rgb(183, 183, 183)); background-color: transparent;">
+                                                        - Top N Players with the most goals in the league
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    - Top N Players with the most assists in the leauge
+                                                </div>
+                                                <div>
+                                                    - Top N Players with the most points in the leauge
+                                                </div>
+                                                <div>
+                                                    - Top N Players with tbe best + or -
+                                                </div>
+                                                <div>
+                                                    - All active players
+                                                </div>
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    Teams:
+                                                </div>
+                                                <div>
+                                                    -
+                                                </div>
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="2042" y="346" fill="#666600" font-family="Helvetica" font-size="14px" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="2042" y="346">
+                                        Questions I'm tryping to answer?
+                                    </tspan>
+                                    <tspan x="2042" y="363"></tspan>
+                                    <tspan x="2042" y="380">
+                                        Players:
+                                    </tspan>
+                                    <tspan x="2042" y="397">
+                                        - Top N Players with the most goals in the league
+                                    </tspan>
+                                    <tspan x="2042" y="414">
+                                        - Top N Players with the most assists in the leauge
+                                    </tspan>
+                                    <tspan x="2042" y="431">
+                                        - Top N Players with the most points in the leauge
+                                    </tspan>
+                                    <tspan x="2042" y="448">
+                                        - Top N Players with tbe best + or -
+                                    </tspan>
+                                    <tspan x="2042" y="465">
+                                        - All active players
+                                    </tspan>
+                                    <tspan x="2042" y="482"></tspan>
+                                    <tspan x="2042" y="499">
+                                        Teams:
+                                    </tspan>
+                                    <tspan x="2042" y="516">
+                                        -
+                                    </tspan>
+                                    <tspan x="2042" y="533"></tspan>
+                                    <tspan x="2042" y="550"></tspan>
+                                    <tspan x="2042" y="567"></tspan>
+                                    <tspan x="2042" y="584"></tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="133">
+                    <g>
+                        <path d="M 1079.9 930.65 L 1079.9 886.65 Q 1079.9 880.65 1073.9 880.65 L 885.9 880.65 Q 879.9 880.65 879.9 886.65 L 879.9 930.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 930.65 L 879.9 994.65 Q 879.9 1000.65 885.9 1000.65 L 1073.9 1000.65 Q 1079.9 1000.65 1079.9 994.65 L 1079.9 930.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 930.65 L 1079.9 930.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 906px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_player_game_stats
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="910" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_player_game_stats
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="134">
+                        <g/>
+                        <g data-cell-id="138">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="139">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="930.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 930.65 M 909.9 930.65 M 909.9 960.65 M 879.9 960.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-931-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="950.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="140">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="930.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 930.65 M 1079.9 930.65 M 1079.9 960.65 M 909.9 960.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-931-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="950.65">
+                                            player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="141">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="142">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="960.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 960.65 M 909.9 960.65 M 909.9 990.65 M 879.9 990.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-961-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="980.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="143">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="960.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 960.65 M 1079.9 960.65 M 1079.9 990.65 M 909.9 990.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-961-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="980.65">
+                                            game_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="144">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1079.9 825.65 L 1099.9 825.65 Q 1109.9 825.65 1109.9 835.65 L 1109.9 935.65 Q 1109.9 945.65 1099.9 945.65 L 1079.9 945.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1079.9 949.65 L 1087.9 945.65 L 1079.9 941.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="145">
+                    <g>
+                        <path d="M 639.9 850.65 L 639.9 806.65 Q 639.9 800.65 633.9 800.65 L 445.9 800.65 Q 439.9 800.65 439.9 806.65 L 439.9 850.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 850.65 L 439.9 874.65 Q 439.9 880.65 445.9 880.65 L 633.9 880.65 Q 639.9 880.65 639.9 874.65 L 639.9 850.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 850.65 L 639.9 850.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 826px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                bronze_player_game_logs_snapshot
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="830" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    bronze_player_game_logs_snapshot
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="157">
+                    <g>
+                        <path d="M 1119.9 880.65 L 1259.9 880.65 L 1279.9 900.65 L 1279.9 1000.65 L 1119.9 1000.65 L 1119.9 880.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1259.9 880.65 L 1259.9 900.65 L 1279.9 900.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 941px; margin-left: 1121px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                each players game stats and history. Includes both regular season and playoffs. Will add any new player game stats if found and update if necessary.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1200" y="894" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="1200" y="894">
+                                        each players game stats
+                                    </tspan>
+                                    <tspan x="1200" y="911">
+                                        and history. Includes
+                                    </tspan>
+                                    <tspan x="1200" y="928">
+                                        both regular season and
+                                    </tspan>
+                                    <tspan x="1200" y="945">
+                                        playoffs. Will add any
+                                    </tspan>
+                                    <tspan x="1200" y="962">
+                                        new player game stats if
+                                    </tspan>
+                                    <tspan x="1200" y="979">
+                                        found and update if
+                                    </tspan>
+                                    <tspan x="1200" y="996">
+                                        necessary.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="158">
+                    <g>
+                        <path d="M 1119.9 760.65 L 1259.9 760.65 L 1279.9 780.65 L 1279.9 840.65 L 1119.9 840.65 L 1119.9 760.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1259.9 760.65 L 1259.9 780.65 L 1279.9 780.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 801px; margin-left: 1121px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                all players info:
+                                                <span style="background-color: transparent; color: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                                    Will add any new players and update player info if necessary
+                                                </span>
+                                                <span style="background-color: transparent; color: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                                    .
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1200" y="779" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="1200" y="779">
+                                        all players info: Will add
+                                    </tspan>
+                                    <tspan x="1200" y="796">
+                                        any new players and
+                                    </tspan>
+                                    <tspan x="1200" y="813">
+                                        update player info if
+                                    </tspan>
+                                    <tspan x="1200" y="830">
+                                        necessary.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="159">
+                    <g>
+                        <path d="M 1119.9 560.65 L 1259.9 560.65 L 1279.9 580.65 L 1279.9 720.65 L 1119.9 720.65 L 1119.9 560.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1259.9 560.65 L 1259.9 580.65 L 1279.9 580.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 641px; margin-left: 1121px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                <span style="color: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                                    each teams roster and history. Loads new roster info if the roster changed from the prior date. Will have to compare latest record. Then will update info if necessary.
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1200" y="594" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="1200" y="594">
+                                        each teams roster and
+                                    </tspan>
+                                    <tspan x="1200" y="611">
+                                        history. Loads new roster
+                                    </tspan>
+                                    <tspan x="1200" y="628">
+                                        info if the roster changed
+                                    </tspan>
+                                    <tspan x="1200" y="645">
+                                        from the prior date. Will
+                                    </tspan>
+                                    <tspan x="1200" y="662">
+                                        have to compare latest
+                                    </tspan>
+                                    <tspan x="1200" y="679">
+                                        record. Then will update
+                                    </tspan>
+                                    <tspan x="1200" y="696">
+                                        info if necessary.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="160">
+                    <g>
+                        <path d="M 1119.9 440.65 L 1279.9 440.65 L 1279.9 440.65 L 1279.9 520.65 L 1119.9 520.65 L 1119.9 440.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1279.9 440.65 L 1279.9 440.65 L 1279.9 440.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 481px; margin-left: 1121px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                all team info: Will add any new teams and update team info if necessary.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1200" y="459" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="1200" y="459">
+                                        all team info: Will add
+                                    </tspan>
+                                    <tspan x="1200" y="476">
+                                        any new teams and
+                                    </tspan>
+                                    <tspan x="1200" y="493">
+                                        update team info if
+                                    </tspan>
+                                    <tspan x="1200" y="510">
+                                        necessary.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="161">
+                    <g>
+                        <path d="M 1079.9 330.65 L 1079.9 286.65 Q 1079.9 280.65 1073.9 280.65 L 885.9 280.65 Q 879.9 280.65 879.9 286.65 L 879.9 330.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 330.65 L 879.9 394.65 Q 879.9 400.65 885.9 400.65 L 1073.9 400.65 Q 1079.9 400.65 1079.9 394.65 L 1079.9 330.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 330.65 L 1079.9 330.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 306px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_team_standings
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="310" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_team_standings
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="162">
+                        <g/>
+                        <g data-cell-id="163">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="164">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="330.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 330.65 M 909.9 330.65 M 909.9 360.65 M 879.9 360.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-331-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="350.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="165">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="330.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 330.65 M 1079.9 330.65 M 1079.9 360.65 M 909.9 360.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-331-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="350.65">
+                                            team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="219">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="220">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="360.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 360.65 M 909.9 360.65 M 909.9 390.65 M 879.9 390.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-361-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="380.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="221">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="360.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 360.65 M 1079.9 360.65 M 1079.9 390.65 M 909.9 390.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-361-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="380.65">
+                                            snapshot_date (date time)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="173">
+                    <g>
+                        <path d="M 1119.9 260.65 L 1259.9 260.65 L 1279.9 280.65 L 1279.9 400.65 L 1119.9 400.65 L 1119.9 260.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1259.9 260.65 L 1259.9 280.65 L 1279.9 280.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 331px; margin-left: 1121px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                each teams standings and history. Loads team new standings info if the teams standings changed from prior date. Will have to compare to latest record for each team.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1200" y="275" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="1200" y="275">
+                                        each teams standings
+                                    </tspan>
+                                    <tspan x="1200" y="292">
+                                        and history. Loads team
+                                    </tspan>
+                                    <tspan x="1200" y="309">
+                                        new standings info if the
+                                    </tspan>
+                                    <tspan x="1200" y="326">
+                                        teams standings
+                                    </tspan>
+                                    <tspan x="1200" y="343">
+                                        changed from prior date.
+                                    </tspan>
+                                    <tspan x="1200" y="360">
+                                        Will have to compare to
+                                    </tspan>
+                                    <tspan x="1200" y="377">
+                                        latest record for each
+                                    </tspan>
+                                    <tspan x="1200" y="394">
+                                        team.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="174">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1079.9 825.65 L 1099.9 825.65 Q 1109.9 825.65 1109.9 815.65 L 1109.9 665.65 Q 1109.9 655.65 1099.9 655.65 L 1079.9 655.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1079.9 659.65 L 1087.9 655.65 L 1079.9 651.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="175">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1079.9 505.65 L 1099.9 505.65 Q 1109.9 505.65 1109.9 515.65 L 1109.9 615.65 Q 1109.9 625.65 1099.9 625.65 L 1079.9 625.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1079.9 629.65 L 1087.9 625.65 L 1079.9 621.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="176">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1079.9 505.65 L 1099.9 505.65 Q 1109.9 505.65 1109.9 495.65 L 1109.9 355.65 Q 1109.9 345.65 1099.9 345.65 L 1079.9 345.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1079.9 349.65 L 1087.9 345.65 L 1079.9 341.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="194">
+                    <g>
+                        <path d="M 1919.9 770.65 L 1919.9 726.65 Q 1919.9 720.65 1913.9 720.65 L 1725.9 720.65 Q 1719.9 720.65 1719.9 726.65 L 1719.9 770.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 770.65 L 1719.9 914.65 Q 1719.9 920.65 1725.9 920.65 L 1913.9 920.65 Q 1919.9 920.65 1919.9 914.65 L 1919.9 770.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 770.65 L 1919.9 770.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 746px; margin-left: 1721px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                fact_player_game_stats
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1820" y="750" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    fact_player_game_stats
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="195">
+                        <g/>
+                        <g data-cell-id="196">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="197">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="770.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 770.65 M 1749.9 770.65 M 1749.9 800.65 M 1719.9 800.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1720-771-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1734.9" y="790.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="198">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="770.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 770.65 M 1919.9 770.65 M 1919.9 800.65 M 1749.9 800.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-771-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="790.65">
+                                            player_stats_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="205">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="206">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="800.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 800.65 M 1749.9 800.65 M 1749.9 830.65 M 1719.9 830.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="207">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="800.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 800.65 M 1919.9 800.65 M 1919.9 830.65 M 1749.9 830.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-801-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="820.65">
+                                            player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="199">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="200">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="830.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 830.65 M 1749.9 830.65 M 1749.9 860.65 M 1719.9 860.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="201">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="830.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 830.65 M 1919.9 830.65 M 1919.9 860.65 M 1749.9 860.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-831-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="850.65">
+                                            game_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="202">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="203">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="860.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 860.65 M 1749.9 860.65 M 1749.9 890.65 M 1719.9 890.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="204">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="860.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 860.65 M 1919.9 860.65 M 1919.9 890.65 M 1749.9 890.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-861-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="880.65">
+                                            date_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="208">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="209">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="890.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 890.65 M 1749.9 890.65 M 1749.9 920.65 M 1719.9 920.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="210">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="890.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 890.65 M 1919.9 890.65 M 1919.9 920.65 M 1749.9 920.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="222">
+                    <g>
+                        <path d="M 1919.9 330.65 L 1919.9 286.65 Q 1919.9 280.65 1913.9 280.65 L 1725.9 280.65 Q 1719.9 280.65 1719.9 286.65 L 1719.9 330.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 330.65 L 1719.9 434.65 Q 1719.9 440.65 1725.9 440.65 L 1913.9 440.65 Q 1919.9 440.65 1919.9 434.65 L 1919.9 330.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 330.65 L 1919.9 330.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 306px; margin-left: 1721px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                fact_team_standings
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1820" y="310" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    fact_team_standings
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="223">
+                        <g/>
+                        <g data-cell-id="224">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="225">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="330.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 330.65 M 1749.9 330.65 M 1749.9 360.65 M 1719.9 360.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1720-331-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1734.9" y="350.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="226">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="330.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 330.65 M 1919.9 330.65 M 1919.9 360.65 M 1749.9 360.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-331-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="350.65">
+                                            team_standings_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="227">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="228">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="360.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 360.65 M 1749.9 360.65 M 1749.9 390.65 M 1719.9 390.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="229">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="360.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 360.65 M 1919.9 360.65 M 1919.9 390.65 M 1749.9 390.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-361-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="380.65">
+                                            team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="276"/>
+                            <g data-cell-id="280"/>
+                            <g data-cell-id="284"/>
+                        </g>
+                        <g data-cell-id="294">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="295">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="390.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 390.65 M 1749.9 390.65 M 1749.9 420.65 M 1719.9 420.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="296">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="390.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 390.65 M 1919.9 390.65 M 1919.9 420.65 M 1749.9 420.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-391-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="410.65">
+                                            date_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="297"/>
+                            <g data-cell-id="301"/>
+                            <g data-cell-id="305"/>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="230">
+                    <g>
+                        <path d="M 1519.9 450.65 L 1519.9 406.65 Q 1519.9 400.65 1513.9 400.65 L 1325.9 400.65 Q 1319.9 400.65 1319.9 406.65 L 1319.9 450.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 450.65 L 1319.9 514.65 Q 1319.9 520.65 1325.9 520.65 L 1513.9 520.65 Q 1519.9 520.65 1519.9 514.65 L 1519.9 450.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 450.65 L 1519.9 450.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 426px; margin-left: 1321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                dim_teams
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1420" y="430" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    dim_teams
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="231">
+                        <g/>
+                        <g data-cell-id="232">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="233">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="450.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 450.65 M 1349.9 450.65 M 1349.9 480.65 M 1319.9 480.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1320-451-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1334.9" y="470.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="234">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="450.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 450.65 M 1519.9 450.65 M 1519.9 480.65 M 1349.9 480.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-451-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="470.65">
+                                            team_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="288">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="289">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="480.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 480.65 M 1349.9 480.65 M 1349.9 510.65 M 1319.9 510.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="290">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="480.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 480.65 M 1519.9 480.65 M 1519.9 510.65 M 1349.9 510.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-481-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="500.65">
+                                            nhl_team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="240">
+                    <g>
+                        <path d="M 1519.9 730.65 L 1519.9 686.65 Q 1519.9 680.65 1513.9 680.65 L 1325.9 680.65 Q 1319.9 680.65 1319.9 686.65 L 1319.9 730.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 730.65 L 1319.9 794.65 Q 1319.9 800.65 1325.9 800.65 L 1513.9 800.65 Q 1519.9 800.65 1519.9 794.65 L 1519.9 730.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 730.65 L 1519.9 730.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 706px; margin-left: 1321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                dim_players
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1420" y="710" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    dim_players
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="241">
+                        <g/>
+                        <g data-cell-id="242">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="243">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="730.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 730.65 M 1349.9 730.65 M 1349.9 760.65 M 1319.9 760.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1320-731-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1334.9" y="750.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="244">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="730.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 730.65 M 1519.9 730.65 M 1519.9 760.65 M 1349.9 760.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-731-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="750.65">
+                                            player_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="291">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="292">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="760.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 760.65 M 1349.9 760.65 M 1349.9 790.65 M 1319.9 790.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="293">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="760.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 760.65 M 1519.9 760.65 M 1519.9 790.65 M 1349.9 790.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-761-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="780.65">
+                                            nhl_player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g data-cell-id="245"/>
+                </g>
+                <g data-cell-id="249">
+                    <g>
+                        <path d="M 1519.9 610.65 L 1519.9 566.65 Q 1519.9 560.65 1513.9 560.65 L 1325.9 560.65 Q 1319.9 560.65 1319.9 566.65 L 1319.9 610.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 610.65 L 1319.9 634.65 Q 1319.9 640.65 1325.9 640.65 L 1513.9 640.65 Q 1519.9 640.65 1519.9 634.65 L 1519.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 610.65 L 1519.9 610.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 586px; margin-left: 1321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                dim_dates
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1420" y="590" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    dim_dates
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="250">
+                        <g/>
+                        <g data-cell-id="251">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="252">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="610.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 610.65 M 1349.9 610.65 M 1349.9 640.65 M 1319.9 640.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1320-611-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1334.9" y="630.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="253">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="610.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 610.65 M 1519.9 610.65 M 1519.9 640.65 M 1349.9 640.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-611-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="630.65">
+                                            date_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="256">
+                    <g>
+                        <path d="M 259.9 440.65 L 399.9 440.65 L 419.9 460.65 L 419.9 570.65 L 259.9 570.65 L 259.9 440.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 399.9 440.65 L 399.9 460.65 L 419.9 460.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 506px; margin-left: 261px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                Store raw json responses in file server. For multiple requests I will combine them into a single file.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="340" y="484" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="340" y="484">
+                                        Store raw json responses
+                                    </tspan>
+                                    <tspan x="340" y="501">
+                                        in file server. For multiple
+                                    </tspan>
+                                    <tspan x="340" y="518">
+                                        requests I will combine
+                                    </tspan>
+                                    <tspan x="340" y="535">
+                                        them into a single file.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="275">
+                    <g>
+                        <path d="M 909.9 0.65 L 1049.9 0.65 L 1069.9 20.65 L 1069.9 160.65 L 909.9 160.65 L 909.9 0.65 Z" fill="#fff2cc" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                        <path d="M 1049.9 0.65 L 1049.9 20.65 L 1069.9 20.65" fill="none" stroke="#d6b656" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 158px; height: 1px; padding-top: 81px; margin-left: 911px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #666600; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#666600, #a2a24a); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                IDs: teamId, playerId, and gameId come from the NHL API.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="990" y="68" fill="#666600" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(102, 102, 0), rgb(162, 162, 74));">
+                                    <tspan x="990" y="68">
+                                        IDs: teamId, playerId,
+                                    </tspan>
+                                    <tspan x="990" y="85">
+                                        and gameId come from
+                                    </tspan>
+                                    <tspan x="990" y="102">
+                                        the NHL API.
+                                    </tspan>
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="309">
+                    <g>
+                        <path d="M 1919.9 530.65 L 1919.9 486.65 Q 1919.9 480.65 1913.9 480.65 L 1725.9 480.65 Q 1719.9 480.65 1719.9 486.65 L 1719.9 530.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 530.65 L 1719.9 674.65 Q 1719.9 680.65 1725.9 680.65 L 1913.9 680.65 Q 1919.9 680.65 1919.9 674.65 L 1919.9 530.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 530.65 L 1919.9 530.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 506px; margin-left: 1721px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                fact_rosters
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1820" y="510" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    fact_rosters
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="310">
+                        <g/>
+                        <g data-cell-id="311">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="312">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="530.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 530.65 M 1749.9 530.65 M 1749.9 560.65 M 1719.9 560.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1720-531-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1734.9" y="550.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="313">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="530.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 530.65 M 1919.9 530.65 M 1919.9 560.65 M 1749.9 560.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-531-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="550.65">
+                                            roster_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="321">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="322">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="560.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 560.65 M 1749.9 560.65 M 1749.9 590.65 M 1719.9 590.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="323">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="560.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 560.65 M 1919.9 560.65 M 1919.9 590.65 M 1749.9 590.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-561-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="580.65">
+                                            team_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g data-cell-id="314">
+                        <g/>
+                        <g data-cell-id="315">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="316">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="590.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 590.65 M 1749.9 590.65 M 1749.9 620.65 M 1719.9 620.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="317">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="590.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 590.65 M 1919.9 590.65 M 1919.9 620.65 M 1749.9 620.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-591-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="610.65">
+                                            player_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="318">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="319">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1719.9" y="620.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1719.9 620.65 M 1749.9 620.65 M 1749.9 650.65 M 1719.9 650.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                            </g>
+                            <g data-cell-id="320">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1749.9" y="620.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1749.9 620.65 M 1919.9 620.65 M 1919.9 650.65 M 1749.9 650.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1756-621-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1757.9" y="640.65">
+                                            date_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="325">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 465.65 L 1539.9 465.65 Q 1549.9 465.65 1558.31 460.24 L 1681.49 381.06 Q 1689.9 375.65 1699.9 375.65 L 1719.9 375.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 371.65 L 1711.9 375.65 L 1719.9 379.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="326">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 625.65 L 1539.9 625.65 Q 1549.9 625.65 1555.27 617.21 L 1684.53 414.09 Q 1689.9 405.65 1699.9 405.65 L 1719.9 405.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 401.65 L 1711.9 405.65 L 1719.9 409.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="327">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 465.65 L 1539.9 465.65 Q 1549.9 465.65 1557.76 471.83 L 1682.04 569.47 Q 1689.9 575.65 1699.9 575.65 L 1719.9 575.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 571.65 L 1711.9 575.65 L 1719.9 579.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="328">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 625.65 L 1539.9 625.65 Q 1549.9 625.65 1559.87 626.36 L 1679.93 634.94 Q 1689.9 635.65 1699.9 635.65 L 1719.9 635.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 631.65 L 1711.9 635.65 L 1719.9 639.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="329">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 745.65 L 1539.9 745.65 Q 1549.9 745.65 1556.97 738.58 L 1682.83 612.72 Q 1689.9 605.65 1699.9 605.65 L 1719.9 605.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 601.65 L 1711.9 605.65 L 1719.9 609.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="330">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 745.65 L 1539.9 745.65 Q 1549.9 745.65 1558.84 750.12 L 1680.96 811.18 Q 1689.9 815.65 1699.9 815.65 L 1719.9 815.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 811.65 L 1711.9 815.65 L 1719.9 819.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="331">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 625.65 L 1539.9 625.65 Q 1549.9 625.65 1554.79 634.38 L 1685.01 866.92 Q 1689.9 875.65 1699.9 875.65 L 1719.9 875.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 871.65 L 1711.9 875.65 L 1719.9 879.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="332">
+                    <g>
+                        <path d="M 639.9 970.65 L 639.9 926.65 Q 639.9 920.65 633.9 920.65 L 445.9 920.65 Q 439.9 920.65 439.9 926.65 L 439.9 970.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 970.65 L 439.9 994.65 Q 439.9 1000.65 445.9 1000.65 L 633.9 1000.65 Q 639.9 1000.65 639.9 994.65 L 639.9 970.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 439.9 970.65 L 639.9 970.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 946px; margin-left: 441px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                bronze_scores_snapshot
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="540" y="950" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    bronze_scores_snapshot
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="333">
+                    <g>
+                        <path d="M 1079.9 1090.65 L 1079.9 1046.65 Q 1079.9 1040.65 1073.9 1040.65 L 885.9 1040.65 Q 879.9 1040.65 879.9 1046.65 L 879.9 1090.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 1090.65 L 879.9 1114.65 Q 879.9 1120.65 885.9 1120.65 L 1073.9 1120.65 Q 1079.9 1120.65 1079.9 1114.65 L 1079.9 1090.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 879.9 1090.65 L 1079.9 1090.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 1066px; margin-left: 881px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                silver_games
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="980" y="1070" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    silver_games
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="334">
+                        <g/>
+                        <g data-cell-id="335">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="336">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="879.9" y="1090.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 879.9 1090.65 M 909.9 1090.65 M 909.9 1120.65 M 879.9 1120.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-880-1091-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="894.9" y="1110.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="337">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="909.9" y="1090.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 909.9 1090.65 M 1079.9 1090.65 M 1079.9 1120.65 M 909.9 1120.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-916-1091-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="917.9" y="1110.65">
+                                            game_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="341">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1079.9 1100.65 L 1099.9 1100.65 Q 1109.9 1100.65 1109.9 1090.65 L 1109.9 985.65 Q 1109.9 975.65 1099.9 975.65 L 1079.9 975.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1079.9 979.65 L 1087.9 975.65 L 1079.9 971.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+                <g data-cell-id="350">
+                    <g>
+                        <path d="M 1519.9 890.65 L 1519.9 846.65 Q 1519.9 840.65 1513.9 840.65 L 1325.9 840.65 Q 1319.9 840.65 1319.9 846.65 L 1319.9 890.65" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all" style="fill: var(--ge-adaptive-bg, #ffffff); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 890.65 L 1319.9 954.65 Q 1319.9 960.65 1325.9 960.65 L 1513.9 960.65 Q 1519.9 960.65 1519.9 954.65 L 1519.9 890.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1319.9 890.65 L 1519.9 890.65" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                    <g>
+                        <g>
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 866px; margin-left: 1321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
+                                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                                dim_games
+                                            </div>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+                                <text x="1420" y="870" fill="#000000" font-family="Helvetica" font-size="14px" text-anchor="middle" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                    dim_games
+                                </text>
+                            </switch>
+                        </g>
+                    </g>
+                    <g data-cell-id="351">
+                        <g/>
+                        <g data-cell-id="352">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="353">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="890.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 890.65 M 1349.9 890.65 M 1349.9 920.65 M 1319.9 920.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1320-891-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1334.9" y="910.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="354">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="890.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 890.65 M 1519.9 890.65 M 1519.9 920.65 M 1349.9 920.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-891-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="910.65">
+                                            game_id (auto incrementing)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        <g data-cell-id="355">
+                            <g transform="translate(0.5,0.5)"/>
+                            <g data-cell-id="356">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1319.9" y="920.65" width="30" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1319.9 920.65 M 1349.9 920.65 M 1349.9 950.65 M 1319.9 950.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px" clip-path="url(#mx-clip-1320-921-30-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1334.9" y="940.65">
+                                            PK
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g data-cell-id="357">
+                                <g transform="translate(0.5,0.5)">
+                                    <rect x="1349.9" y="920.65" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+                                    <path d="M 1349.9 920.65 M 1519.9 920.65 M 1519.9 950.65 M 1349.9 950.65" fill="none" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                                </g>
+                                <g>
+                                    <g fill="#000000" font-family="Helvetica" text-anchor="start" font-size="12px" clip-path="url(#mx-clip-1356-921-164-30-0)" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                                        <text x="1357.9" y="940.65">
+                                            nhl_game_id (int)
+                                        </text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g data-cell-id="358">
+                    <g transform="translate(0.5,0.5)">
+                        <path d="M 1519.9 905.65 L 1539.9 905.65 Q 1549.9 905.65 1559.09 901.71 L 1680.71 849.59 Q 1689.9 845.65 1699.9 845.65 L 1719.9 845.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                        <path d="M 1719.9 841.65 L 1711.9 845.65 L 1719.9 849.65" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.drawio.com/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

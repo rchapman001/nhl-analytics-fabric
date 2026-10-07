@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Airflow (Pipenv Start)",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "pipenv run start",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "AIRFLOW_HOME": "${workspaceFolder}/airflow",
+                "AIRFLOW__CORE__DAGS_FOLDER": "${workspaceFolder}/dags",
+                "PYTHONPATH": "${workspaceFolder}",
+                "AIRFLOW__API__AUTH_BACKENDS": "airflow.api.auth.backend.basic_auth",
+                "POSTGRES_HOST": "localhost",
+                "POSTGRES_PORT": "5432",
+                "POSTGRES_DB": "nhl_analytics_db",
+                "POSTGRES_USER": "nhl_analytics_user",
+                "POSTGRES_PASSWORD": "nhl_analytics_password"
+            }
+        }
+    ]
+}
